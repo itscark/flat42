@@ -2,7 +2,7 @@
     <div class="nav-wrapper">
         <div class="nav-icon">
             <a href="{{ route('welcome') }}">
-                @svg('favicon-black-white')
+                @svg('favicon-black-white', 'nav-icon')
             </a>
         </div>
 

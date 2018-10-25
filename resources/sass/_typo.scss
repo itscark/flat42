@@ -10,6 +10,12 @@ body, h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway', sans-serif;
+  color: $blue;
+  margin: 1em;
+}
+
+h1 {
+  color: $teal;
 }
 
 /* Body Content */

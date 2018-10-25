@@ -1,0 +1,21 @@
+.hero-section {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+
+.hero-top{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-bottom{
+  box-shadow: $boxShadow;
+  padding: 1em;
+  background-color: white;
+}
