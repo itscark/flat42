@@ -7,6 +7,7 @@
   height: 100%;
   display: flex;
   align-items: center;
+  margin-left: 1em;
 
   svg {
     height: 90%;
@@ -19,7 +20,6 @@ nav {
   background-color: $orange;
   ul {
     margin: 0px;
-    margin-right: 20px;
     padding: 0;
     list-style: none;
     display: grid;
