@@ -1,0 +1,36 @@
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-icon a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  svg {
+    height: 90%;
+  }
+}
+
+
+nav {
+  padding: 5px;
+  background-color: $orange;
+  ul {
+    margin: 0px;
+    margin-right: 20px;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-items: center;
+
+    a{
+      text-decoration: none;
+      color: $blue;
+    }
+  }
+}

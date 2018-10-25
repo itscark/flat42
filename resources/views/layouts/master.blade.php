@@ -3,7 +3,7 @@
 <head>
     @include('layouts.head')
 </head>
-<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+<nav>
     @include('layouts.nav')
 </nav>
 <body id="app">
@@ -11,5 +11,8 @@
     @yield('content')
 </main>
 </body>
+<footer>
+    @include('layouts.footer')
+</footer>
 </html>
 

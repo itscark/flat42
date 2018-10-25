@@ -1,13 +1,33 @@
 @if (Route::has('login'))
-    <div class="top-right links">
-        @auth
-            <a href="{{ url('/home') }}">Home</a>
-        @else
-            <a href="{{ route('login') }}">Login</a>
+    <div class="nav-wrapper">
+        <div class="nav-icon">
+            <a href="{{ route('welcome') }}">
+                @svg('favicon-black-white')
+            </a>
+        </div>
+        <ul>
+            <li>
+                <a href="">Blog</a>
 
-            @if (Route::has('register'))
-                <a href="{{ route('register') }}">Register</a>
+            </li>
+
+            <li>
+                <a href="">Über Uns</a>
+            </li>
+
+            @if(!auth()->check())
+                <li>
+                    <a href="{{ route('login') }}">Login</a>
+                </li>
+
+                <li>
+                    <a href="{{ route('register') }}">Register</a>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('logout') }}">Logout</a>
+                </li>
             @endif
-        @endauth
+        </ul>
     </div>
 @endif
