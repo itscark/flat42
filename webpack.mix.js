@@ -18,4 +18,6 @@ mix.js('resources/js/app.js', 'public/js')
             'properties-order': 'alphabetical'
         })
     ]
-});
+})
+    .copy('resources/assets/images/', 'public/images/')
+;
