@@ -1,7 +1,13 @@
 footer {
   min-height: 200px;
-  background-color: darkgray;
+  background-color: $light-gray;
   padding-top: 1px;
+  padding-bottom: 50px;
+
+  .headline{
+    margin: 30px auto;
+  }
+
 
   h3 {
 

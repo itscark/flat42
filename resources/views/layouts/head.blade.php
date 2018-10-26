@@ -10,7 +10,6 @@
 <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
 
 <!-- Fonts -->
-<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700|Raleway:400,900" rel="stylesheet">
 
 <!-- Font Awesome -->

@@ -4,7 +4,7 @@
     <i class="fab fa-instagram fa-3x"></i>
 </div>
 
-<div>
+<div class="headline">
     <h3>
         <a href="{{ route('welcome') }}">
             flat42
@@ -12,14 +12,24 @@
     </h3>
 </div>
 
-{{--<form method="post">
-    <div class="form-group">
-        <label for="newsletterEmail">Email address</label>
-        <input type="email" class="form-control" id="newsletterEmail" placeholder="Register for the newsletter!">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>--}}
+<div class="fancy-form">
+    <form class="form-card" action="#" method="post">
+        <fieldset class="form-fieldset">
+            <div class="form-element form-input">
+                <input id="news-email" class="form-element-field" placeholder=" " type="email" required/>
+                <div class="form-element-bar"></div>
+                <label class="form-element-label" for="news-email">Email</label>
+                <small class="form-element-hint">We will never spam you!</small>
+            </div>
+        </fieldset>
+        <div class="container">
+            <button type="submit" id="new-button">Submit</button>
+        </div>
+    </form>
 
+</div>
 
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
+
+

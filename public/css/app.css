@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-/*$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66D9b;
-$green: #38c172;
-$cyan: #6cb2eb;*/
-
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
  *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
@@ -3744,9 +3738,14 @@ blockquote {
 }
 
 footer {
-  background-color: darkgray;
+  background-color: #b3b3b3b0;
   min-height: 200px;
+  padding-bottom: 50px;
   padding-top: 1px;
+}
+
+footer .headline {
+  margin: 30px auto;
 }
 
 footer h3 {
@@ -3771,5 +3770,184 @@ footer h3 a {
   margin: 0 auto;
   margin-top: 30px;
   max-width: 400px;
+}
+
+.fancy-form {
+  background-color: #f8fafc;
+  border-radius: 30px;
+  -webkit-box-shadow: 3px 3px 8px #b3b3b3;
+          box-shadow: 3px 3px 8px #b3b3b3;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.fancy-form .form-fieldset {
+  border: none;
+}
+
+.fancy-form .form-card {
+  padding: 5px;
+}
+
+.fancy-form .form-element {
+  margin-bottom: 2em;
+  margin-top: 2em;
+  position: relative;
+}
+
+.fancy-form .form-element-bar {
+  background: #13A399;
+  display: block;
+  height: 1px;
+  position: relative;
+}
+
+.fancy-form .form-element-bar::after {
+  background: #13A399;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  -webkit-transform: rotateY(90deg);
+          transform: rotateY(90deg);
+  -webkit-transition: -webkit-transform 0.28s ease;
+  transition: -webkit-transform 0.28s ease;
+  transition: transform 0.28s ease;
+  transition: transform 0.28s ease, -webkit-transform 0.28s ease;
+  will-change: transform;
+}
+
+.fancy-form .form-element-label {
+  color: #13A399;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5rem;
+  margin: 0;
+  overflow: hidden;
+  padding-left: 0.125rem;
+  pointer-events: none;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: 0.75rem;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transform-origin: left center;
+          transform-origin: left center;
+  -webkit-transition: color 0.28s linear, opacity 0.28s linear, -webkit-transform 0.28s ease;
+  transition: color 0.28s linear, opacity 0.28s linear, -webkit-transform 0.28s ease;
+  transition: transform 0.28s ease, color 0.28s linear, opacity 0.28s linear;
+  transition: transform 0.28s ease, color 0.28s linear, opacity 0.28s linear, -webkit-transform 0.28s ease;
+  white-space: nowrap;
+  will-change: transform, color, opacity;
+  z-index: 1;
+}
+
+.fancy-form .form-element-hint {
+  color: #02173e38;
+}
+
+.fancy-form .form-element-field {
+  background: none;
+  border: 0 solid transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #333;
+  display: block;
+  font-size: 1rem;
+  height: 1.5rem;
+  line-height: 1.5;
+  opacity: 0.001;
+  outline: none;
+  padding: 0.125rem 0.125rem 0.0625rem;
+  -webkit-transition: opacity 0.28s ease;
+  transition: opacity 0.28s ease;
+  width: 100%;
+  will-change: opacity;
+}
+
+.fancy-form .form-element-field:-ms-input-placeholder {
+  color: #13A399;
+  transform: scale(0.9);
+  transform-origin: left top;
+}
+
+.fancy-form .form-element-field::-webkit-input-placeholder {
+  color: #13A399;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+}
+
+.fancy-form .form-element-field::-ms-input-placeholder {
+  color: #13A399;
+  transform: scale(0.9);
+  transform-origin: left top;
+}
+
+.fancy-form .form-element-field::placeholder {
+  color: #13A399;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  -webkit-transform-origin: left top;
+          transform-origin: left top;
+}
+
+.fancy-form .form-element-field:focus ~ .form-element-bar::after {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+}
+
+.fancy-form .form-element-field:focus ~ .form-element-label {
+  color: #13A399;
+}
+
+.fancy-form .form-element-field.-hasvalue,
+.fancy-form .form-element-field:focus {
+  opacity: 1;
+}
+
+.fancy-form .form-element-field.-hasvalue ~ .form-element-label,
+.fancy-form .form-element-field:focus ~ .form-element-label {
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-transform: translateY(-100%) translateY(-0.5em) translateY(-2px) scale(0.9);
+          transform: translateY(-100%) translateY(-0.5em) translateY(-2px) scale(0.9);
+}
+
+.container {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+button {
+  background: #fff;
+  border: 2px solid #13A399;
+  border-radius: 40px;
+  color: #13A399;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  height: 40px;
+  letter-spacing: 1px;
+  outline: none;
+  text-align: center;
+  text-shadow: 0;
+  text-transform: uppercase;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  width: 130px;
+}
+
+button:hover {
+  background: #13A399;
+  color: white;
+}
+
+button:active {
+  letter-spacing: 2px;
 }
 
