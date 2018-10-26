@@ -2,6 +2,33 @@
    width: 70px;
  }
 
+////////////////////////////
+//Hero Icon
+////////////////////////////
 .hero-icon {
-  width: 250px;
+  width: 150px;
+}
+
+@media (min-width: 43.75em) {
+  .hero-icon {
+    width: 200px;
+  }
+}
+
+@media (min-width: 56.25em) {
+  .hero-icon {
+    width: 250px;
+  }
+}
+
+.fa-5x {
+  height: 100%;
+  width: 70px;
+}
+
+////////////////////////////
+//Article Icon
+////////////////////////////
+.article-icon {
+  width: 50px;
 }

@@ -1,28 +1,10 @@
 @media only screen and (min-width: 621px) {
-  #menu-toggle{
-    display: none;
-  }
-  .nav-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: .5em 1em;
-  }
-  .nav-icon a {
-    height: 100%;
-    display: flex;
-    align-items: center;
-
-    svg {
-      height: 90%;
-    }
-  }
-
   nav {
     padding: 5px 0;
     position: fixed;
     width: 100%;
     background-color: $light-gray;
+
     ul {
       margin: 0px;
       padding: 0;
@@ -38,17 +20,35 @@
         color: $blue;
       }
     }
-  }
-  #menu-toggle, #trigger , #burger {
-    display: none
-  }
 
-
-    nav * {
+    * {
       box-sizing: inherit;
       transition-property: all;
       transition-duration: .6s;
       transition-timing-function: ease;
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .5em 1em;
+    }
+    #menu-toggle {
+      display: none;
+    }
+
+    .nav-icon a {
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      svg {
+        height: 90%;
+      }
+    }
+    #menu-toggle, #trigger, #burger {
+      display: none
     }
 
     .buttons {
@@ -109,5 +109,5 @@
       top: 0;
       width: 70%;
     }
-
+  }
 }

@@ -2,6 +2,18 @@ body {
   margin: 0;
   padding: 0;
   background-color: $body-bg;
+  max-width: 1920px;
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 1920px;
+}
+
+@media (min-width: 43.75em) {
+  html {
+    margin: 0 auto;
+  }
 }
 
 html,
@@ -9,7 +21,7 @@ body {
   box-sizing: border-box;
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  max-width: 1920px;
 }
 
 i {

@@ -4,28 +4,30 @@ body {
   font-family: 'Merriweather', serif;
 }
 
+p {
+  margin: 0;
+  text-align: justify;
+}
+
 body, h1, h2, h3, h4, h5, h6 {
   font-size-adjust: 0.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway', sans-serif;
-  color: $blue;
-  margin: 1em;
+  color: $teal;
+  margin: 10px;
 }
 
-h1 {
-  color: $teal;
-}
 
 /* Body Content */
-#page {
+body {
   font-size: 1em;
   line-height: 1.25;
 }
 
 @media (min-width: 43.75em) {
-  #page {
+  body {
     font-size: 1em;
     line-height: 1.375;
   }

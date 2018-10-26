@@ -33,10 +33,4 @@
 
     </div>
 
-{{--    <div class="nav-icon">
-        <a href="{{ route('welcome') }}">
-            @svg('favicon-black-white', 'nav-icon')
-        </a>
-    </div>--}}
-
 @endif
