@@ -11,7 +11,7 @@
         <label id="burger" for="menu-toggle"></label>
         <ul id="menu">
             <li class="nav-btn">
-                <a href="" class="btn">Blog</a>
+                <a href="{{ route('posts.index') }}" class="btn">Blog</a>
             </li>
             <li class="nav-btn">
                 <a class="btn" href="">Über Uns</a>
