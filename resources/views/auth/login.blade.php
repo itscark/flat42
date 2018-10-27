@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container">
+{{--<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -67,5 +67,38 @@
             </div>
         </div>
     </div>
-</div>
+</div>--}}
+
+
+<form class="form-card" method="POST" action="{{ route('login') }}">
+    <h2 class="justify-content-center">Login</h2>
+    @csrf
+    <fieldset class="form-fieldset">
+        <div class="form-element form-input">
+            <input id="email" class="form-element-field" placeholder="Please fill in your email" type="text" name="email" required/>
+            <div class="form-element-bar"></div>
+            <label class="form-element-label" for="email">Email</label>
+        </div>
+
+        <div class="form-element form-input">
+            <input id="password" class="form-element-field" placeholder="Type in your password" type="password" name="password" required/>
+            <div class="form-element-bar"></div>
+            <label class="form-element-label" for="password">Password</label>
+        </div>
+        <div class="form-element form-input">
+            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+            <label class="form-element-label" for="remember">
+                {{ __('Remember Me') }}
+            </label>
+        </div>
+    </fieldset>
+
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            {{ __('Login') }}
+        </button>
+    </div>
+</form>
+
 @endsection

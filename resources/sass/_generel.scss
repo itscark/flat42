@@ -38,3 +38,22 @@ i {
     color: $blue;
   }
 }
+
+main {
+  min-height: 60vh;
+}
+
+.container {
+  display: grid;
+  min-height: 60vh;
+}
+
+.justify-content-center {
+  text-align: center;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  height: 100%;
+}

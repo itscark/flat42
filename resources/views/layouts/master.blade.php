@@ -7,7 +7,7 @@
     @include('layouts.nav')
 </nav>
 <body id="app">
-<main class="py-4">
+<main class="main-container">
     @yield('content')
 </main>
 </body>
