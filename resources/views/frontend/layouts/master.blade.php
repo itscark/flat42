@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    @include('layouts.head')
+    @include('frontend.layouts.head')
 </head>
 <nav>
-    @include('layouts.nav')
+    @include('frontend.layouts.nav')
 </nav>
 <body id="app">
 <main class="main-container">
@@ -12,7 +12,7 @@
 </main>
 </body>
 <footer>
-    @include('layouts.footer')
+    @include('frontend.layouts.footer')
 </footer>
 </html>
 

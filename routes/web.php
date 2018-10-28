@@ -11,11 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('welcome');
+
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/blog', ['uses' => 'PostController@index', 'as' => 'posts.index']);
+
+Route::middleware('guest')->group(function () {
+    Route::get('/', function () {
+        return view('frontend.index');
+    })->name('welcome');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home', 'NewsController@index')->name('home');
+});
+
+
