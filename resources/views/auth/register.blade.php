@@ -25,6 +25,21 @@
                             </div>
                         </div>
 
+
+                        <div class="form-group row">
+                            <label for="flat_id" class="col-md-4 col-form-label text-md-right">{{ __('Flat ID') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="flat_id" type="text" class="form-control{{ $errors->has('flat_id') ? ' is-invalid' : '' }}" name="flat_id" value="{{ old('flat_id') }}" required>
+
+                                @if ($errors->has('flat_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('flat_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
