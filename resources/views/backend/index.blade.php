@@ -20,6 +20,8 @@
         </div>
     </div>--}}
 
+
+
     <div>
         <form action="{{ route('news.store') }}" method="post">
             @csrf

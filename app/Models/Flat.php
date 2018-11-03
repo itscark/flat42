@@ -11,7 +11,13 @@ class Flat extends Model
         return $this->hasMany(User::class);
     }
 
-    public function news(){
+    public function news()
+    {
         return $this->hasMany(News::class);
+    }
+
+    public function item()
+    {
+        return $this->hasMany(Item::class);
     }
 }
