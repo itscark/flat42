@@ -14003,6 +14003,14 @@ module.exports = __webpack_require__(49);
 */
 
 __webpack_require__(14);
+<<<<<<< HEAD
+=======
+
+/////////////////////////
+//Floating Labels
+/////////////////////////
+
+>>>>>>> 577d5acd82dc58d7a95cec1b574d5489d4ebe6cd
 
 window.Vue = __webpack_require__(37);
 
@@ -14012,7 +14020,11 @@ window.Vue = __webpack_require__(37);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+<<<<<<< HEAD
 Vue.component('app-list', __webpack_require__(40));
+=======
+Vue.component('example-component', __webpack_require__(60));
+>>>>>>> 577d5acd82dc58d7a95cec1b574d5489d4ebe6cd
 
 var app = new Vue({
   el: '#app'
@@ -47290,15 +47302,48 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(7)))
 
 /***/ }),
+<<<<<<< HEAD
 /* 40 */
+=======
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */
+>>>>>>> 577d5acd82dc58d7a95cec1b574d5489d4ebe6cd
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(41)
+var __vue_script__ = __webpack_require__(61)
 /* template */
+<<<<<<< HEAD
 var __vue_template__ = __webpack_require__(48)
+=======
+var __vue_template__ = __webpack_require__(62)
+>>>>>>> 577d5acd82dc58d7a95cec1b574d5489d4ebe6cd
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47337,6 +47382,7 @@ module.exports = Component.exports
 
 
 /***/ }),
+<<<<<<< HEAD
 /* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -47690,6 +47736,9 @@ module.exports = Component.exports
 
 /***/ }),
 /* 46 */
+=======
+/* 61 */
+>>>>>>> 577d5acd82dc58d7a95cec1b574d5489d4ebe6cd
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47738,7 +47787,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
+<<<<<<< HEAD
 /* 47 */
+=======
+/* 62 */
+>>>>>>> 577d5acd82dc58d7a95cec1b574d5489d4ebe6cd
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47876,11 +47929,14 @@ if (false) {
   }
 }
 
+<<<<<<< HEAD
 /***/ }),
 /* 49 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
+=======
+>>>>>>> 577d5acd82dc58d7a95cec1b574d5489d4ebe6cd
 /***/ })
 /******/ ]);
