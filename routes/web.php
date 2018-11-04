@@ -12,7 +12,6 @@
 */
 
 
-
 Auth::routes();
 Route::get('/blog', ['uses' => 'PostController@index', 'as' => 'posts.index']);
 
@@ -29,6 +28,8 @@ Route::middleware('auth')->group(function () {
         return view('backend.shopping.index');
     });
     Route::post('/shopping', 'ItemController@store');
+    Route::delete('/shopping/{id}', 'ItemController@destroy');
+    Route::put('/shopping/{id}', 'ItemController@update');
 });
 
 

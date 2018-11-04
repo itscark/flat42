@@ -9,10 +9,18 @@
           <input @change="inputChanged()" type="number" id="quantity" v-model="item.quantity">
 
 
+          <!--
+
+          Only show if user-id is the same as the Loggedin User
+
+          -->
           <div role="group" aria-label="Buttons">
-              <button @click="updateItem()" type="button"  :disabled="isDisabled"><i aria-hidden="true"></i> Update</button>
+             <button @click="updateItem()" type="button" ><i aria-hidden="true"></i> Update</button>
               <button @click="deleteItem()" type="button" ><i aria-hidden="true"></i> Delete</button>
           </div>
+
+
+
       </form>
     </div>
 </div>
