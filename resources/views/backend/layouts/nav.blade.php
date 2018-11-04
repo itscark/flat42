@@ -14,10 +14,10 @@
                 <a href="{{ route('home') }}" class="btn">News</a>
             </li>
             <li class="nav-btn">
-                <a class="btn" href="">Einkaufsliste</a>
+                <a class="btn" href="/shopping">Einkaufsliste</a>
             </li>
             <li class="nav-btn">
-                <a class="btn" href="">Events</a>
+                <a class="btn" href="{{ route('event.index') }}">Events</a>
             </li>
             <li class="nav-btn">
                 <a class="btn" href="">Putzplan</a>

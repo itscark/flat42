@@ -30,6 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/shopping', 'ItemController@store');
     Route::delete('/shopping/{id}', 'ItemController@destroy');
     Route::put('/shopping/{id}', 'ItemController@update');
+
+    Route::get('/events', ['uses' => 'EventController@index', 'as' => 'event.index']);
+    Route::get('/events/create', ['uses' => 'EventController@create', 'as' => 'event.create']);
+    Route::post('/events/create', ['uses' => 'EventController@store', 'as' => 'event.store']);
+    Route::post('/events/{id}', ['uses' => 'EventController@join', 'as' => 'event.join']);
+
+
 });
 
 

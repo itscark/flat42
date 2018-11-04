@@ -32,12 +32,18 @@ class User extends Authenticatable
         return $this->belongsTo(Flat::class);
     }
 
-    public function item(){
-     return $this->hasMany(Item::class);
+    public function item()
+    {
+        return $this->hasMany(Item::class);
     }
 
     public function news()
     {
         return $this->hasMany(News::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
     }
 }
