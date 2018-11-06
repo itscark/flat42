@@ -1,10 +1,8 @@
 <template>
   <div >
     <form autocomplete="off">
-        <label for="name" >{{ newItem.name }}</label>
         <input v-model="newItem.name" type="text" id="name" placeholder="Name...">
 
-        <label for="quantity" >{{ newItem.quantity }}</label>
         <input v-model="newItem.quantity" type="number" id="quantity" placeholder="Quantity">
 
 

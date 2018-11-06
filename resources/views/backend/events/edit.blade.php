@@ -6,10 +6,10 @@
     <div>
 
         <div>
-            <a href="{{ route('event.index') }}">back</a>
+            <a href="{{ route('event.show', $event->id) }}">back</a>
         </div>
 
-        <form action="{{ route('event.store') }}" method="post">
+        <form action="{{ route('event.update', $event->id) }}" method="post">
             @csrf
             <div>
                 <label for="title">title</label>
@@ -26,7 +26,7 @@
             </div>
 
             <div>
-                <button type="submit">Event planen</button>
+                <button type="submit">Event updaten</button>
             </div>
 
         </form>

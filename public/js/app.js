@@ -47370,6 +47370,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -47378,7 +47382,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             items: [],
-            errors: []
+            errors: [],
+            submitted: true
         };
     },
 
@@ -47386,46 +47391,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         appItem: __WEBPACK_IMPORTED_MODULE_0__Item___default.a,
         appNewItem: __WEBPACK_IMPORTED_MODULE_1__NewItem___default.a
     },
-    created: function created() {
+
+    mounted: function mounted() {
         var _this = this;
 
         axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
         axios.get("api/items").then(function (response) {
             _this.items = response.data;
-        }).catch(function (e) {
-            console.log(e.response);
+            _this.disableButton(_this.items);
         });
     },
 
+
     methods: {
         deleteItemHandler: function deleteItemHandler(id) {
-            axios.delete("/shopping/" + id).then(function (response) {
-                console.log(response.data);
-            }).catch(function (e) {
-                console.log(e.response);
-            });
+            axios.delete("/shopping/" + id).then(function (response) {});
             this.items = this.items.filter(function (item) {
                 return item.id !== id;
             });
+            this.disableButton(this.items);
+        },
+        updateItemHandler: function updateItemHandler(item) {
+            axios.put("/shopping/" + item.id, item).then(function (response) {});
         },
         createEventHandler: function createEventHandler(newItem) {
             var _this2 = this;
 
-            console.log(newItem);
             axios.post("/shopping", newItem).then(function (response) {
-                console.log("stored");
                 _this2.items.push(response.data);
                 newItem.name = "";
                 newItem.quantity = null;
-            }).catch(function (e) {
-                console.log(e);
+                _this2.disableButton(_this2.items);
             });
         },
-        updateItemHandler: function updateItemHandler(item) {
-            axios.put("/shopping/" + item.id, item).then(function (response) {}).catch(function (e) {
-                console.log(e);
-            });
+        disableButton: function disableButton(data) {
+            if (data.length == 0) {
+                this.$set(this, 'submitted', true);
+            } else {
+                this.$set(this, 'submitted', false);
+            }
         }
     }
 });
@@ -47503,42 +47508,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: {
-    item: {}
-  },
-  data: function data() {
-    return {
-      isDisabled: true
-    };
-  },
+    props: {
+        item: {}
+    },
+    data: function data() {
+        return {
+            isDisabled: true
+        };
+    },
 
-  methods: {
-    deleteItem: function deleteItem() {
-      this.$emit("deleteEvent", this.item.id);
-    },
-    updateItem: function updateItem() {
-      this.isDisabled = true;
-      this.$emit("updateEvent", this.item);
-    },
-    inputChanged: function inputChanged() {
-      if (this.item.name.length < 3 || this.item.quantity < 1) {
-        this.isDisabled = true;
-      } else {
-        this.isDisabled = false;
-      }
+    methods: {
+        deleteItem: function deleteItem() {
+            this.$emit("deleteEvent", this.item.id);
+        },
+        updateItem: function updateItem() {
+            this.isDisabled = true;
+            this.$emit("updateEvent", this.item);
+        },
+        inputChanged: function inputChanged() {
+            if (this.item.name.length < 3 || this.item.quantity < 1) {
+                this.isDisabled = true;
+            } else {
+                this.isDisabled = false;
+            }
+        }
     }
-  }
 });
 
 /***/ }),
@@ -47552,10 +47548,6 @@ var render = function() {
   return _c("div", [
     _c("div", [
       _c("form", { attrs: { autocomplete: "off" } }, [
-        _c("label", { attrs: { for: "name" } }, [
-          _vm._v(_vm._s(_vm.item.name))
-        ]),
-        _vm._v(" "),
         _c("input", {
           directives: [
             {
@@ -47579,10 +47571,6 @@ var render = function() {
             }
           }
         }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "quantity" } }, [
-          _vm._v(_vm._s(_vm.item.quantity))
-        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -47717,8 +47705,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -47755,10 +47741,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("form", { attrs: { autocomplete: "off" } }, [
-      _c("label", { attrs: { for: "name" } }, [
-        _vm._v(_vm._s(_vm.newItem.name))
-      ]),
-      _vm._v(" "),
       _c("input", {
         directives: [
           {
@@ -47779,10 +47761,6 @@ var render = function() {
           }
         }
       }),
-      _vm._v(" "),
-      _c("label", { attrs: { for: "quantity" } }, [
-        _vm._v(_vm._s(_vm.newItem.quantity))
-      ]),
       _vm._v(" "),
       _c("input", {
         directives: [
@@ -47845,31 +47823,38 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", [
-      _c("div", [
-        _c("div", [
-          _c("div", [_vm._v("Shopping list")]),
+      _c("div", [_vm._v("Shopping list")]),
+      _vm._v(" "),
+      _c(
+        "div",
+        [
+          _vm._l(_vm.items, function(item) {
+            return _c("app-item", {
+              key: item.id,
+              attrs: { item: item },
+              on: {
+                deleteEvent: _vm.deleteItemHandler,
+                updateEvent: _vm.updateItemHandler
+              }
+            })
+          }),
           _vm._v(" "),
-          _c(
-            "div",
-            [
-              _vm._l(_vm.items, function(item) {
-                return _c("app-item", {
-                  key: item.id,
-                  attrs: { item: item },
-                  on: {
-                    deleteEvent: _vm.deleteItemHandler,
-                    updateEvent: _vm.updateItemHandler
-                  }
-                })
-              }),
-              _vm._v(" "),
-              _c("app-new-item", {
-                on: { createEvent: _vm.createEventHandler }
-              })
-            ],
-            2
-          )
-        ])
+          _c("app-new-item", { on: { createEvent: _vm.createEventHandler } })
+        ],
+        2
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", [
+      _c("form", { attrs: { action: "", method: "post" } }, [
+        _c(
+          "button",
+          {
+            attrs: { disabled: _vm.submitted, type: "submit" },
+            on: { click: _vm.disableButton }
+          },
+          [_vm._v("Einkaufen gehen")]
+        )
       ])
     ])
   ])

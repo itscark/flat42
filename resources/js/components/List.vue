@@ -1,25 +1,29 @@
 <template>
     <div>
         <div>
+            <div>Shopping list</div>
             <div>
-                <div>
-                    <div>Shopping list</div>
-                    <div>
-                        <app-item
-                                v-for="item in items"
-                                :item="item"
-                                :key="item.id"
-                                @deleteEvent="deleteItemHandler"
-                                @updateEvent="updateItemHandler">
-                        </app-item>
-                        <app-new-item
-                                @createEvent="createEventHandler">
-                        </app-new-item>
-                    </div>
-                </div>
+                <app-item
+                        v-for="item in items"
+                        :item="item"
+                        :key="item.id"
+                        @deleteEvent="deleteItemHandler"
+                        @updateEvent="updateItemHandler">
+                </app-item>
+                <app-new-item
+                        @createEvent="createEventHandler">
+                </app-new-item>
             </div>
         </div>
+
+        <div>
+            <form action="" method="post">
+                <button :disabled="submitted" @click="disableButton" type="submit">Einkaufen gehen</button>
+            </form>
+
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -30,62 +34,60 @@
         data() {
             return {
                 items: [],
-                errors: []
+                errors: [],
+                submitted: true,
             };
         },
         components: {
             appItem,
             appNewItem
         },
-        created() {
+
+        mounted() {
             axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
 
             axios
                 .get("api/items")
                 .then(response => {
                     this.items = response.data;
+                    this.disableButton(this.items);
                 })
-                .catch(e => {
-                    console.log(e.response);
-                });
         },
+
         methods: {
             deleteItemHandler(id) {
                 axios
                     .delete(`/shopping/${id}`)
                     .then(response => {
-                        console.log(response.data);
-                    })
-                    .catch(e => {
-                        console.log(e.response);
                     });
                 this.items = this.items.filter(item => {
                     return item.id !== id;
                 });
-            },
-            createEventHandler(newItem) {
-                console.log(newItem);
-                axios
-                    .post("/shopping", newItem)
-                    .then(response => {
-                        console.log("stored");
-                        this.items.push(response.data);
-                        newItem.name = "";
-                        newItem.quantity = null;
-                    })
-                    .catch(e => {
-                        console.log(e);
-                    });
+                this.disableButton(this.items);
             },
             updateItemHandler(item) {
                 axios
                     .put(`/shopping/${item.id}`, item)
                     .then(response => {
                     })
-                    .catch(e => {
-                        console.log(e);
-                    });
-            }
+            },
+            createEventHandler(newItem) {
+                axios
+                    .post("/shopping", newItem)
+                    .then(response => {
+                        this.items.push(response.data);
+                        newItem.name = "";
+                        newItem.quantity = null;
+                        this.disableButton(this.items);
+                    })
+            },
+            disableButton(data) {
+                if (data.length == 0) {
+                    this.$set(this, 'submitted', true)
+                } else {
+                    this.$set(this, 'submitted', false)
+                }
+            },
         }
     };
 </script>

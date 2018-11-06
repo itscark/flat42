@@ -8,11 +8,6 @@ use Carbon\Carbon;
 
 class EventController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $events = Event::getFlatEvents();
@@ -24,69 +19,62 @@ class EventController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('backend.events.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $this->validate(\request(), [
+            'title' => 'required',
+            'body' => 'required',
+            'date' => 'required|date'
+        ]);
+
+        Event::create([
+            'flat_id' => auth()->user()->flat_id,
+            'user_id' => auth()->id(),
+            'title' => \request('title'),
+            'body' => \request('body'),
+            'date' => \request('date'),
+        ]);
+
+        return redirect((route('event.index')));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Event $event
-     * @return \Illuminate\Http\Response
-     */
     public function show(Event $event)
     {
-        //
+        if ((($event->flat_id) == auth()->user()->flat_id)) {
+            return view('backend.events.show', compact('event'));
+        } else {
+            return abort(404);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Event $event
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Event $event)
     {
-        //
+        return view('backend.events.edit', compact('event'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Event $event
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Event $event)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+            'date' => 'required|date'
+        ]);
+
+
+        $event->fill($request->all());
+        $event->save();
+
+        return redirect(route('event.show', $event->id));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Event $event
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        //
+        Event::findOrFail($id)->delete();
+        return redirect(route('event.index'));
     }
 }

@@ -35,6 +35,12 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate(\request(), [
+           'title' => 'required',
+           'body' => 'required'
+        ]);
+
         News::create([
             'flat_id' => auth()->user()->flat_id,
             'user_id' => auth()->id(),

@@ -34,7 +34,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/events', ['uses' => 'EventController@index', 'as' => 'event.index']);
     Route::get('/events/create', ['uses' => 'EventController@create', 'as' => 'event.create']);
     Route::post('/events/create', ['uses' => 'EventController@store', 'as' => 'event.store']);
-    Route::post('/events/{id}', ['uses' => 'EventController@join', 'as' => 'event.join']);
+    Route::post('/events/{id}/join', ['uses' => 'EventController@join', 'as' => 'event.join']);
+    Route::get('/events/{event}/edit', ['uses' => 'EventController@edit', 'as' => 'event.edit']);
+    Route::post('/events/{event}/edit', ['uses' => 'EventController@update', 'as' => 'event.update']);
+    Route::delete('/events/{id}', ['uses' => 'EventController@destroy', 'as' => 'event.destroy']);
+    Route::get('/events/{event}', ['uses' => 'EventController@show', 'as' => 'event.show']);
 
 
 });
