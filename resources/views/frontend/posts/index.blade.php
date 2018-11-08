@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+@extends('layouts.master')
 
 @section('pageTitle', 'flat42')
 
@@ -28,6 +28,6 @@
             </div>
         </section>
 
-        @include('frontend.layouts.aside')
+        @include('layouts.aside')
     </div>
 @endsection

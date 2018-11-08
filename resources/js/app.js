@@ -16,7 +16,11 @@ window.Vue = require('vue');
  */
 
 
+window.Vue = require('vue');
+
 Vue.component('app-list', require('./components/List.vue'));
+Vue.component('feature_left', require('./components/feature_left.vue'));
+Vue.component('feature_right', require('./components/feature_right.vue'));
 
 const app = new Vue({
     el: '#app',

@@ -1,13 +1,22 @@
-@import "variables";
-@import "~font-awesome/scss/font-awesome.scss";
-@import "generel";
-@import "font";
-@import "typo";
-@import "icon";
-@import "nav";
-@import "mobile-menu";
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+body {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  background: white;
+}
+
+form{
+  padding-top: 3rem;
+}
+
 @import "welcome";
-@import "footer";
-@import "button";
-@import "blog";
-@import "forms";
+@import "floating-label";
+
+
+.bg-dark, .btn-dark {
+  background-color:$teal !important;
+}

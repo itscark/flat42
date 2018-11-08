@@ -16,9 +16,7 @@ Auth::routes();
 Route::get('/blog', ['uses' => 'PostController@index', 'as' => 'posts.index']);
 
 Route::middleware('guest')->group(function () {
-    Route::get('/', function () {
-        return view('frontend.index');
-    })->name('welcome');
+    Route::get('/', 'WelcomeController@index')->name('welcome');
 });
 
 Route::middleware('auth')->group(function () {
