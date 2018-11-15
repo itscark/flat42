@@ -47375,9 +47375,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -47549,9 +47546,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [
-      _c("form", { attrs: { autocomplete: "off" } }, [
+  return _c(
+    "form",
+    { staticClass: "row mx-auto", attrs: { autocomplete: "off" } },
+    [
+      _c("div", { staticClass: "form-group col-md" }, [
         _c("input", {
           directives: [
             {
@@ -47561,6 +47560,7 @@ var render = function() {
               expression: "item.name"
             }
           ],
+          staticClass: "form-control",
           attrs: { type: "text", id: "name" },
           domProps: { value: _vm.item.name },
           on: {
@@ -47574,8 +47574,10 @@ var render = function() {
               _vm.$set(_vm.item, "name", $event.target.value)
             }
           }
-        }),
-        _vm._v(" "),
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group col-md" }, [
         _c("input", {
           directives: [
             {
@@ -47585,6 +47587,7 @@ var render = function() {
               expression: "item.quantity"
             }
           ],
+          staticClass: "form-control",
           attrs: { type: "number", id: "quantity" },
           domProps: { value: _vm.item.quantity },
           on: {
@@ -47598,12 +47601,20 @@ var render = function() {
               _vm.$set(_vm.item, "quantity", $event.target.value)
             }
           }
-        }),
-        _vm._v(" "),
-        _c("div", { attrs: { role: "group", "aria-label": "Buttons" } }, [
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "form-group col-md-3",
+          attrs: { role: "group", "aria-label": "Buttons" }
+        },
+        [
           _c(
             "button",
             {
+              staticClass: "btn btn-outline-warning",
               attrs: { type: "button" },
               on: {
                 click: function($event) {
@@ -47611,12 +47622,18 @@ var render = function() {
                 }
               }
             },
-            [_c("i", { attrs: { "aria-hidden": "true" } }), _vm._v(" Update")]
+            [
+              _c("i", { attrs: { "aria-hidden": "true" } }),
+              _vm._v(" "),
+              _c("i", { staticClass: "far fa-edit" }),
+              _vm._v(" Update")
+            ]
           ),
           _vm._v(" "),
           _c(
             "button",
             {
+              staticClass: "btn btn-outline-danger",
               attrs: { type: "button" },
               on: {
                 click: function($event) {
@@ -47624,12 +47641,17 @@ var render = function() {
                 }
               }
             },
-            [_c("i", { attrs: { "aria-hidden": "true" } }), _vm._v(" Delete")]
+            [
+              _c("i", { attrs: { "aria-hidden": "true" } }),
+              _vm._v(" "),
+              _c("i", { staticClass: "far fa-trash-alt" }),
+              _vm._v(" Delete")
+            ]
           )
-        ])
-      ])
-    ])
-  ])
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -47709,30 +47731,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      newItem: {
-        name: "",
-        quantity: null
-      }
-    };
-  },
+    data: function data() {
+        return {
+            newItem: {
+                name: "",
+                quantity: null
+            }
+        };
+    },
 
-  methods: {
-    createItem: function createItem() {
-      this.$emit("createEvent", this.newItem);
+    methods: {
+        createItem: function createItem() {
+            this.$emit("createEvent", this.newItem);
+        }
+    },
+    computed: {
+        isDisabled: function isDisabled() {
+            if (this.newItem.name.length < 3 || this.newItem.quantity < 1) {
+                return true;
+            }
+            return false;
+        }
     }
-  },
-  computed: {
-    isDisabled: function isDisabled() {
-      if (this.newItem.name.length < 3 || this.newItem.quantity < 1) {
-        return true;
-      }
-      return false;
-    }
-  }
 });
 
 /***/ }),
@@ -47743,69 +47769,87 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("form", { attrs: { autocomplete: "off" } }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.newItem.name,
-            expression: "newItem.name"
-          }
-        ],
-        attrs: { type: "text", id: "name", placeholder: "Name..." },
-        domProps: { value: _vm.newItem.name },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+  return _c(
+    "form",
+    { staticClass: "row mx-auto", attrs: { autocomplete: "off" } },
+    [
+      _c("div", { staticClass: "form-group col-md" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.newItem.name,
+              expression: "newItem.name"
             }
-            _vm.$set(_vm.newItem, "name", $event.target.value)
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.newItem.quantity,
-            expression: "newItem.quantity"
-          }
-        ],
-        attrs: { type: "number", id: "quantity", placeholder: "Quantity" },
-        domProps: { value: _vm.newItem.quantity },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.$set(_vm.newItem, "quantity", $event.target.value)
-          }
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { attrs: { role: "group", "aria-label": "Buttons" } }, [
-        _c(
-          "button",
-          {
-            attrs: { type: "button", disabled: _vm.isDisabled },
-            on: {
-              click: function($event) {
-                _vm.createItem()
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", id: "name", placeholder: "Name..." },
+          domProps: { value: _vm.newItem.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
               }
+              _vm.$set(_vm.newItem, "name", $event.target.value)
             }
-          },
-          [
-            _c("i", { attrs: { "aria-hidden": "true" } }),
-            _vm._v("Add new item")
-          ]
-        )
-      ])
-    ])
-  ])
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group col-md" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.newItem.quantity,
+              expression: "newItem.quantity"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "number", id: "quantity", placeholder: "Quantity" },
+          domProps: { value: _vm.newItem.quantity },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.newItem, "quantity", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "col-md-3",
+          attrs: { role: "group", "aria-label": "Buttons" }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-primary",
+              attrs: { type: "button", disabled: _vm.isDisabled },
+              on: {
+                click: function($event) {
+                  _vm.createItem()
+                }
+              }
+            },
+            [
+              _c("i", { attrs: { "aria-hidden": "true" } }),
+              _vm._v(" "),
+              _c("i", { staticClass: "fas fa-plus" }),
+              _vm._v(" Add new\n            item\n        ")
+            ]
+          )
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -47825,41 +47869,44 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [
-      _c("div", [_vm._v("Shopping list")]),
-      _vm._v(" "),
-      _c(
-        "div",
-        [
-          _vm._l(_vm.items, function(item) {
-            return _c("app-item", {
-              key: item.id,
-              attrs: { item: item },
-              on: {
-                deleteEvent: _vm.deleteItemHandler,
-                updateEvent: _vm.updateItemHandler
-              }
-            })
-          }),
-          _vm._v(" "),
-          _c("app-new-item", { on: { createEvent: _vm.createEventHandler } })
-        ],
-        2
-      )
-    ]),
+  return _c("div", { staticClass: "container mt-4" }, [
+    _c(
+      "div",
+      [
+        _c("h1", [_vm._v("Shopping list")]),
+        _vm._v(" "),
+        _vm._l(_vm.items, function(item) {
+          return _c("app-item", {
+            key: item.id,
+            attrs: { item: item },
+            on: {
+              deleteEvent: _vm.deleteItemHandler,
+              updateEvent: _vm.updateItemHandler
+            }
+          })
+        }),
+        _vm._v(" "),
+        _c("app-new-item", { on: { createEvent: _vm.createEventHandler } })
+      ],
+      2
+    ),
     _vm._v(" "),
-    _c("div", [
-      _c("form", { attrs: { action: "", method: "post" } }, [
-        _c(
-          "button",
-          {
-            attrs: { disabled: _vm.submitted, type: "submit" },
-            on: { click: _vm.disableButton }
-          },
-          [_vm._v("Einkaufen gehen")]
-        )
-      ])
+    _c("div", { staticClass: "row mt-4" }, [
+      _c(
+        "form",
+        { staticClass: "mx-auto", attrs: { action: "", method: "post" } },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-success",
+              attrs: { disabled: _vm.submitted, type: "submit" },
+              on: { click: _vm.disableButton }
+            },
+            [_vm._v("Einkaufen gehen")]
+          )
+        ]
+      )
     ])
   ])
 }

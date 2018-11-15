@@ -1,35 +1,38 @@
-@extends('backend.layouts.master')
+@extends('layouts.master')
 
 @section('pageTitle', 'Home')
 
 @section('content')
-    <div>
+    <div class="container mt-4">
         <form action="{{ route('news.store') }}" method="post">
             @csrf
-            <div>
-                <label for="title">title</label>
-                <input type="text" name="title" id="title">
+            <div class="form-group">
+                <h1 for="title">Schlagzeile</h1>
+                <input class="form-control" type="text" name="title" id="title">
             </div>
             <div>
-                <label for="body">Schreib etwas nettes</label>
-                <textarea name="body" id="body" placeholder="Poste etwas neues"></textarea>
-            </div>
-            <div>
-                <button type="submit">News Posten</button>
+                <button class="btn btn-primary" type="submit">News Posten</button>
             </div>
 
         </form>
-
-        @include('backend.layouts.errors')
-
+        @include('layouts.errors')
     </div>
 
+    <div class="container mt-5">
 
-    <div>
+        <h2 class="mt-4 mb-4">Was gibt es neues?</h2>
+
         @foreach( $news as $new)
-            <div>
-                <p>{{ $new->title }} by {{ $new->user->name }}</p>
-                <p>{{ $new->body }}</p>
+            <div class="grid-wrapper align-items-center">
+                <div class="item-left">
+                    <p class="date">{{ $new->created_at->toFormattedDateString() }}</p>
+                    <p>{{ $new->user->name }} schreibt...</p>
+                </div>
+
+                <div class="item-middle">
+                    <p>{{ $new->title }}</p>
+                </div>
+                {{-- Delete Button noch einfügen--}}
             </div>
         @endforeach
     </div>

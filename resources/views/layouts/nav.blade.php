@@ -8,31 +8,57 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Über uns</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('posts.index') }}">Blog</a>
-                </li>
-            </ul>
+            @if(!auth()->check())
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Über uns</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('posts.index') }}">Blog</a>
+                    </li>
+                </ul>
+            @else
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/shopping">Einkaufsliste</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('event.index') }}">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Putzplan</a>
+                    </li>
 
-            <div class="my-2 my-lg-0">
+
+                    @endif
+                </ul>
                 @if(!auth()->check())
-                    <a class="btn btn-primary" href="{{ route('login') }}"> <i class="fas fa-sign-in-alt"></i> Login</a>
+                    <div class="my-2 my-lg-0">
 
-                    <a class="btn btn-primary" href="{{ route('register') }}"><i class="fas fa-user-plus"></i> Register</a>
+                        <a class="btn btn-primary" href="{{ route('login') }}"> <i class="fas fa-sign-in-alt"></i> Login</a>
 
+                        <a class="btn btn-primary" href="{{ route('register') }}"><i class="fas fa-user-plus"></i>
+                            Register</a>
+                    </div>
                 @else
-                    <a class="btn btn-danger" href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+                    <a class="btn btn-primary" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
 
                 @endif
-            </div>
+            @endif
+
+
         </div>
     </nav>
-@endif
+

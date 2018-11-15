@@ -1,11 +1,5 @@
-@extends('backend.layouts.master')
+@extends('layouts.master')
 @section('pageTitle', 'Einkaufsliste')
 @section('content')
-
-    <div id="app">
-        <app-list></app-list>
-    </div>
-
-
-
+    <app-list></app-list>
 @endsection

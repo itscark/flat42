@@ -5,13 +5,12 @@
 </head>
 
 <body>
+@include('layouts.nav')
 <div id="app">
-    @include('layouts.nav')
     @yield('content')
-
-    @include('layouts.footer')
 </div>
+@include('layouts.footer')
 </body>
-
+@include('layouts.scripts')
 </html>
 

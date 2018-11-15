@@ -1,20 +1,20 @@
 <template>
-    <div>
-        <div>
-            <form autocomplete="off">
-                <input @change="inputChanged()" type="text" id="name" v-model="item.name">
+            <form autocomplete="off" class="row mx-auto">
 
-                <input @change="inputChanged()" type="number" id="quantity" v-model="item.quantity">
+                <div class="form-group col-md">
+                    <input @change="inputChanged()" class="form-control" type="text" id="name" v-model="item.name">
+                </div>
+                <div class="form-group col-md">
+                    <input @change="inputChanged()" type="number" class="form-control" id="quantity" v-model="item.quantity">
+                </div>
                 <!--
                 Only show if user-id is the same as the Loggedin User
                 -->
-                <div role="group" aria-label="Buttons">
-                    <button @click="updateItem()" type="button"><i aria-hidden="true"></i> Update</button>
-                    <button @click="deleteItem()" type="button"><i aria-hidden="true"></i> Delete</button>
+                <div class="form-group col-md-3" role="group" aria-label="Buttons">
+                    <button @click="updateItem()" class="btn btn-outline-warning" type="button"><i aria-hidden="true"></i> <i class="far fa-edit"></i> Update</button>
+                    <button @click="deleteItem()"  class="btn btn-outline-danger" type="button"><i aria-hidden="true"></i> <i class="far fa-trash-alt"></i> Delete</button>
                 </div>
             </form>
-        </div>
-    </div>
 </template>
 
 

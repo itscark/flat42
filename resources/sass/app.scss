@@ -10,7 +10,11 @@ body {
 }
 
 form{
-  padding-top: 3rem;
+
+}
+
+#app {
+  min-height: 80vh;
 }
 
 @import "welcome";
@@ -20,3 +24,6 @@ form{
 .bg-dark, .btn-dark {
   background-color:$teal !important;
 }
+
+@import "floating-label";
+@import "grid";

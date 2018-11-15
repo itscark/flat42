@@ -1,41 +1,45 @@
 <template>
-  <div >
-    <form autocomplete="off">
-        <input v-model="newItem.name" type="text" id="name" placeholder="Name...">
+        <form autocomplete="off" class="row mx-auto">
 
-        <input v-model="newItem.quantity" type="number" id="quantity" placeholder="Quantity">
+            <div class="form-group col-md">
+                <input class="form-control" v-model="newItem.name" type="text" id="name" placeholder="Name...">
+            </div>
 
+            <div class="form-group col-md">
+                <input class="form-control" v-model="newItem.quantity" type="number" id="quantity" placeholder="Quantity">
+            </div>
 
-        <div role="group" aria-label="Buttons">
-            <button @click="createItem()" type="button" :disabled="isDisabled"><i  aria-hidden="true"></i>Add new item</button>
-        </div>
-    </form>
-  </div>
+            <div role="group" aria-label="Buttons" class="col-md-3">
+                <button @click="createItem()" class="btn btn-outline-primary" type="button" :disabled="isDisabled"><i aria-hidden="true"></i> <i class="fas fa-plus"></i> Add new
+                    item
+                </button>
+            </div>
+        </form>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      newItem: {
-        name: "",
-        quantity: null
-      }
+    export default {
+        data() {
+            return {
+                newItem: {
+                    name: "",
+                    quantity: null
+                }
+            };
+        },
+        methods: {
+            createItem() {
+                this.$emit("createEvent", this.newItem);
+            }
+        },
+        computed: {
+            isDisabled() {
+                if (this.newItem.name.length < 3 || this.newItem.quantity < 1) {
+                    return true;
+                }
+                return false;
+            }
+        }
     };
-  },
-  methods: {
-    createItem() {
-      this.$emit("createEvent", this.newItem);
-    }
-  },
-  computed: {
-    isDisabled() {
-      if (this.newItem.name.length < 3 || this.newItem.quantity < 1) {
-        return true;
-      }
-      return false;
-    }
-  }
-};
 </script>
 

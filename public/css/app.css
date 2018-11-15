@@ -10472,8 +10472,8 @@ body {
   padding-top: 3rem;
 }
 
-form {
-  padding-top: 3rem;
+#app {
+  min-height: 80vh;
 }
 
 .hero-svg {
@@ -10638,5 +10638,48 @@ product*/
 .bg-dark,
 .btn-dark {
   background-color: #13A399 !important;
+}
+
+.grid-wrapper {
+  display: grid;
+  grid-template-areas: "start" "middle" "end";
+  margin-top: 30px;
+}
+
+.grid-wrapper .item-left {
+  grid-area: start;
+}
+
+.grid-wrapper .item-left .date {
+  font-size: 1.5em;
+  font-weight: lighter;
+}
+
+.grid-wrapper .item-middle {
+  grid-area: middle;
+}
+
+.grid-wrapper .item-right {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: grid;
+  grid-area: end;
+  grid-gap: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (min-width: 576px) {
+  .grid-wrapper {
+    grid-gap: 20px;
+    grid-template-areas: "start middle end";
+    grid-template-columns: 1fr 3fr 1fr;
+  }
+
+  .grid-wrapper .item-left {
+    border-right: 1px solid lightgray;
+  }
 }
 

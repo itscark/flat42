@@ -1,0 +1,39 @@
+.grid-wrapper {
+  display: grid;
+  grid-template-areas: "start" "middle" "end";
+  margin-top: 30px;
+
+  .item-left {
+    grid-area: start;
+    .date{
+      font-size: 1.5em;
+      font-weight: lighter;
+    }
+  }
+
+  .item-middle {
+    grid-area: middle;
+  }
+
+  .item-right {
+    grid-area: end;
+    display: grid;
+    align-items: center;
+    grid-gap: 10px;
+    justify-content: center;
+
+  }
+
+}
+
+@media (min-width: 576px) {
+ .grid-wrapper {
+   grid-template-areas: "start middle end";
+   grid-template-columns: 1fr 3fr 1fr;
+   grid-gap: 20px;
+
+   .item-left {
+     border-right: 1px solid lightgray;
+   }
+ }
+}

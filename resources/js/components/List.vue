@@ -1,8 +1,7 @@
 <template>
-    <div>
+    <div class="container mt-4">
         <div>
-            <div>Shopping list</div>
-            <div>
+            <h1>Shopping list</h1>
                 <app-item
                         v-for="item in items"
                         :item="item"
@@ -13,14 +12,12 @@
                 <app-new-item
                         @createEvent="createEventHandler">
                 </app-new-item>
-            </div>
         </div>
 
-        <div>
-            <form action="" method="post">
-                <button :disabled="submitted" @click="disableButton" type="submit">Einkaufen gehen</button>
+        <div class="row mt-4">
+            <form class="mx-auto" action="" method="post">
+                <button :disabled="submitted" @click="disableButton" class="btn btn-outline-success" type="submit">Einkaufen gehen</button>
             </form>
-
         </div>
     </div>
 

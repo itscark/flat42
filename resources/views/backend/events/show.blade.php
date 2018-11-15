@@ -1,4 +1,4 @@
-@extends('backend.layouts.master')
+@extends('layouts.master')
 
 @section('pageTitle', 'Events')
 
@@ -29,7 +29,7 @@
                 </form>
             </div>
 
-            <a href="{{ route('event.edit', $event->id) }}">Edit</a>
+
         @endif
     </div>
 
