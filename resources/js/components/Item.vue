@@ -10,7 +10,7 @@
                 <!--
                 Only show if user-id is the same as the Loggedin User
                 -->
-                <div class="form-group col-md-3" role="group" aria-label="Buttons">
+                <div class="form-group col-md" role="group" aria-label="Buttons">
                     <button @click="updateItem()" class="btn btn-outline-warning" type="button"><i aria-hidden="true"></i> <i class="far fa-edit"></i> Update</button>
                     <button @click="deleteItem()"  class="btn btn-outline-danger" type="button"><i aria-hidden="true"></i> <i class="far fa-trash-alt"></i> Delete</button>
                 </div>

@@ -3,8 +3,6 @@
 @section('pageTitle', 'flat42')
 
 @section('content')
-
-
     <div class="blog-hero-img">
         <h1>Blog</h1>
     </div>

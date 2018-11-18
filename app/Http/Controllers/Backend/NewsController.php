@@ -14,7 +14,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::getFlatNews();
+        $flat_id = auth()->user()->flat_id;
+        $news = News::find($flat_id)->latest()->get();
         return view('backend.index', compact('news'));
     }
 

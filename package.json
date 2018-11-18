@@ -24,6 +24,7 @@
     "dependencies": {
         "@fortawesome/fontawesome": "^1.1.8",
         "font-awesome": "^4.7.0",
+        "moment": "^2.22.2",
         "postcss-sorting": "^4.0.0"
     }
 }

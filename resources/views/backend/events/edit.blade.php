@@ -3,8 +3,6 @@
 @section('pageTitle', 'Events')
 
 @section('content')
-    <div class="container mt-4">
-
         <div>
             <a class="btn btn-outline-dark" href="{{ route('event.index') }}"><i class="fas fa-chevron-left"></i>
                 back</a>
@@ -37,5 +35,4 @@
 
         @include('layouts.errors')
 
-    </div>
 @endsection

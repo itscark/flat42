@@ -6,8 +6,13 @@
 
 <body>
 @include('layouts.nav')
-<div id="app">
-    @yield('content')
+
+@yield('hero-section')
+
+<div class="container mt-5">
+    <div id="app">
+        @yield('content')
+    </div>
 </div>
 @include('layouts.footer')
 </body>

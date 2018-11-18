@@ -9,7 +9,7 @@
                 <input class="form-control" v-model="newItem.quantity" type="number" id="quantity" placeholder="Quantity">
             </div>
 
-            <div role="group" aria-label="Buttons" class="col-md-3">
+            <div role="group" aria-label="Buttons" class="col-md">
                 <button @click="createItem()" class="btn btn-outline-primary" type="button" :disabled="isDisabled"><i aria-hidden="true"></i> <i class="fas fa-plus"></i> Add new
                     item
                 </button>

@@ -10640,6 +10640,10 @@ product*/
   background-color: #13A399 !important;
 }
 
+.invalid-feedback {
+  display: block !important;
+}
+
 .grid-wrapper {
   display: grid;
   grid-template-areas: "start" "middle" "end";

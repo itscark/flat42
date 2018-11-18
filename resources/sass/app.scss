@@ -25,5 +25,9 @@ form{
   background-color:$teal !important;
 }
 
+.invalid-feedback {
+  display: block !important;
+}
+
 @import "floating-label";
 @import "grid";

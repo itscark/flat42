@@ -40,7 +40,9 @@ class EventController extends Controller
             'date' => \request('date'),
         ]);
 
-        return redirect((route('event.index')));
+        /*return redirect((route('event.index')));*/
+
+        return ['message' => 'Event erstellt!'];
     }
 
     public function show(Event $event)

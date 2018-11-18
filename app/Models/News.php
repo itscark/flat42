@@ -10,12 +10,10 @@ class News extends Model
     protected $fillable = [
         'title', 'body', 'user_id', 'flat_id'
     ];
+    protected $with = ['user'];
 
-    public static function getFlatNews()
-    {
-        return static::all()
-            ->sortByDesc('created_at')
-            ->where('flat_id', auth()->user()->flat_id);
+    protected static function boot(){
+        parent::boot();
     }
 
     public function flat()

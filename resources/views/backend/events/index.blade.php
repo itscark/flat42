@@ -3,7 +3,6 @@
 @section('pageTitle', 'Events')
 
 @section('content')
-    <div class="container mt-4">
         <div class="row align-items-center mb-4">
             <h1>Events</h1>
             <div class="ml-auto">
@@ -55,7 +54,6 @@
 
             </div>
         @endforeach
-    </div>
 
 
 @endsection

@@ -16,7 +16,7 @@
 
         <div class="row mt-4">
             <form class="mx-auto" action="" method="post">
-                <button :disabled="submitted" @click="disableButton" class="btn btn-outline-success" type="submit">Einkaufen gehen</button>
+                <button :disabled="submitted" @click="disableButton" class="btn btn-outline-success" type="submit"><i class="fas fa-shopping-cart"></i> Einkaufen gehen</button>
             </form>
         </div>
     </div>
