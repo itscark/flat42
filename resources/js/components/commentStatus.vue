@@ -1,9 +1,9 @@
 <template>
     <div>
         <div v-for="comment in comments">
-            <p>{{comment.body}} by {{comment.user.name}}</p>
+            <p>{{comment.body}} by {{comment.user ? comment.user.name : comment.user_name}}</p>
         </div>
-        <addStatusComment @completed="addComment" v-bind:status="status"></addStatusComment>
+        <addStatusComment @completed="addComment" v-bind:status="status" ></addStatusComment>
     </div>
 
 

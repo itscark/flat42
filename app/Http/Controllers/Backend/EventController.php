@@ -47,11 +47,7 @@ class EventController extends Controller
 
     public function show(Event $event)
     {
-        if ((($event->flat_id) == auth()->user()->flat_id)) {
-            return view('backend.events.show', compact('event'));
-        } else {
-            return abort(404);
-        }
+        return abort(404);
     }
 
     public function edit(Event $event)
@@ -71,7 +67,7 @@ class EventController extends Controller
             'date' => 'required|date'
         ]);
 
-        return redirect(route('event.show', $event->id));
+        return redirect(route('event.index'));
     }
 
     public function destroy($id)

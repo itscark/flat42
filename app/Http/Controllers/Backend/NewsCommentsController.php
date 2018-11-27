@@ -26,6 +26,7 @@ class NewsCommentsController extends Controller
             'body' => \request('body'),
             'news_id' => $id
         ]);
+        $newsComment["user_name"] = auth()->user()->name;
 
         return response()->json($newsComment);
 

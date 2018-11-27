@@ -65518,7 +65518,11 @@ var render = function() {
       _vm._l(_vm.comments, function(comment) {
         return _c("div", [
           _c("p", [
-            _vm._v(_vm._s(comment.body) + " by " + _vm._s(comment.user.name))
+            _vm._v(
+              _vm._s(comment.body) +
+                " by " +
+                _vm._s(comment.user ? comment.user.name : comment.user_name)
+            )
           ])
         ])
       }),
