@@ -15,7 +15,7 @@ class NewsController extends Controller
     public function index()
     {
         $flat_id = auth()->user()->flat_id;
-        $news = News::find($flat_id)->latest()->get();
+        $news = News::where('flat_id', '=', $flat_id)->latest()->get();
         return view('backend.index', compact('news'));
     }
 
@@ -37,17 +37,15 @@ class NewsController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate(\request(), [
+        $this->validate(request(), [
            'title' => 'required',
         ]);
 
         News::create([
             'flat_id' => auth()->user()->flat_id,
             'user_id' => auth()->id(),
-            'title' => \request('title'),
+            'title' => request('title'),
         ]);
-
-        return back();
     }
 
     /**

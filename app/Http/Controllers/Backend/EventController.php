@@ -56,7 +56,11 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
+        if ($event->user_id == auth()->user()->id) {
         return view('backend.events.edit', compact('event'));
+        } else {
+            return redirect(route('event.index'));
+        }
     }
 
     public function update(Request $request, Event $event)
@@ -66,10 +70,6 @@ class EventController extends Controller
             'body' => 'required',
             'date' => 'required|date'
         ]);
-
-
-        $event->fill($request->all());
-        $event->save();
 
         return redirect(route('event.show', $event->id));
     }

@@ -8,7 +8,7 @@ use phpDocumentor\Reflection\Types\Static_;
 class News extends Model
 {
     protected $fillable = [
-        'title', 'body', 'user_id', 'flat_id'
+        'title', 'user_id', 'flat_id'
     ];
     protected $with = ['user'];
 
@@ -24,5 +24,9 @@ class News extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function newsComments(){
+        return $this->hasMany(NewsComments::class);
     }
 }

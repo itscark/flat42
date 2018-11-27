@@ -29,5 +29,9 @@ form{
   display: block !important;
 }
 
+.no_soup {
+  max-width: 300px;
+}
+
 @import "floating-label";
 @import "grid";

@@ -21,7 +21,13 @@ class Flat extends Model
         return $this->hasMany(Item::class);
     }
 
-    public function events(){
+    public function events()
+    {
         return $this->hasMany(Event::class);
+    }
+
+    public function newsComment()
+    {
+        return $this->hasMany(NewsComments::class);
     }
 }

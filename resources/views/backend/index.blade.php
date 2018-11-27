@@ -9,7 +9,15 @@
     <add-status></add-status>
     @include('layouts.errors')
 
-    @foreach( $news as $new)
-        <statuses :news="{{$new}}"></statuses>
-    @endforeach
+    @if( !count($news))
+        <div class="text-center m-5">
+            <img class="no_soup mx-auto" src="{{ asset('svg/no_soup.svg') }}" alt="Kiwi standing on oval">
+        </div>
+    @else
+        <div class="mx-auto">
+            @foreach( $news as $new)
+                <statuses :news="{{$new}}"></statuses>
+            @endforeach
+        </div>
+    @endif
 @endsection

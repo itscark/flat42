@@ -29,12 +29,12 @@
         <div class="form-group col-md-4">
             <label for="date">Wann findet es statt</label>
             <input v-model="form.date" class="form-control" type="date" id="date"
-                   name="date" {{--value="{{ old('date', date('yyyy-MM-dd')) }}--}}>
+                   name="date">
             <div class="invalid-feedback" v-if="form.errors.has('date')" v-text="form.errors.get('date')"></div>
         </div>
 
         <div class="col-md">
-            <button class="btn btn-outline-success" type="submit" {{--:disabled="form.errors.any()"--}}><i
+            <button class="btn btn-outline-success" type="submit" :disabled="form.errors.any()"><i
                         class="fas fa-plus"></i> Event planen
             </button>
         </div>

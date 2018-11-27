@@ -1,0 +1,43 @@
+<template>
+    <div>
+        <div v-for="comment in comments">
+            <p>{{comment.body}} by {{comment.user.name}}</p>
+        </div>
+        <addStatusComment @completed="addComment" v-bind:status="status"></addStatusComment>
+    </div>
+
+
+</template>
+
+<script>
+    import addStatusComment from "./addStatusComment.vue";
+
+    export default {
+
+        components: {
+            addStatusComment
+        },
+
+        props: {
+            status,
+        },
+
+        data() {
+            return {
+                comments: []
+            }
+        },
+
+        mounted() {
+            axios
+                .get('home/' + this.status.id)
+                .then(response => (this.comments = response.data));
+        },
+        methods: {
+            addComment(status){
+                this.comments.push(status)
+            }
+        }
+    }
+
+</script>

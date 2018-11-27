@@ -22,6 +22,9 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/home', 'NewsController@index')->name('home');
     Route::post('/home', ['uses' => 'NewsController@store', 'as' => 'news.store']);
+    Route::get('/home/{id}', ['uses' => 'NewsCommentsController@show', 'as' => 'statusComment.show']);
+    Route::post('/home/{id}', ['uses' => 'NewsCommentsController@store', 'as' => 'statusComment.store']);
+
     Route::get('/shopping', function () {
         return view('backend.shopping.index');
     });

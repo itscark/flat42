@@ -10644,6 +10644,10 @@ product*/
   display: block !important;
 }
 
+.no_soup {
+  max-width: 300px;
+}
+
 .grid-wrapper {
   display: grid;
   grid-template-areas: "start" "middle" "end";
