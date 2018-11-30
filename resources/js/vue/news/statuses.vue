@@ -11,7 +11,8 @@
 
                 <div class="row">
                     <div class="ml-auto">
-                        <button type="button" class="btn btn-outline-primary btn-sm" @click="show = !show">Kommentare
+                        <button type="button" class="btn btn-outline-primary btn-sm" @click="show = !show"><i
+                                class="fas fa-comments"></i> Kommentare
                         </button>
                     </div>
                 </div>

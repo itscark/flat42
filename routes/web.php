@@ -20,18 +20,33 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+
+    //Home
     Route::get('/home', 'NewsController@index')->name('home');
     Route::post('/home', ['uses' => 'NewsController@store', 'as' => 'news.store']);
     Route::get('/home/{id}', ['uses' => 'NewsCommentsController@show', 'as' => 'statusComment.show']);
     Route::post('/home/{id}', ['uses' => 'NewsCommentsController@store', 'as' => 'statusComment.store']);
 
+    //Shopping
     Route::get('/shopping', function () {
         return view('backend.shopping.index');
     });
     Route::post('/shopping', 'ItemController@store');
     Route::delete('/shopping/{id}', 'ItemController@destroy');
     Route::put('/shopping/{id}', 'ItemController@update');
+    Route::get('/shopping/grocery-history', ['uses' => 'GroceryListController@index', 'as' => 'grocery.index' ]);
+    Route::get('/shopping/grocery-history/{id}', ['uses' => 'GroceryListController@show', 'as' => 'grocery.show' ]);
 
+    //Cart
+    Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart.index']);
+    Route::post('cart', ['uses' => 'CartController@create', 'as' => 'cart.create']);
+
+    //Grocery list
+
+
+
+
+    //Events
     Route::get('/events', ['uses' => 'EventController@index', 'as' => 'event.index']);
     Route::get('/events/create', ['uses' => 'EventController@create', 'as' => 'event.create']);
     Route::post('/events/create', ['uses' => 'EventController@store', 'as' => 'event.store']);
@@ -40,7 +55,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/events/{event}/edit', ['uses' => 'EventController@update', 'as' => 'event.update']);
     Route::delete('/events/{id}', ['uses' => 'EventController@destroy', 'as' => 'event.destroy']);
     Route::get('/events/{event}', ['uses' => 'EventController@show', 'as' => 'event.show']);
-
 
 });
 

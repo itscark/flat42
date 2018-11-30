@@ -2,21 +2,23 @@
     <div class="container mt-4">
         <div>
             <h1>Shopping list</h1>
-                <app-item
-                        v-for="item in items"
-                        :item="item"
-                        :key="item.id"
-                        @deleteEvent="deleteItemHandler"
-                        @updateEvent="updateItemHandler">
-                </app-item>
-                <app-new-item
-                        @createEvent="createEventHandler">
-                </app-new-item>
+            <app-item
+                    v-for="item in items"
+                    :item="item"
+                    :key="item.id"
+                    @deleteEvent="deleteItemHandler"
+                    @updateEvent="updateItemHandler">
+            </app-item>
+            <app-new-item
+                    @createEvent="createEventHandler">
+            </app-new-item>
         </div>
 
         <div class="row mt-4">
-            <form class="mx-auto" action="" method="post">
-                <button :disabled="submitted" @click="disableButton" class="btn btn-outline-success" type="submit"><i class="fas fa-shopping-cart"></i> Einkaufen gehen</button>
+            <form @submit.prevent="onSubmit" class="mx-auto" action="" method="post">
+                <button :disabled="submitted" class="btn btn-outline-success" type="submit"><i
+                        class="fas fa-shopping-cart"></i> Einkaufen gehen
+                </button>
             </form>
         </div>
     </div>
@@ -24,6 +26,7 @@
 </template>
 
 <script>
+    import grocery from "../grocery-list/grocery"
     import appItem from "./Item";
     import appNewItem from "./NewItem";
 
@@ -37,18 +40,18 @@
         },
         components: {
             appItem,
-            appNewItem
+            appNewItem,
+            grocery,
         },
 
         mounted() {
             axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-
             axios
                 .get("api/items")
                 .then(response => {
                     this.items = response.data;
                     this.disableButton(this.items);
-                })
+                });
         },
 
         methods: {
@@ -85,6 +88,17 @@
                     this.$set(this, 'submitted', false)
                 }
             },
+
+            onSubmit() {
+                let checkConfirmation = confirm('Hast du alles auf die Liste geschrieben?');
+
+                if (checkConfirmation == true) {
+                    axios
+                        .post('cart')
+                        .then(window.location = 'cart')
+                        .catch(abourt(404))
+                }
+            }
         }
     };
 </script>

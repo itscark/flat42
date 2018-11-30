@@ -9,8 +9,7 @@
         </div>
         <div class="col">
             <button class="btn btn-outline-dark btn-sm" type="submit" :disabled="form.errors.any()"><i
-                    class="fas fa-plus"></i>
-                Status posten
+                    class="fas fa-plus"></i> Kommentar posten
             </button>
         </div>
     </form>
