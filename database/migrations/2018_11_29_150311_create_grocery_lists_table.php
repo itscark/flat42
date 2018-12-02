@@ -15,10 +15,12 @@ class CreateGroceryListsTable extends Migration
     {
         Schema::create('grocery_lists', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('done')->default(false);
             $table->string('user_id');
             $table->string('flat_id');
             $table->string('date');
             $table->string('uniq_id');
+
             $table->timestamps();
         });
     }

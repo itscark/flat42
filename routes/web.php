@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     //Cart
     Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart.index']);
     Route::post('cart', ['uses' => 'CartController@create', 'as' => 'cart.create']);
+    Route::post('cart/item/{id}', ['uses' => 'CartController@update', 'as' => 'cart.update']);
+    Route::post('cart/{id}', ['uses' => 'CartController@store', 'as' => 'cart.store']);
 
     //Grocery list
 

@@ -18,6 +18,7 @@ class GroceryListController extends Controller
         $flat_id = auth()->user()->flat_id;
 
         $grocery_list = GroceryList::where('flat_id', '=', $flat_id)
+            ->where('done', '=', '1')
             ->with(['user'])
             ->latest()
             ->get();

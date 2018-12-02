@@ -19,7 +19,6 @@ Vue.component('feature_right', require('./vue/feature_right.vue'));
 Vue.component('add-status', require('./vue/news/add-status.vue'));
 Vue.component('statuses', require('./vue/news/statuses.vue'));
 Vue.component('cart', require('./vue/shopping/cart.vue'));
-//Vue.component('grocery', require('./vue/grocery-list/grocery.vue'));
 Vue.component('grocery-history', require('./vue/grocery-list/grocery-history.vue'));
 
 const app = new Vue({

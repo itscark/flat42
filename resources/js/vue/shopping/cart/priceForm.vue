@@ -1,0 +1,52 @@
+<template>
+    <div>
+        <form class="row" action="" method="post"
+              @keydown="form.errors.clear($event.target.name)">
+            <div class="col-6 align-self-center">
+                <p class="">{{ items.name }} von {{ items.user.name }}</p>
+            </div>
+            <div class="col-3 align-self-center">
+                <p>{{ items.price }} €</p>
+            </div>
+            <div class="col-3 form-group">
+                <input class="form-control"
+                       type="number"
+                       step=0.01
+                       name="price"
+                       id="price"
+                       v-model.trim="form.price"
+                       placeholder="Preis..."
+                       @blur="onSubmit(items.id)">
+                <div class="invalid-feedback" v-if="form.errors.has('price')"
+                     v-text="form.errors.get('price')"></div>
+            </div>
+        </form>
+    </div>
+</template>
+
+
+<script>
+    export default {
+        props: {
+            items: null,
+        },
+        data() {
+            return {
+                response_data:[],
+                form: new Form({
+                    price: '',
+                }),
+            }
+        },
+
+        mounted() {
+        },
+
+        methods: {
+            onSubmit(id) {
+                this.form.post('cart/item/' + id)
+                    .then(response => (this.response_data = response))
+            }
+        }
+    };
+</script>

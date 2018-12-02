@@ -13,7 +13,6 @@
 
     <form action="{{ route('event.store') }}" method="post" @submit.prevent="onSubmit"
           @keydown="form.errors.clear($event.target.name)">
-
         <div class="form-group col-md">
             <label for="title">Titel</label>
             <input class="form-control" type="text" name="title" id="title" v-model="form.title" value="{{ old('title') }}">
