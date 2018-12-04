@@ -14,13 +14,17 @@
             </app-new-item>
         </div>
 
-        <div class="row mt-4">
+        <div class="row mt-4"
+             v-if="!this.errors">
             <form @submit.prevent="onSubmit" class="mx-auto" action="" method="post">
-                <button :disabled="submitted" class="btn btn-outline-success" type="submit"><i
-                        class="fas fa-shopping-cart"></i> Einkaufen gehen
+                <button class="btn btn-outline-success"
+                        type="submit">
+                    <i class="fas fa-shopping-cart"></i> Einkaufen gehen
                 </button>
             </form>
         </div>
+
+        <errors v-if="errors" :errors="this.errors"></errors>
     </div>
 
 </template>
@@ -29,12 +33,13 @@
     import grocery from "../grocery-list/grocery"
     import appItem from "./Item";
     import appNewItem from "./NewItem";
+    import errors from "../components/errors"
 
     export default {
         data() {
             return {
                 items: [],
-                errors: [],
+                errors: null,
                 submitted: true,
             };
         },
@@ -42,6 +47,7 @@
             appItem,
             appNewItem,
             grocery,
+            errors,
         },
 
         mounted() {
@@ -89,16 +95,17 @@
                 }
             },
 
+
             onSubmit() {
                 /* let checkConfirmation = confirm('Hast du alles auf die Liste geschrieben?');*/
                 let checkConfirmation = true;
                 if (checkConfirmation == true) {
                     axios
                         .post('cart')
-                        .then(window.location = 'cart')
-                        .catch(abourt(404))
+                        .then(response => this.errors = response.data)
                 }
             }
         }
-    };
+    }
+    ;
 </script>

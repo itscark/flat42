@@ -19,11 +19,10 @@
         "laravel-mix": "^2.0",
         "lodash": "^4.17.5",
         "popper.js": "^1.14.6",
+        "prettier": "1.15.3",
         "vue": "^2.5.17"
     },
     "dependencies": {
-        "@fortawesome/fontawesome": "^1.1.8",
-        "font-awesome": "^4.7.0",
         "moment": "^2.22.2",
         "postcss-sorting": "^4.0.1"
     }

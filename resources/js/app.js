@@ -3,7 +3,6 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -20,6 +19,7 @@ Vue.component('add-status', require('./vue/news/add-status.vue'));
 Vue.component('statuses', require('./vue/news/statuses.vue'));
 Vue.component('cart', require('./vue/shopping/cart.vue'));
 Vue.component('grocery-history', require('./vue/grocery-list/grocery-history.vue'));
+Vue.component('cleaning', require('./vue/cleaning/cleaning.vue'));
 
 const app = new Vue({
     el: '#app',

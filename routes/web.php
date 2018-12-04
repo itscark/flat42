@@ -43,20 +43,18 @@ Route::middleware('auth')->group(function () {
     Route::post('cart/item/{id}', ['uses' => 'CartController@update', 'as' => 'cart.update']);
     Route::post('cart/{id}', ['uses' => 'CartController@store', 'as' => 'cart.store']);
 
-    //Grocery list
-
-
-
-
     //Events
     Route::get('/events', ['uses' => 'EventController@index', 'as' => 'event.index']);
     Route::get('/events/create', ['uses' => 'EventController@create', 'as' => 'event.create']);
     Route::post('/events/create', ['uses' => 'EventController@store', 'as' => 'event.store']);
     Route::post('/events/{id}/join', ['uses' => 'EventController@join', 'as' => 'event.join']);
     Route::get('/events/{event}/edit', ['uses' => 'EventController@edit', 'as' => 'event.edit']);
-    Route::post('/events/{event}/edit', ['uses' => 'EventController@update', 'as' => 'event.update']);
+    Route::put('/events/{event}/edit', ['uses' => 'EventController@update', 'as' => 'event.update']);
     Route::delete('/events/{id}', ['uses' => 'EventController@destroy', 'as' => 'event.destroy']);
     Route::get('/events/{event}', ['uses' => 'EventController@show', 'as' => 'event.show']);
+
+    //Cleaning
+    Route::get('/cleaning', ['uses' => 'CleaningController@index', 'as' => 'cleaning.index']);
 
 });
 

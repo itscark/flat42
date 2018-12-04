@@ -47,7 +47,7 @@ class CartController extends Controller
 
                 $this->newOrder($uniq_id);
             } else {
-                return response()->json(['error' => 'Es ist noch eine Bestellung offen!']);
+                return response()->json(array('message' => 'Es ist noch eine Bestellung offen!', 'btn' => 'Zur Bestellung', 'url' => '/cart'));
             }
 
         } else {
@@ -55,6 +55,38 @@ class CartController extends Controller
             $this->newOrder($uniq_id);
         }
 
+    }
+
+    private function newOrder($uniq_id)
+    {
+
+        $flat_id = auth()->user()->flat_id;
+        $user_id = auth()->id();
+        $cart = Item::where('flat_id', '=', $flat_id)->get();
+        $user = User::findOrFail($user_id);
+        $user->cart_id = $uniq_id;
+        $user->save();
+
+        GroceryList::create([
+            'done' => 0,
+            'user_id' => $user_id,
+            'flat_id' => $flat_id,
+            'uniq_id' => $uniq_id,
+            'date' => Carbon::now(),
+        ]);
+
+        foreach ($cart as $item) {
+            Cart::create([
+                'user_id' => $item->user_id,
+                'flat_id' => $item->flat_id,
+                'buyer_id' => $user_id,
+                'name' => $item->name,
+                'quantity' => $item->quantity,
+                'uniq_id' => $uniq_id,
+            ]);
+        }
+
+        Item::where('flat_id', '=', $flat_id)->delete();
     }
 
     public
@@ -68,7 +100,7 @@ class CartController extends Controller
 
         foreach ($cart_items as $item) {
             if ($item->price == null || $item->price == '') {
-                return response()->json(['error' => 'Bitte trage alle Preise ein!']);
+                return response()->json(['message' => 'Bitte trage alle Preise ein!']);
             } else {
                 $grocery_list = GroceryList::where('uniq_id', '=', $id)->first();
                 $grocery_list->done = '1';
@@ -134,37 +166,5 @@ class CartController extends Controller
     function destroy(Cart $cart)
     {
         //
-    }
-
-    private function newOrder($uniq_id)
-    {
-
-        $flat_id = auth()->user()->flat_id;
-        $user_id = auth()->id();
-        $cart = Item::where('flat_id', '=', $flat_id)->get();
-        $user = User::findOrFail($user_id);
-        $user->cart_id = $uniq_id;
-        $user->save();
-
-        GroceryList::create([
-            'done' => 0,
-            'user_id' => $user_id,
-            'flat_id' => $flat_id,
-            'uniq_id' => $uniq_id,
-            'date' => Carbon::now(),
-        ]);
-
-        foreach ($cart as $item) {
-            Cart::create([
-                'user_id' => $item->user_id,
-                'flat_id' => $item->flat_id,
-                'buyer_id' => $user_id,
-                'name' => $item->name,
-                'quantity' => $item->quantity,
-                'uniq_id' => $uniq_id,
-            ]);
-        }
-
-        Item::where('flat_id', '=', $flat_id)->delete();
     }
 }

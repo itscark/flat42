@@ -4,7 +4,11 @@
         <div v-for="items in cart_items">
             <priceForm :items="items"></priceForm>
         </div>
-        <form @submit.prevent="submit">
+
+        <errors v-if="errors" :errors="this.errors"></errors>
+
+        <form @submit.prevent="submit"
+              :disabled="isDisabled">
             <button class="btn btn-outline-success">Fertig</button>
         </form>
     </div>
@@ -13,41 +17,47 @@
 
 <script>
     import priceForm from './cart/priceForm';
+    import errors from '../components/errors.vue'
 
     export default {
         components: {
-            priceForm
+            priceForm,
+            errors,
         },
         props: {
             cart_items: null,
-        },
-        mounted() {
 
         },
-
         data() {
             return {
-                errors: {},
+                errors: null,
             }
         },
+
 
         methods: {
 
             submit() {
-                return this.onSubmit(this.cart_items[0].uniq_id)
+                return this.onSubmit(this.cart_items[0].uniq_id);
+
             },
 
             onSubmit(id) {
                 axios
                     .post('cart/' + id)
                     .then(
-                      //  window.location = '/shopping'
+                        response => this.errors = response.data
                     )
-                    .catch(error => {
-                        this.onFail(error.response.data);
-                        reject(error.response.data);
-                    })
             },
+        },
+
+        computed: {
+            isDisabled() {
+                if (this.errors) {
+                    return true;
+                }
+                return false;
+            }
         }
     };
 </script>

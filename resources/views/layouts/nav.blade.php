@@ -29,7 +29,7 @@
                         <a class="nav-link" href="{{ route('event.index') }}">Events</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Putzplan</a>
+                        <a class="nav-link" href="{{ route('cleaning.index') }}">Putzplan</a>
                     </li>
 
 

@@ -4,7 +4,7 @@
             <p class=" mb-0"><span class="badge badge-primary badge-pill">{{ listItems.length }}</span> | {{item.user.name}} {{ postedOn(item) }}</p>
 
             <button type="button" class="btn btn-outline-primary btn-sm" @click="show = !show">
-                <i class="fas fa-comments"></i>
+                <i class="fas fa-info-circle"></i>
                 Info anzeigen
             </button>
         </div>
