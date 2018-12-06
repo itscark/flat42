@@ -14,16 +14,17 @@ class CreateCleaningRoomsTable extends Migration
     public function up()
     {
         Schema::create('cleaning_rooms', function (Blueprint $table) {
-            $table->string('id');
+            $table->increments('id');
             $table->string('name');
+            $table->string('flat_id')->nullable();
         });
 
         DB::table('cleaning_rooms')->insert(
             array(
-                ['id' => uniqid(), 'name' => 'Küche'],
-                ['id' => uniqid(), 'name' => 'FLur'],
-                ['id' => uniqid(), 'name' => 'Badezimmer'],
-                ['id' => uniqid(), 'name' => 'Toilette'],
+                ['name' => 'Küche'],
+                ['name' => 'FLur'],
+                ['name' => 'Badezimmer'],
+                ['name' => 'Toilette'],
             )
         );
     }

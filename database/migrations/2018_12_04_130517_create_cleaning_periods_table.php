@@ -14,16 +14,16 @@ class CreateCleaningPeriodsTable extends Migration
     public function up()
     {
         Schema::create('cleaning_periods', function (Blueprint $table) {
-            $table->string('id');
+            $table->increments('id');
             $table->string('name');
         });
 
         DB::table('cleaning_periods')->insert(
             array(
-                ['id' => uniqid(), 'name' => 'Täglich'],
-                ['id' => uniqid(), 'name' => 'Wöchentlich'],
-                ['id' => uniqid(), 'name' => 'Monatlich'],
-                ['id' => uniqid(), 'name' => 'Jährlich'],
+                ['name' => 'Täglich'],
+                ['name' => 'Wöchentlich'],
+                ['name' => 'Monatlich'],
+                ['name' => 'Jährlich'],
             )
         );
     }

@@ -14,19 +14,19 @@ class CreateCleaningDaysTable extends Migration
     public function up()
     {
         Schema::create('cleaning_days', function (Blueprint $table) {
-            $table->string('id');
+            $table->increments('id');
             $table->string('name');
         });
 
         DB::table('cleaning_days')->insert(
             array(
-                ['id' => uniqid(), 'name' => 'Montag'],
-                ['id' => uniqid(), 'name' => 'Dienstag'],
-                ['id' => uniqid(), 'name' => 'Mittwoch'],
-                ['id' => uniqid(), 'name' => 'Donnertag'],
-                ['id' => uniqid(), 'name' => 'Fraitag'],
-                ['id' => uniqid(), 'name' => 'Samstag'],
-                ['id' => uniqid(), 'name' => 'Sonntag']
+                ['name' => 'Montag'],
+                ['name' => 'Dienstag'],
+                [ 'name' => 'Mittwoch'],
+                ['name' => 'Donnertag'],
+                ['name' => 'Fraitag'],
+                ['name' => 'Samstag'],
+                ['name' => 'Sonntag']
             )
         );
     }

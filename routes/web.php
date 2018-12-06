@@ -55,6 +55,10 @@ Route::middleware('auth')->group(function () {
 
     //Cleaning
     Route::get('/cleaning', ['uses' => 'CleaningController@index', 'as' => 'cleaning.index']);
+    Route::post('/cleaning', ['uses' => 'CleaningController@create', 'as' => 'cleaning.create']);
+    Route::get('/cleaning/pdf', ['uses' => 'CleaningController@pdf', 'as' => 'cleaning.pdf']);
+
+
 
 });
 

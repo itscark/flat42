@@ -18,3 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('items', 'ItemController');
+
+Route::middleware('auth:api')->group(function () {
+
+    Route::post('/cleaning/daily', ['uses' => 'CleaningController@daily', 'as' => 'cleaning.daily']);
+
+});
+
