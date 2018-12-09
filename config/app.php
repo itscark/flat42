@@ -179,6 +179,9 @@ return [
         // DomPDF
         Barryvdh\DomPDF\ServiceProvider::class,
 
+        //Passport
+        Laravel\Passport\PassportServiceProvider::class,
+
     ],
 
     /*

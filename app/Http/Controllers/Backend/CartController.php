@@ -54,12 +54,10 @@ class CartController extends Controller
             // neue bestellung machen
             $this->newOrder($uniq_id);
         }
-
     }
 
     private function newOrder($uniq_id)
     {
-
         $flat_id = auth()->user()->flat_id;
         $user_id = auth()->id();
         $cart = Item::where('flat_id', '=', $flat_id)->get();

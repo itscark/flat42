@@ -9,6 +9,7 @@
         "barryvdh/laravel-dompdf": "^0.8.3",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
+        "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
         "nothingworks/blade-svg": "^0.3.0",
         "phpoffice/phpspreadsheet": "^1.5"

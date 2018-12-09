@@ -55,11 +55,12 @@ Route::middleware('auth')->group(function () {
 
     //Cleaning
     Route::get('/cleaning', ['uses' => 'CleaningController@index', 'as' => 'cleaning.index']);
-    Route::post('/cleaning', ['uses' => 'CleaningController@create', 'as' => 'cleaning.create']);
+    Route::post('/cleaning', ['uses' => 'CleaningController@store', 'as' => 'cleaning.store']);
     Route::get('/cleaning/pdf', ['uses' => 'CleaningController@pdf', 'as' => 'cleaning.pdf']);
 
 
-
+    //wird auf api ausgelagert
+    Route::get('/cleaning/details', ['uses' => 'CleaningController@details', 'as' => 'cleaning.details']);
 });
 
 
