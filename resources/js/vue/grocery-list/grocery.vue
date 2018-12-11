@@ -1,6 +1,6 @@
 <template>
     <div class="mt-4">
-        <div v-for="item in grocery_list ">
+        <div v-for="item in grocery_list">
             <groceryList :item="item"></groceryList>
         </div>
     </div>
@@ -17,15 +17,15 @@
         data() {
             return {
                 item: null,
-                grocery_list:null,
-                show:false,
+                grocery_list: null,
+                show: false,
             }
         },
 
-        mounted(){
+        mounted() {
             axios
-                .get('/shopping/grocery-history')
-                .then(response =>(this.grocery_list = response.data))
+                .get('/api/shopping/grocery-history')
+                .then(response => (this.grocery_list = response.data))
         },
 
     };

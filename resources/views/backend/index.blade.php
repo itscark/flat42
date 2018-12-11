@@ -4,20 +4,17 @@
 
 @section('content')
 
-    <h2 class="mt-4 mb-4">Was gibt es neues?</h2>
+    @if(count($event))
+        <h3>Geplante Events</h3>
+        <next-event :event="{{$event}}"></next-event>
+    @endif
+
+    <h3 class="mt-4 mb-4">Was gibt es neues?</h3>
 
     <add-status></add-status>
-    @include('layouts.errors')
+    <statuses :news="{{$news}}"></statuses>
 
-    @if( !count($news))
-        <div class="text-center m-5">
-            <img class="no_soup mx-auto" src="{{ asset('svg/no_soup.svg') }}" alt="Kiwi standing on oval">
-        </div>
-    @else
-        <div class="mx-auto">
-            @foreach( $news as $new)
-                <statuses :news="{{$new}}"></statuses>
-            @endforeach
-        </div>
-    @endif
+    {{--    @foreach( $news as $new)
+            <statuses :news="{{$new}}"></statuses>
+        @endforeach--}}
 @endsection

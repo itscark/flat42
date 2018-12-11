@@ -35,7 +35,7 @@
 
         created(){
             axios
-                .get('/shopping/grocery-history/' + this.item.uniq_id)
+                .get('api/shopping/grocery-history/' + this.item.uniq_id)
                 .then(response => this.listItems = response.data);
         },
 

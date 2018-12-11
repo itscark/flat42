@@ -2,21 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\News;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $flat_id;
+    protected $user_id;
+    protected $event;
+    protected $news;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->flat_id = auth()->user()->flat_id;
+            $this->user_id = auth()->id();
+            return $next($request);
+        });
+
+        $this->event = new Event();
+        $this->news = new News();
+
+    }
+
+
     public function index()
     {
-        $flat_id = auth()->user()->flat_id;
-        $news = News::where('flat_id', '=', $flat_id)->latest()->get();
-        return view('backend.index', compact('news'));
+        $event = $this->event->getNextEvent($this->flat_id);
+        $news = $this->news->getLatestNews($this->flat_id);
+
+        return view('backend.index', compact('news', 'event'));
     }
 
     /**
@@ -38,11 +54,11 @@ class NewsController extends Controller
     {
 
         $this->validate(request(), [
-           'title' => 'required',
+           'title' => 'required | string',
         ]);
 
         News::create([
-            'flat_id' => auth()->user()->flat_id,
+            'flat_id' => $this->flat_id,
             'user_id' => auth()->id(),
             'title' => request('title'),
         ]);

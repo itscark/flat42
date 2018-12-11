@@ -8,7 +8,6 @@
 
     <cleaning :period="{{$period}}"></cleaning>
 
-
     <a href="{{ route('cleaning.pdf') }}" target="_blank" class="btn btn-outline-primary">Download</a>
 
 

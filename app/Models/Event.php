@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Event extends Model
 {
@@ -26,5 +27,15 @@ class Event extends Model
         return static::all()
             ->sortByDesc('created_at')
             ->where('flat_id', auth()->user()->flat_id);
+    }
+
+    public function getNextEvent($flat_id){
+
+        return Event::whereDate('date', '>=', Carbon::now('Europe/Stockholm'))
+            ->where('flat_id', '=', $flat_id)
+            ->oldest('date')
+            ->limit(2)
+            ->get();
+
     }
 }

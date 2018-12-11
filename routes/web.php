@@ -23,19 +23,18 @@ Route::middleware('auth')->group(function () {
 
     //Home
     Route::get('/home', 'NewsController@index')->name('home');
-    Route::post('/home', ['uses' => 'NewsController@store', 'as' => 'news.store']);
-    Route::get('/home/{id}', ['uses' => 'NewsCommentsController@show', 'as' => 'statusComment.show']);
-    Route::post('/home/{id}', ['uses' => 'NewsCommentsController@store', 'as' => 'statusComment.store']);
+
 
     //Shopping
     Route::get('/shopping', function () {
         return view('backend.shopping.index');
     });
+
     Route::post('/shopping', 'ItemController@store');
     Route::delete('/shopping/{id}', 'ItemController@destroy');
     Route::put('/shopping/{id}', 'ItemController@update');
-    Route::get('/shopping/grocery-history', ['uses' => 'GroceryListController@index', 'as' => 'grocery.index' ]);
-    Route::get('/shopping/grocery-history/{id}', ['uses' => 'GroceryListController@show', 'as' => 'grocery.show' ]);
+
+
 
     //Cart
     Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart.index']);
@@ -55,12 +54,9 @@ Route::middleware('auth')->group(function () {
 
     //Cleaning
     Route::get('/cleaning', ['uses' => 'CleaningController@index', 'as' => 'cleaning.index']);
-    Route::post('/cleaning', ['uses' => 'CleaningController@store', 'as' => 'cleaning.store']);
+
     Route::get('/cleaning/pdf', ['uses' => 'CleaningController@pdf', 'as' => 'cleaning.pdf']);
 
-
-    //wird auf api ausgelagert
-    Route::get('/cleaning/details', ['uses' => 'CleaningController@details', 'as' => 'cleaning.details']);
 });
 
 

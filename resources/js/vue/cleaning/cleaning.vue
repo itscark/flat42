@@ -1,9 +1,11 @@
 <template>
     <div>
-        <daily :daily="toDos[0]"></daily>
-        <weekly :weekly="toDos[1]"></weekly>
-        <monthly :monthly="toDos[2]"></monthly>
-        <yearly :yearly="toDos[3]"></yearly>
+        <div class="card-deck">
+            <daily :daily="toDos[0]"></daily>
+            <weekly :weekly="toDos[1]"></weekly>
+            <monthly :monthly="toDos[2]"></monthly>
+            <yearly :yearly="toDos[3]"></yearly>
+        </div>
         <newItem :period="period"
                  @completed="addToDo"></newItem>
 
@@ -11,11 +13,11 @@
 </template>
 <script>
 
-    import daily from './daily.vue';
-    import weekly from './weekly.vue';
-    import monthly from './monthly.vue';
-    import yearly from './yearly.vue';
-    import newItem from './newItem.vue';
+    import daily from './period/daily.vue';
+    import weekly from './period/weekly.vue';
+    import monthly from './period/monthly.vue';
+    import yearly from './period/yearly.vue';
+    import newItem from './new-item.vue';
 
 
     export default {
@@ -36,7 +38,7 @@
         },
 
         mounted() {
-            axios.get('cleaning/details')
+            axios.get('api/cleaning/details')
                 .then(response => (this.toDos = response.data))
         },
 

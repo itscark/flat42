@@ -12,7 +12,8 @@ class News extends Model
     ];
     protected $with = ['user'];
 
-    protected static function boot(){
+    protected static function boot()
+    {
         parent::boot();
     }
 
@@ -26,7 +27,16 @@ class News extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function newsComments(){
+    public function newsComments()
+    {
         return $this->hasMany(NewsComments::class);
+    }
+
+    static function getLatestNews($flat_id)
+    {
+        return News::where('flat_id', '=', $flat_id)
+            ->latest()
+            ->with('user')
+            ->get();
     }
 }
