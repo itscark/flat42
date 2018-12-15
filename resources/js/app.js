@@ -13,6 +13,8 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+require('./utilities/scrolloverflow.min');
+
 
 Vue.component('next-event', require('./vue/news/next-event.vue'));
 Vue.component('app-list', require('./vue/shopping/List.vue'));
@@ -23,9 +25,14 @@ Vue.component('statuses', require('./vue/news/statuses/statuses.vue'));
 Vue.component('cart', require('./vue/shopping/cart/cart.vue'));
 Vue.component('grocery-history', require('./vue/grocery-list/grocery-history.vue'));
 Vue.component('cleaning', require('./vue/cleaning/cleaning.vue'));
+Vue.component('home-vue', require('./vue/homepage/home-vue.vue'));
+
+import {SimpleSVG} from 'vue-simple-svg';
+Vue.component('simple-svg', SimpleSVG);
 
 
 const app = new Vue({
+
     el: '#app',
 
     data: {
@@ -42,5 +49,6 @@ const app = new Vue({
         }
     }
 });
+
 
 

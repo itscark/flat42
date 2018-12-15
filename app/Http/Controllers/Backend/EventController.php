@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\GroceryList;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -16,7 +17,6 @@ class EventController extends Controller
 
     public function join()
     {
-        //
     }
 
     public function create()

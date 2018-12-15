@@ -10691,3 +10691,32 @@ product*/
   }
 }
 
+/*Style Dots*/
+
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+  background: #F0CEA0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#fp-nav ul li:nth-child(1) a span {
+  background: #02173E;
+}
+
+#fp-nav ul li:nth-child(2) a span {
+  background: #13A399;
+}
+
+#fp-nav ul li:nth-child(3) a span {
+  background: #BF112E;
+}
+
+#fp-nav ul li:nth-child(4) a span {
+  background: #F5941C;
+}
+
+#fp-nav ul li:nth-child(5) a span {
+  background: #F16541;
+}
+

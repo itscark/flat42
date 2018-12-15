@@ -13,9 +13,6 @@
             @if(!auth()->check())
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Über uns</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('posts.index') }}">Blog</a>
                     </li>
                 </ul>
