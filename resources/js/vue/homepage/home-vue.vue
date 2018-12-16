@@ -1,28 +1,32 @@
 <template>
     <div>
-        <full-page ref="fullpage" :options="options" id="fullpage">
+        <full-page ref="fullpage"
+                   :options="options"
+                   id="fullpage">
 
             <div class="section fp-auto-height-responsive" id="sectionHome">
                 <div class="welcome-wrapper">
                     <div class="logo text-align-center">
-                        <simple-svg
-                                :filepath="'svg/logo.svg'"
-                                :width="'100%'"
-                                :height="'100%'"
-                                :id="'logo'"
-                        />
+                        <svg id="logo" class="text__word">
+                            <use class="text__word" xlink:href="svg/logo.svg#logo"></use>
+                        </svg>
+                        <span class="logo-bg"></span>
                     </div>
                     <div class="headline text-align-center">
-                        <h1>This is us!</h1>
+                        <div class="headline-wrapper">
+                            <h1 id="headline" class="text__word">This is us!</h1>
+                            <span class="headline-bg"></span>
+                        </div>
                     </div>
                     <div class="subheadline text-align-center">
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor nonumy
+                        <p class="subheadline-text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                            nonumy eirmod tempor nonumy
                             eirmod tempor nonumy eirmod tempor</p>
                     </div>
-                    <div class="button text-align-center">
+                    <div class="button text-align-center opacity">
                         <a href="/register" class="btn btn-outline-primary">Join us now</a>
                     </div>
-                    <div class="button-down">
+                    <div class="button-down hide opacity">
                         <i @click="scrollDown()" class="fa fa-angle-down arrow"></i>
                     </div>
                 </div>
@@ -63,7 +67,51 @@
     </div>
 </template>
 
-<style scoped>
+<style>
+
+    /*============================== comment ==============================
+
+    =====================================================================*/
+    .text__word, .subheadline, .opacity {
+        opacity: 0;
+    }
+
+    .logo, .headline {
+        position: relative;
+    }
+
+    .logo-bg {
+        background-color: #13A399;
+    }
+
+    .headline-bg {
+        background-color: #13A399;
+    }
+
+    .logo-bg, .headline-bg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        z-index: 100;
+        transform-origin: left;
+        transform: scaleX(0);
+    }
+
+    .logo-bg {
+        left: 0;
+    }
+
+    .headline-bg {
+        left: 100%;
+    }
+
+    .headline {
+        width: 40%;
+        justify-self: center;
+    }
+
     .welcome-wrapper {
         display: grid;
         grid-gap: 50px;
@@ -133,10 +181,8 @@
         transition: all 750ms ease-in-out;
     }
 
-    /*============================== comment ==============================
-     this sets the position of the arrow when it's up, so it will
-     move up or down by 14px when you add or remove this class
-    ============================== end comment ==============================*/
+    /*============================== this sets the position of the arrow when it's up, so it will
+     move up or down by 14px when you add or remove this class ==============================*/
     .lift {
         transform: translateY(14px);
     }
@@ -146,6 +192,7 @@
     import VueFullPage from 'vue-fullpage.js';
     import imgSvg from '../components/svg-img.vue';
     import contentSection from './contentSection.vue';
+    import {TweenMax, svgMorph, TimelineLite} from "gsap";
 
     Vue.use(VueFullPage);
 
@@ -156,76 +203,402 @@
         },
         data() {
             return {
+                word: $('.text__word'),
                 options: {
                     licenseKey: 'ajl!lssT01',
                     lockAnchors: false,
                     navigation: true,
                     navigationPosition: 'right',
                     animateAnchor: true,
-                    navigationTooltips: ["Section 1", "Section 2", "Section 3", "Section 4", "Section 5"],
                     scrollOverflow: true,
                     scrollBar: false,
-                    afterLoad: function (anchorLink, index) {
-                        /*============================== comment ==============================
-                        load the sections
-                        ============================= end comment ============================*/
-                        // Slide #1 is loaded
-                        if (index.index === 0) {
-                            console.log('entering section ' + index.index)
-                        }
-                        // Slide #2 is loaded
-                        if (index.index === 1) {
-                            console.log('entering section ' + index.index)
-                        }
-                        // Slide #3 is loaded
-                        else if (index.index === 2) {
-                            console.log('entering section ' + index.index)
-                        }
-                        // Slide #4 is loaded
-                        else if (index.index === 3) {
-                            console.log('entering section ' + index.index)
-                        }
-                        // Slide #5 is loaded
-                        else if (index.index === 4) {
-                            console.log('entering section ' + index.index)
-                        }
-                    },
+                    afterLoad: this.afterLoad,
+                    onLeave: this.onLeave,
+                    responsiveWidth: 800,
+                    afterResponsive: function (isResponsive) {
 
-                    onLeave: function (index, nextIndex, direction) {
-                        /*============================== comment ==============================
-                        leavin the sections
-                        ============================= end comment ============================*/
-                        // Slide #1 is leaved
-                        if (index.index === 0) {
-                            console.log('leaving section ' + index.index)
-                        }
-                        // Slide #2 is leaved
-                        if (index.index === 1) {
-                            console.log('leaving section ' + index.index)
-                        }
-                        // Slide #3 is leaved
-                        else if (index.index === 2) {
-                            console.log('leaving section ' + index.index)
-                        }
-                        // Slide #4 is leaved
-                        else if (index.index === 3) {
-                            console.log('leaving section ' + index.index)
-                        }
-                        // Slide #5 is leaved
-                        else if (index.index === 4) {
-                            console.log('leaving section ' + index.index)
-                        }
-
-                    } // end of "onLeave" events
-
-
+                    }
                 },
             }
         },
+
+        mounted() {
+            /*============================== comment ==============================
+            Hero section Variablen
+            ======================================================================*/
+            this.word = document.querySelectorAll('.text__word');
+            this.logoBg = document.querySelectorAll('.logo-bg');
+            this.headlineBG = document.querySelectorAll('.headline-bg');
+            this.subheadline = document.querySelectorAll('.subheadline');
+            this.buttonDown = document.querySelectorAll('.button-down');
+            this.button = document.querySelectorAll('.button');
+
+            /*============================== comment ==============================
+            Shopping Section Variablen
+            ======================================================================*/
+            this.text = $('.Shopping');
+            this.shoppingItems = $('.hopping-item');
+
+        },
+
         methods: {
             scrollDown() {
                 fullpage_api.moveSectionDown();
-            }
+            },
+
+            /*============================== comment ==============================
+            after loading the sections
+            ============================= end comment ============================*/
+            afterLoad(anchorLink, index) {
+                /*============================== Slide #1 is loaded ==============================*/
+                if (index.index === 0) {
+                    this.showHomeContent()
+                }
+
+                /*============================== Slide #2 is loaded ==============================*/
+                if (index.index === 1) {
+                    this.showShoppingContent()
+                }
+
+                /*============================== Slide #3 is loaded ==============================*/
+                else if (index.index === 2) {
+                    this.showNewsContent()
+                }
+
+                /*============================== Slide #4 is loaded ==============================*/
+                else if (index.index === 3) {
+                    this.showEventContent()
+                }
+
+                /*============================== Slide #5 is loaded ==============================*/
+                else if (index.index === 4) {
+                    this.showCleaningContent()
+                }
+            },
+
+            onLeave(index, nextIndex, direction) {
+                /*============================== comment ==============================
+                leaving the sections
+                ======================================================================*/
+                // Slide #1 is leaved
+                if (index.index === 0) {
+                    this.hideHomeContent();
+                }
+                // Slide #2 is leaved
+                if (index.index === 1) {
+                    this.hideShoppingContent()
+                }
+                // Slide #3 is leaved
+                else if (index.index === 2) {
+                    this.hideNewsContent()
+                }
+                // Slide #4 is leaved
+                else if (index.index === 3) {
+                    this.hideEventContent()
+                }
+                // Slide #5 is leaved
+                else if (index.index === 4) {
+                    this.hideCleaningContent()
+                }
+            },
+
+            /*============================== comment ==============================
+            home content 
+            ======================================================================*/
+            showHomeContent() {
+                let tl = new TimelineLite({
+                    delay: 0.2,
+                });
+                tl.to(this.logoBg, 0.3, {scaleX: 1})
+                    .to(this.headlineBG, 0.3, {scaleX: -1})
+                    .to(this.word, 0.5, {opacity: 1}, "-=0.1")
+                    .to(this.logoBg, 0.2, {scaleX: 0})
+                    .to(this.headlineBG, 0.2, {scaleX: 0}, 1)
+                    .to(this.subheadline, 0.5, {opacity: 1}, "-=0.1")
+                    .to(this.button, 0.5, {opacity: 1}, "-=0.1")
+                    .to(this.buttonDown, 0.5, {opacity: 1}, "-=0.1");
+            },
+
+            hideHomeContent() {
+                let tl = new TimelineLite({});
+
+                tl.to(this.logoBg, 0.2, {scaleX: 0})
+                    .to(this.headlineBG, 0.2, {scaleX: -1})
+                    .to(this.word, 0.1, {opacity: 0}, "-=0.1")
+                    .to(this.logoBg, 0.2, {scaleX: 1})
+                    .to(this.headlineBG, 0.2, {scaleX: 0})
+                    .to(this.logoBg, 0.2, {scaleX: 0})
+                    .to(this.subheadline, 0.3, {opacity: 0}, "-=0.1")
+                    .to(this.button, 0.3, {opacity: 0}, "-=0.1")
+                    .to(this.buttonDown, 0.3, {opacity: 0}, "-=0.1")
+            },
+
+            /*============================== comment ==============================
+            shopping content 
+            ======================================================================*/
+            showShoppingContent() {
+
+                /*============================== select Shopping items ==============================*/
+                let shoppingItem1 = document.getElementById('shopping-item-1');
+                let shoppingItem2 = document.getElementById('shopping-item-2');
+                let shoppingItem3 = document.getElementById('shopping-item-3');
+                let shoppingItem4 = document.getElementById('shopping-item-4');
+                let shoppingItem5 = document.getElementById('shopping-item-5');
+                let shoppingItem6 = document.getElementById('shopping-item-6');
+                let shoppingItem7 = document.getElementById('shopping-item-7');
+                let shoppingItem8 = document.getElementById('shopping-item-8');
+                let shoppingItem9 = document.getElementById('shopping-item-9');
+
+                /*============================== select browser ==============================*/
+                let browser = document.getElementById('browser');
+
+                /*============================== get backroung ==============================*/
+                let background = document.getElementById('background');
+
+                /*============================== leaves ==============================*/
+                let leaves = document.getElementById('leaves');
+                let flowers = document.getElementById('flower-top');
+                let flowers_ground = document.getElementById('ground-flower');
+                let woman = document.getElementById('woman');
+                let shadow = document.getElementById('shadow');
+                let cart = document.getElementById('cart');
+
+                /*============================== timeline ==============================*/
+                let tl = new TimelineLite({})
+                /*============================== background ==============================*/
+                    .fromTo(background, 2, {opacity: 0}, {opacity: 0.1}, 0)
+
+                    /*============================== browser ==============================*/
+                    .fromTo(browser, 2, {opacity: 0}, {opacity: 1}, 0)
+
+
+                    /*============================== text ==============================*/
+                    .fromTo(this.text, 1, {opacity: 0}, {opacity: 1})
+
+                    /*============================== plants ==============================*/
+                    .fromTo(leaves, 1, {opacity: 0}, {opacity: 1}, 1)
+                    .fromTo(flowers, 1, {opacity: 0}, {opacity: 1}, 1)
+                    .fromTo(flowers_ground, 1, {opacity: 0}, {opacity: 1}, 1)
+
+                    /*============================== shopping items ==============================*/
+                    .fromTo(shoppingItem1, 2, {opacity: 0}, {opacity: 1}, 1)
+                    .fromTo(shoppingItem2, 2, {opacity: 0}, {opacity: 0.2}, 1.1)
+                    .fromTo(shoppingItem3, 2, {opacity: 0}, {opacity: 0.2}, 1.1)
+                    .fromTo(shoppingItem4, 2, {opacity: 0}, {opacity: 0.2}, 1.3)
+                    .fromTo(shoppingItem5, 2, {opacity: 0}, {opacity: 0.2}, 1.4)
+                    .fromTo(shoppingItem6, 2, {opacity: 0}, {opacity: 0.2}, 1.2)
+                    .fromTo(shoppingItem7, 2, {opacity: 0}, {opacity: 0.2}, 1.2)
+                    .fromTo(shoppingItem8, 2, {opacity: 0}, {opacity: 0.2}, 1)
+                    .fromTo(shoppingItem9, 2, {opacity: 0}, {opacity: 0.2}, 1.4)
+
+                    /*============================== women ==============================*/
+                    .fromTo(woman, 2, {opacity: 0}, {opacity: 1}, 1.8)
+                    .fromTo(shadow, 2, {opacity: 0}, {opacity: 1}, 1.7)
+                    .fromTo(cart, 2, {opacity: 0}, {opacity: 1}, 1.7);
+            },
+
+            hideShoppingContent() {
+                /*============================== select Shopping items ==============================*/
+                let shoppingItem1 = document.getElementById('shopping-item-1');
+                let shoppingItem2 = document.getElementById('shopping-item-2');
+                let shoppingItem3 = document.getElementById('shopping-item-3');
+                let shoppingItem4 = document.getElementById('shopping-item-4');
+                let shoppingItem5 = document.getElementById('shopping-item-5');
+                let shoppingItem6 = document.getElementById('shopping-item-6');
+                let shoppingItem7 = document.getElementById('shopping-item-7');
+                let shoppingItem8 = document.getElementById('shopping-item-8');
+                let shoppingItem9 = document.getElementById('shopping-item-9');
+
+                /*============================== select browser ==============================*/
+                let browser = document.getElementById('browser');
+
+                /*============================== get backgroung ==============================*/
+                let background = document.getElementById('background');
+
+                /*============================== leaves ==============================*/
+                let leaves = document.getElementById('leaves');
+                let flowers = document.getElementById('flower-top');
+                let flowers_ground = document.getElementById('ground-flower');
+                let woman = document.getElementById('woman');
+                let shadow = document.getElementById('shadow');
+                let cart = document.getElementById('cart');
+
+
+                let tl = new TimelineLite({})
+                    .fromTo(background, 2, {opacity: 0.1}, {opacity: 0}, 0)
+
+                    /*============================== browser ==============================*/
+                    .fromTo(browser, 2, {opacity: 1}, {opacity: 0}, 0)
+
+
+                    /*============================== text ==============================*/
+                    .fromTo(this.text, 1, {opacity: 1}, {opacity: 0})
+
+                    /*============================== plants ==============================*/
+                    .fromTo(leaves, 1, {opacity: 1}, {opacity: 0}, .5)
+                    .fromTo(flowers, 1, {opacity: 1}, {opacity: 0}, .5)
+                    .fromTo(flowers_ground, 1, {opacity: 1}, {opacity: 0}, .5)
+
+                    /*============================== shopping items ==============================*/
+                    .fromTo(shoppingItem1, 2, {opacity: 1}, {opacity: 0}, .5)
+                    .fromTo(shoppingItem2, 2, {opacity: 0.2}, {opacity: 0}, .5)
+                    .fromTo(shoppingItem3, 2, {opacity: 0.2}, {opacity: 0}, .5)
+                    .fromTo(shoppingItem4, 2, {opacity: 0.2}, {opacity: 0}, .5)
+                    .fromTo(shoppingItem5, 2, {opacity: 0.2}, {opacity: 0}, .5)
+                    .fromTo(shoppingItem6, 2, {opacity: 0.2}, {opacity: 0}, .5)
+                    .fromTo(shoppingItem7, 2, {opacity: 0.2}, {opacity: 0}, .5)
+                    .fromTo(shoppingItem8, 2, {opacity: 0.2}, {opacity: 0}, .5)
+                    .fromTo(shoppingItem9, 2, {opacity: 0.2}, {opacity: 0}, .5)
+
+                    /*============================== women ==============================*/
+                    .fromTo(woman, 2, {opacity: 1}, {opacity: 0}, .5)
+                    .fromTo(shadow, 2, {opacity: 1}, {opacity: 0}, .5)
+                    .fromTo(cart, 2, {opacity: 1}, {opacity: 0}, .5);
+            },
+
+            /*============================== comment ==============================
+            news content 
+            ======================================================================*/
+            showNewsContent() {
+                let newsContent = document.querySelectorAll('.News');
+                let newsLeave = document.getElementById('newsLeave');
+                let newsBrowser = document.getElementById('newsBrowser');
+                let newsPlant = document.getElementById('newsPlant');
+                let newsLeftPerson = document.getElementById('newsLeftPerson');
+                let newsRightPerson = document.getElementById('newsRightPerson');
+
+                let tl = new TimelineLite({});
+
+                TweenMax.set(newsContent, {opacity: 0});
+                tl
+                    .fromTo(newsContent, 2, {opacity: 0}, {opacity: 1}, 1)
+                    .fromTo(newsLeave, 2, {opacity: 0}, {opacity: 1}, 1.2)
+                    .fromTo(newsBrowser, 2, {opacity: 0}, {opacity: 1}, 1.2)
+                    .fromTo(newsPlant, 2, {opacity: 0}, {opacity: 1}, 1.3)
+                    .fromTo(newsLeftPerson, 2, {opacity: 0}, {opacity: 1}, 1.3)
+                    .fromTo(newsRightPerson, 2, {opacity: 0}, {opacity: 1}, 1.4)
+            },
+
+            hideNewsContent() {
+                let newsContent = document.querySelectorAll('.News');
+                let newsLeave = document.getElementById('newsLeave');
+                let newsBrowser = document.getElementById('newsBrowser');
+                let newsPlant = document.getElementById('newsPlant');
+                let newsLeftPerson = document.getElementById('newsLeftPerson');
+                let newsRightPerson = document.getElementById('newsRightPerson');
+                let tl = new TimelineLite({});
+
+                tl
+                    .fromTo(newsContent, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(newsLeave, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(newsBrowser, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(newsPlant, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(newsLeftPerson, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(newsRightPerson, 1, {opacity: 1}, {opacity: 0}, .3)
+            },
+
+            /*============================== comment ==============================
+            event content 
+            ======================================================================*/
+            showEventContent() {
+                let eventsContent = document.querySelectorAll('.Events');
+                let eventsBackground = document.getElementById('eventsBackground');
+                let eventsTree = document.getElementById('eventsTree');
+                let eventsDudeLeft = document.getElementById('eventsDudeLeft');
+                let eventsGirlLeft = document.getElementById('eventsGirlLeft');
+                let eventsDudeRight = document.getElementById('eventsDudeRight');
+                let eventsGirlRight = document.getElementById('eventsGirlRight');
+
+                let tl = new TimelineLite({});
+
+                TweenMax.set(eventsContent, {opacity: 0});
+                tl
+                    .fromTo(eventsContent, 1.5, {opacity: 0}, {opacity: 1}, 1)
+                    .fromTo(eventsBackground, 1.5, {opacity: 0}, {opacity: 1}, 1.2)
+                    .fromTo(eventsTree, 1.5, {opacity: 0}, {opacity: 1}, 1.2)
+                    .fromTo(eventsDudeLeft, 1.5, {opacity: 0}, {opacity: 1}, 1.3)
+                    .fromTo(eventsGirlLeft, 1.5, {opacity: 0}, {opacity: 1}, 1.3)
+                    .fromTo(eventsDudeRight, 1.5, {opacity: 0}, {opacity: 1}, 1.4)
+                    .fromTo(eventsGirlRight, 1.5, {opacity: 0}, {opacity: 1}, 1.4)
+            },
+
+            hideEventContent() {
+                let eventsContent = document.querySelectorAll('.Events');
+                let eventsBackground = document.getElementById('eventsBackground');
+                let eventsTree = document.getElementById('eventsTree');
+                let eventsDudeLeft = document.getElementById('eventsDudeLeft');
+                let eventsGirlLeft = document.getElementById('eventsGirlLeft');
+                let eventsDudeRight = document.getElementById('eventsDudeRight');
+                let eventsGirlRight = document.getElementById('eventsGirlRight');
+
+                let tl = new TimelineLite({});
+
+                tl
+                    .fromTo(eventsContent, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(eventsBackground, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(eventsTree, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(eventsDudeLeft, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(eventsGirlLeft, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(eventsDudeRight, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(eventsGirlRight, 1, {opacity: 1}, {opacity: 0}, .3)
+            },
+
+            /*============================== comment ==============================
+            cleaning content
+            ======================================================================*/
+            showCleaningContent() {
+                let cleaningContent = document.querySelectorAll('.Cleaning');
+                let cleaningBackground = document.getElementById('cleaningBackground');
+                let cleaningPlant = document.getElementById('cleaningPlant');
+                let cleaningBrowser = document.getElementById('cleaningBrowser');
+                let cleaningGrayPostit = document.getElementById('cleaningGrayPostit');
+                let cleaningYellowPostit = document.getElementById('cleaningYellowPostit');
+                let cleaningRedPostit = document.getElementById('cleaningRedPostit');
+                let cleaningWoman = document.getElementById('cleaningWoman');
+                let cleaningBluePostit = document.getElementById('cleaningBluePostit');
+
+                let tl = new TimelineLite({});
+
+                TweenMax.set(cleaningContent, {opacity: 0});
+                tl
+                    .fromTo(cleaningContent, 1.5, {opacity: 0}, {opacity: 1}, 1)
+                    .fromTo(cleaningBackground, 1.5, {opacity: 0}, {opacity: 0.2}, 1.2)
+                    .fromTo(cleaningPlant, 1.5, {opacity: 0}, {opacity: 1}, 1.2)
+                    .fromTo(cleaningBrowser, 1.5, {opacity: 0}, {opacity: 1}, 1.3)
+                    .fromTo(cleaningGrayPostit, 1.5, {opacity: 0}, {opacity: 0.2}, 1.3)
+                    .fromTo(cleaningYellowPostit, 1.5, {opacity: 0}, {opacity: 1}, 1.4)
+                    .fromTo(cleaningRedPostit, 1.5, {opacity: 0}, {opacity: 1}, 1.4)
+                    .fromTo(cleaningWoman, 1.5, {opacity: 0}, {opacity: 1}, 1.4)
+                    .fromTo(cleaningBluePostit, 1.5, {opacity: 0}, {opacity: 1}, 1.4)
+
+            },
+
+            hideCleaningContent() {
+                let cleaningContent = document.querySelectorAll('.Cleaning');
+                let cleaningBackground = document.getElementById('cleaningBackground');
+                let cleaningPlant = document.getElementById('cleaningPlant');
+                let cleaningBrowser = document.getElementById('cleaningBrowser');
+                let cleaningGrayPostit = document.getElementById('cleaningGrayPostit');
+                let cleaningYellowPostit = document.getElementById('cleaningYellowPostit');
+                let cleaningRedPostit = document.getElementById('cleaningRedPostit');
+                let cleaningWoman = document.getElementById('cleaningWoman');
+                let cleaningBluePostit = document.getElementById('cleaningBluePostit');
+
+                let tl = new TimelineLite({});
+
+                tl
+                    .fromTo(cleaningContent, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(cleaningBackground, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(cleaningPlant, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(cleaningBrowser, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(cleaningGrayPostit, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(cleaningYellowPostit, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(cleaningRedPostit, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(cleaningWoman, 1, {opacity: 1}, {opacity: 0}, .3)
+                    .fromTo(cleaningBluePostit, 1, {opacity: 1}, {opacity: 0}, .3)
+            },
+
+
         }
     }
 
@@ -242,8 +615,6 @@
         }
     };
 
-    /*============================== comment ==============================
-    run the arrowBounce function every 800ms
-    ============================= end comment ============================*/
+    /*============================== run the arrowBounce function every 800ms ==============================*/
     setInterval(arrowBounce, 800);
 </script>

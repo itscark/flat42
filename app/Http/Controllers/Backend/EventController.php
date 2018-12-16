@@ -15,10 +15,6 @@ class EventController extends Controller
         return view('backend.events.index', compact('events'));
     }
 
-    public function join()
-    {
-    }
-
     public function create()
     {
         return view('backend.events.create');

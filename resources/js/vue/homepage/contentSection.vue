@@ -11,8 +11,8 @@
             />
             <div class="grid-content text">
                 <div>
-                    <h2>{{ this.title }}</h2>
-                    <p>{{ this.content }}</p>
+                    <h2 class="opacity" :class="this.title">{{ this.title }}</h2>
+                    <p class="opacity" :class="this.title">{{ this.content }}</p>
                 </div>
             </div>
         </div>

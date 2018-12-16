@@ -25,6 +25,7 @@
     "dependencies": {
         "fs": "0.0.1-security",
         "fullpage.js": "^3.0.4",
+        "gsap": "^2.0.2",
         "moment": "^2.22.2",
         "postcss-sorting": "^4.0.1",
         "vue-fullpage.js": "^0.1.1",
