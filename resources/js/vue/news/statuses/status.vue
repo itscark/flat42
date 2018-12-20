@@ -3,10 +3,10 @@
         <div class="grid-wrapper align-items-center">
             <div class="item-left">
                 <p class="date">{{ postedOn(item) }}</p>
-                <p>{{item.user.name}} schreibt...</p>
+                <p>{{item.user ? item.user.name : item.user_name}} schreibt...</p>
             </div>
 
-            <div class="item-middle">
+            <div class="item-middle pl-4">
                 <p>{{item.title}}</p>
 
                 <div class="row">

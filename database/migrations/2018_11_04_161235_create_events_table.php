@@ -17,9 +17,12 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('flat_id');
             $table->string('user_id');
+            $table->string('updated_user_id')->nullable();
+            $table->integer('deleted_by')->nullable();
             $table->string('title');
             $table->text('body');
             $table->date('date');
+            $table->boolean('deleted')->default(false);
             $table->timestamps();
         });
     }

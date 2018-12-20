@@ -1,11 +1,7 @@
 window._ = require('lodash');
-window.Popper = require('popper.js').default;
+window.$ = window.jQuery = require('jquery');
 
-try {
-    window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap');
-} catch (e) {}
+require('bootstrap');
 
 window.axios = require('axios');
 
@@ -21,3 +17,5 @@ if (token) {
 
 import Form from './utilities/Form';
 window.Form = Form;
+
+

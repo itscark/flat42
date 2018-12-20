@@ -17,7 +17,6 @@ class CleaningController extends Controller
             $this->user_id = auth()->id();
             return $next($request);
         });
-
         $this->cleaning = new Cleaning();
 
     }

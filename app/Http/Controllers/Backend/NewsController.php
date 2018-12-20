@@ -57,11 +57,14 @@ class NewsController extends Controller
            'title' => 'required | string',
         ]);
 
-        News::create([
+        $newStatus = News::create([
             'flat_id' => $this->flat_id,
             'user_id' => auth()->id(),
             'title' => request('title'),
         ]);
+        $newStatus["user_name"] = auth()->user()->name;
+
+        return response()->json($newStatus);
     }
 
     /**

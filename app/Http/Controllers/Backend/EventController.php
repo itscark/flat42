@@ -49,7 +49,7 @@ class EventController extends Controller
     public function edit(Event $event)
     {
         if ($event->user_id == auth()->user()->id) {
-        return view('backend.events.edit', compact('event'));
+            return view('backend.events.edit', compact('event'));
         } else {
             return redirect(route('event.index'));
         }
@@ -57,18 +57,39 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
-        $this->validate($request, [
+        $this->validate(\request(), [
             'title' => 'required',
             'body' => 'required',
             'date' => 'required|date'
         ]);
 
-        return redirect(route('event.index'));
+        $event->update([
+            'body' => $request->body,
+            'title' => $request->title,
+            'date' => $request->date
+        ]);
+
+        return response()->json($event);
     }
 
     public function destroy($id)
     {
-        Event::findOrFail($id)->delete();
-        return redirect(route('event.index'));
+        $event = Event::findOrFail($id);
+        $event->deleted = true;
+        $event->deleted_by = auth()->id();
+        $event->save();
+        return response()->json($event);
     }
+
+    public function prevEvent()
+    {
+        return Event::getPrevFlatEvents();
+    }
+
+    public function delEvent()
+    {
+        return Event::getDelFlatEvents();
+    }
+
+
 }

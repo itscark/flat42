@@ -30,6 +30,10 @@ class Form {
         return this.submit('post', url, nextLocation);
     }
 
+    patch(url, nextLocation) {
+        return this.submit('patch', url, nextLocation);
+    }
+
     delete(url, nextLocation) {
         return this.submit('delete', url, nextLocation);
     }

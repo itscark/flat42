@@ -6,7 +6,7 @@
         </div>
 
         <div class="form-group col-md">
-            <input class="form-control" v-model="newItem.quantity" type="number" id="quantity" placeholder="Quantity">
+            <input class="form-control" v-model="newItem.quantity" type="number" min="0" id="quantity" placeholder="Quantity">
         </div>
 
         <div role="group" aria-label="Buttons" class="col-md">

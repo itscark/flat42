@@ -14,7 +14,7 @@ class Errors {
             delete this.errors.errors[field];
             return;
         }
-        this.errors = {};
+        //this.errors = {};
     }
 
     has(field) {

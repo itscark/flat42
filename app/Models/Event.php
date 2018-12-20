@@ -9,8 +9,38 @@ class Event extends Model
 {
 
     protected $fillable = [
-        'user_id', 'flat_id', 'title', 'body', 'date'
+        'user_id', 'flat_id', 'title', 'body', 'date', 'updated_user_id', 'deleted', 'deleted_by'
     ];
+
+    public static function getFlatEvents()
+    {
+        return Event::where('flat_id', auth()->user()->flat_id)
+            ->whereDate('date', '>', Carbon::now('Europe/Stockholm'))
+            ->where('deleted', '=', 0)
+            ->oldest('date')
+            ->with('user')
+            ->get();
+    }
+
+    public static function getPrevFlatEvents()
+    {
+        return Event::where('flat_id', auth()->user()->flat_id)
+            ->whereDate('date', '<=', Carbon::now('Europe/Stockholm'))
+            ->where('deleted', '=', 0)
+            ->oldest('date')
+            ->with('user')
+            ->get();
+    }
+
+    public static function getDelFlatEvents()
+    {
+        return Event::where('flat_id', auth()->user()->flat_id)
+            ->where('deleted', '=', 1)
+            ->oldest('date')
+            ->with('user')
+            ->with('deletedBy')
+            ->get();
+    }
 
     public function flat()
     {
@@ -22,20 +52,18 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function getFlatEvents()
+    public function deletedBy()
     {
-        return static::all()
-            ->sortByDesc('created_at')
-            ->where('flat_id', auth()->user()->flat_id);
+        return $this->belongsTo(User::class, 'deleted_by');
     }
 
-    public function getNextEvent($flat_id){
-
+    public function getNextEvent($flat_id)
+    {
         return Event::whereDate('date', '>=', Carbon::now('Europe/Stockholm'))
             ->where('flat_id', '=', $flat_id)
+            ->where('deleted', '=', 0)
             ->oldest('date')
             ->limit(2)
             ->get();
-
     }
 }

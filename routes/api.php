@@ -36,5 +36,17 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/cleaning/details', ['uses' => 'CleaningController@details', 'as' => 'cleaning.details']);
     Route::post('/cleaning', ['uses' => 'CleaningController@store', 'as' => 'cleaning.store']);
 
+    //Events
+    Route::delete('events/{id}', ['uses' => 'EventController@destroy', 'as' => 'event.destroy']);
+    Route::patch('events/{event}', ['uses' => 'EventController@update', 'as' => 'event.update']);
+    Route::post('events/create', ['uses' => 'EventController@store', 'as' => 'event.store']);
+    Route::get('events', ['uses' => 'EventController@history', 'as' => 'event.history']);
+
+
+    Route::get('events/prev-events', ['uses' => 'EventController@prevEvent', 'as' => 'event.prev']);
+    Route::get('events/del-events', ['uses' => 'EventController@delEvent', 'as' => 'event.del']);
+
+
+
 });
 

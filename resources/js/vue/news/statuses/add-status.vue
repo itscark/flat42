@@ -19,6 +19,9 @@
 
     export default {
 
+        props: {
+            status,
+        },
         data() {
             return {
                 form: new Form({
@@ -28,7 +31,9 @@
         },
         methods: {
             onSubmit() {
-                this.form.post('api/home', 'home')
+                this.form
+                    .post('api/home')
+                    .then(status => this.$emit('completed', status));
             }
         }
     }

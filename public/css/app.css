@@ -10686,8 +10686,8 @@ product*/
     grid-template-columns: 1fr 3fr 1fr;
   }
 
-  .grid-wrapper .item-left {
-    border-right: 1px solid lightgray;
+  .grid-wrapper .item-middle {
+    border-left: 1px solid lightgray;
   }
 }
 

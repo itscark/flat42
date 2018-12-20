@@ -18,5 +18,8 @@
 <!--Fullpage-->
 <link rel="stylesheet" href="https://unpkg.com/fullpage.js/dist/fullpage.min.css">
 
+
+<link rel="stylesheet" href="https://unpkg.com/vue-nav-tabs/themes/vue-tabs.css">
+
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">

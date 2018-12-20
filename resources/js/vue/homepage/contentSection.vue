@@ -10,16 +10,38 @@
                     class="grid-content img"
             />
             <div class="grid-content text">
-                <div>
+                <div class="root-element">
                     <h2 class="opacity" :class="this.title">{{ this.title }}</h2>
+                    <span :class="'background-'+this.title"></span>
+                </div>
+                <div class="root-element">
                     <p class="opacity" :class="this.title">{{ this.content }}</p>
+                    <span :class="'background-'+this.title"></span>
                 </div>
             </div>
         </div>
     </div>
 </template>
 
-<style scoped>
+<style>
+
+    .root-element{
+        position: relative;
+    }
+
+    .background-Shopping, .background-News , .background-Events , .background-Cleaning {
+        background-color: #13A399;
+        content:"";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        transform-origin: left;
+        transform: scaleY(0);
+    }
 
     .grid {
         display: grid;
@@ -57,12 +79,10 @@
 <script>
     export default {
 
-        props:['filepath', 'title', 'content', 'classes', 'sectionId'],
+        props: ['filepath', 'title', 'content', 'classes', 'sectionId'],
 
-        data(){
-            return{
-
-            }
+        data() {
+            return {}
         }
     }
 </script>

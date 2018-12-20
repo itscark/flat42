@@ -76,7 +76,7 @@
         opacity: 0;
     }
 
-    .logo, .headline {
+    .logo, .headline, .root-element {
         position: relative;
     }
 
@@ -88,23 +88,16 @@
         background-color: #13A399;
     }
 
-    .logo-bg, .headline-bg {
+    .logo-bg, .headline-bg, .background-Shopping {
         display: block;
         width: 100%;
         height: 100%;
         position: absolute;
         top: 0;
+        left: 0;
         z-index: 100;
         transform-origin: left;
-        transform: scaleX(0);
-    }
-
-    .logo-bg {
-        left: 0;
-    }
-
-    .headline-bg {
-        left: 100%;
+        transform: scaleY(0);
     }
 
     .headline {
@@ -306,14 +299,12 @@
             home content 
             ======================================================================*/
             showHomeContent() {
-                let tl = new TimelineLite({
-                    delay: 0.2,
-                });
-                tl.to(this.logoBg, 0.3, {scaleX: 1})
-                    .to(this.headlineBG, 0.3, {scaleX: -1})
+                let tl = new TimelineLite({});
+                tl.to(this.logoBg, 0.3, {scaleY: 1})
+                    .to(this.headlineBG, 0.3, {scaleY: -1})
                     .to(this.word, 0.5, {opacity: 1}, "-=0.1")
-                    .to(this.logoBg, 0.2, {scaleX: 0})
-                    .to(this.headlineBG, 0.2, {scaleX: 0}, 1)
+                    .to(this.logoBg, 0.2, {scaleY: 0})
+                    .to(this.headlineBG, 0.2, {scaleY: 0}, 1)
                     .to(this.subheadline, 0.5, {opacity: 1}, "-=0.1")
                     .to(this.button, 0.5, {opacity: 1}, "-=0.1")
                     .to(this.buttonDown, 0.5, {opacity: 1}, "-=0.1");
@@ -322,12 +313,12 @@
             hideHomeContent() {
                 let tl = new TimelineLite({});
 
-                tl.to(this.logoBg, 0.2, {scaleX: 0})
-                    .to(this.headlineBG, 0.2, {scaleX: -1})
+                tl.to(this.logoBg, 0.2, {scaleY: 0})
+                    .to(this.headlineBG, 0.2, {scaleY: -1})
                     .to(this.word, 0.1, {opacity: 0}, "-=0.1")
-                    .to(this.logoBg, 0.2, {scaleX: 1})
-                    .to(this.headlineBG, 0.2, {scaleX: 0})
-                    .to(this.logoBg, 0.2, {scaleX: 0})
+                    .to(this.logoBg, 0.2, {scaleY: 1})
+                    .to(this.headlineBG, 0.2, {scaleY: 0})
+                    .to(this.logoBg, 0.2, {scaleY: 0})
                     .to(this.subheadline, 0.3, {opacity: 0}, "-=0.1")
                     .to(this.button, 0.3, {opacity: 0}, "-=0.1")
                     .to(this.buttonDown, 0.3, {opacity: 0}, "-=0.1")
@@ -348,6 +339,9 @@
                 let shoppingItem7 = document.getElementById('shopping-item-7');
                 let shoppingItem8 = document.getElementById('shopping-item-8');
                 let shoppingItem9 = document.getElementById('shopping-item-9');
+
+                /*============================== select background Element ==============================*/
+                let backgroundElement = document.querySelectorAll('.background-Shopping');
 
                 /*============================== select browser ==============================*/
                 let browser = document.getElementById('browser');
@@ -371,9 +365,12 @@
                     /*============================== browser ==============================*/
                     .fromTo(browser, 2, {opacity: 0}, {opacity: 1}, 0)
 
+                    .to(backgroundElement, 0.2, {scaleY: 1})
+                    .to(this.text, 0.2, {opacity: 1}, "-=0.1")
+                    .to(backgroundElement, 0.2, {scaleY: 0})
 
                     /*============================== text ==============================*/
-                    .fromTo(this.text, 1, {opacity: 0}, {opacity: 1})
+                    //.fromTo(this.text, 1, {opacity: 0}, {opacity: 1})
 
                     /*============================== plants ==============================*/
                     .fromTo(leaves, 1, {opacity: 0}, {opacity: 1}, 1)
@@ -395,6 +392,8 @@
                     .fromTo(woman, 2, {opacity: 0}, {opacity: 1}, 1.8)
                     .fromTo(shadow, 2, {opacity: 0}, {opacity: 1}, 1.7)
                     .fromTo(cart, 2, {opacity: 0}, {opacity: 1}, 1.7);
+
+
             },
 
             hideShoppingContent() {
@@ -423,6 +422,9 @@
                 let shadow = document.getElementById('shadow');
                 let cart = document.getElementById('cart');
 
+                /*============================== select background Element ==============================*/
+                let backgroundElement = document.querySelectorAll('.background-Shopping');
+
 
                 let tl = new TimelineLite({})
                     .fromTo(background, 2, {opacity: 0.1}, {opacity: 0}, 0)
@@ -432,7 +434,9 @@
 
 
                     /*============================== text ==============================*/
-                    .fromTo(this.text, 1, {opacity: 1}, {opacity: 0})
+                    .to(backgroundElement, 0.2, {scaleY: 1})
+                    .to(this.text, 0.5, {opacity: 0}, "-=0.1")
+                    .to(backgroundElement, 0.2, {scaleY: 0})
 
                     /*============================== plants ==============================*/
                     .fromTo(leaves, 1, {opacity: 1}, {opacity: 0}, .5)
@@ -466,15 +470,22 @@
                 let newsPlant = document.getElementById('newsPlant');
                 let newsLeftPerson = document.getElementById('newsLeftPerson');
                 let newsRightPerson = document.getElementById('newsRightPerson');
+                /*============================== select background Element ==============================*/
+                let backgroundElement = document.querySelectorAll('.background-News');
 
                 let tl = new TimelineLite({});
 
                 TweenMax.set(newsContent, {opacity: 0});
                 tl
-                    .fromTo(newsContent, 2, {opacity: 0}, {opacity: 1}, 1)
                     .fromTo(newsLeave, 2, {opacity: 0}, {opacity: 1}, 1.2)
                     .fromTo(newsBrowser, 2, {opacity: 0}, {opacity: 1}, 1.2)
                     .fromTo(newsPlant, 2, {opacity: 0}, {opacity: 1}, 1.3)
+
+                    /*============================== text ==============================*/
+                    .to(backgroundElement, 0.2, {scaleY: 1})
+                    .to(newsContent, 0.2, {opacity: 1}, "-=0.1")
+                    .to(backgroundElement, 0.2, {scaleY: 0})
+
                     .fromTo(newsLeftPerson, 2, {opacity: 0}, {opacity: 1}, 1.3)
                     .fromTo(newsRightPerson, 2, {opacity: 0}, {opacity: 1}, 1.4)
             },
@@ -486,12 +497,18 @@
                 let newsPlant = document.getElementById('newsPlant');
                 let newsLeftPerson = document.getElementById('newsLeftPerson');
                 let newsRightPerson = document.getElementById('newsRightPerson');
+                let backgroundElement = document.querySelectorAll('.background-News');
                 let tl = new TimelineLite({});
 
                 tl
-                    .fromTo(newsContent, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(newsLeave, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(newsBrowser, 1, {opacity: 1}, {opacity: 0}, .3)
+
+                    /*============================== text ==============================*/
+                    .to(backgroundElement, 0.2, {scaleY: 1})
+                    .to(newsContent, 0.5, {opacity: 0}, "-=0.1")
+                    .to(backgroundElement, 0.2, {scaleY: 0})
+
                     .fromTo(newsPlant, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(newsLeftPerson, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(newsRightPerson, 1, {opacity: 1}, {opacity: 0}, .3)
@@ -508,14 +525,20 @@
                 let eventsGirlLeft = document.getElementById('eventsGirlLeft');
                 let eventsDudeRight = document.getElementById('eventsDudeRight');
                 let eventsGirlRight = document.getElementById('eventsGirlRight');
+                let backgroundElement = document.querySelectorAll('.background-Events');
 
                 let tl = new TimelineLite({});
 
                 TweenMax.set(eventsContent, {opacity: 0});
                 tl
-                    .fromTo(eventsContent, 1.5, {opacity: 0}, {opacity: 1}, 1)
                     .fromTo(eventsBackground, 1.5, {opacity: 0}, {opacity: 1}, 1.2)
                     .fromTo(eventsTree, 1.5, {opacity: 0}, {opacity: 1}, 1.2)
+
+                    /*============================== text ==============================*/
+                    .to(backgroundElement, 0.2, {scaleY: 1})
+                    .to(eventsContent, 0.2, {opacity: 1}, "-=0.1")
+                    .to(backgroundElement, 0.2, {scaleY: 0})
+
                     .fromTo(eventsDudeLeft, 1.5, {opacity: 0}, {opacity: 1}, 1.3)
                     .fromTo(eventsGirlLeft, 1.5, {opacity: 0}, {opacity: 1}, 1.3)
                     .fromTo(eventsDudeRight, 1.5, {opacity: 0}, {opacity: 1}, 1.4)
@@ -530,14 +553,19 @@
                 let eventsGirlLeft = document.getElementById('eventsGirlLeft');
                 let eventsDudeRight = document.getElementById('eventsDudeRight');
                 let eventsGirlRight = document.getElementById('eventsGirlRight');
+                let backgroundElement = document.querySelectorAll('.background-Events');
 
                 let tl = new TimelineLite({});
 
                 tl
-                    .fromTo(eventsContent, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(eventsBackground, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(eventsTree, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(eventsDudeLeft, 1, {opacity: 1}, {opacity: 0}, .3)
+                    /*============================== text ==============================*/
+                    .to(backgroundElement, 0.2, {scaleY: 1})
+                    .to(eventsContent, 0.5, {opacity: 0}, "-=0.1")
+                    .to(backgroundElement, 0.2, {scaleY: 0})
+
                     .fromTo(eventsGirlLeft, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(eventsDudeRight, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(eventsGirlRight, 1, {opacity: 1}, {opacity: 0}, .3)
@@ -556,16 +584,22 @@
                 let cleaningRedPostit = document.getElementById('cleaningRedPostit');
                 let cleaningWoman = document.getElementById('cleaningWoman');
                 let cleaningBluePostit = document.getElementById('cleaningBluePostit');
+                let backgroundElement = document.querySelectorAll('.background-Cleaning');
 
                 let tl = new TimelineLite({});
 
                 TweenMax.set(cleaningContent, {opacity: 0});
                 tl
-                    .fromTo(cleaningContent, 1.5, {opacity: 0}, {opacity: 1}, 1)
                     .fromTo(cleaningBackground, 1.5, {opacity: 0}, {opacity: 0.2}, 1.2)
                     .fromTo(cleaningPlant, 1.5, {opacity: 0}, {opacity: 1}, 1.2)
                     .fromTo(cleaningBrowser, 1.5, {opacity: 0}, {opacity: 1}, 1.3)
                     .fromTo(cleaningGrayPostit, 1.5, {opacity: 0}, {opacity: 0.2}, 1.3)
+
+                    /*============================== text ==============================*/
+                    .to(backgroundElement, 0.2, {scaleY: 1})
+                    .to(cleaningContent, 0.2, {opacity: 1}, "-=0.1")
+                    .to(backgroundElement, 0.2, {scaleY: 0})
+
                     .fromTo(cleaningYellowPostit, 1.5, {opacity: 0}, {opacity: 1}, 1.4)
                     .fromTo(cleaningRedPostit, 1.5, {opacity: 0}, {opacity: 1}, 1.4)
                     .fromTo(cleaningWoman, 1.5, {opacity: 0}, {opacity: 1}, 1.4)
@@ -583,14 +617,20 @@
                 let cleaningRedPostit = document.getElementById('cleaningRedPostit');
                 let cleaningWoman = document.getElementById('cleaningWoman');
                 let cleaningBluePostit = document.getElementById('cleaningBluePostit');
+                let backgroundElement = document.querySelectorAll('.background-Cleaning');
 
                 let tl = new TimelineLite({});
 
                 tl
-                    .fromTo(cleaningContent, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(cleaningBackground, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(cleaningPlant, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(cleaningBrowser, 1, {opacity: 1}, {opacity: 0}, .3)
+
+                    /*============================== text ==============================*/
+                    .to(backgroundElement, 0.2, {scaleY: 1})
+                    .to(cleaningContent, 0.5, {opacity: 0}, "-=0.1")
+                    .to(backgroundElement, 0.2, {scaleY: 0})
+
                     .fromTo(cleaningGrayPostit, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(cleaningYellowPostit, 1, {opacity: 1}, {opacity: 0}, .3)
                     .fromTo(cleaningRedPostit, 1, {opacity: 1}, {opacity: 0}, .3)

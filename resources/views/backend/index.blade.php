@@ -11,7 +11,6 @@
 
     <h3 class="mt-4 mb-4">Was gibt es neues?</h3>
 
-    <add-status></add-status>
     <statuses :news="{{$news}}"></statuses>
 
     {{--    @foreach( $news as $new)

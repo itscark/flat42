@@ -8,7 +8,7 @@ use App\Item;
 class ItemController extends Controller
 {
     public $rules = [
-        'name' => 'required|min:3',
+        'name' => 'required|min:3|max:50|string',
         'quantity' => 'required|numeric|min:1',
     ];
 
