@@ -15,7 +15,7 @@ class Event extends Model
     public static function getFlatEvents()
     {
         return Event::where('flat_id', auth()->user()->flat_id)
-            ->whereDate('date', '>', Carbon::now('Europe/Stockholm'))
+            ->whereDate('date', '>=', Carbon::now('Europe/Stockholm'))
             ->where('deleted', '=', 0)
             ->oldest('date')
             ->with('user')
@@ -25,7 +25,7 @@ class Event extends Model
     public static function getPrevFlatEvents()
     {
         return Event::where('flat_id', auth()->user()->flat_id)
-            ->whereDate('date', '<=', Carbon::now('Europe/Stockholm'))
+            ->whereDate('date', '<', Carbon::now('Europe/Stockholm'))
             ->where('deleted', '=', 0)
             ->oldest('date')
             ->with('user')
