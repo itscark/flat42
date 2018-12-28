@@ -18,7 +18,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+
+
 Route::middleware('auth:api')->group(function () {
+
+    Route::post('/register/create',  ['uses' => 'RegisterWgController@create', 'as' => 'create.wg']);
+    Route::post('/register/join',  ['uses' => 'RegisterWgController@join', 'as' => 'join.wg']);
 
     //Home
     Route::get('/home/{id}', ['uses' => 'NewsCommentsController@show', 'as' => 'statusComment.show']);

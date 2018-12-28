@@ -14,7 +14,10 @@ class ItemController extends Controller
 
     public function index()
     {
-        $items = Item::all();
+        $flat_id = auth()->user()->flat_id;
+
+        $items = Item::where('flat_id', '=', $flat_id)
+            ->get();
         return $items;
     }
 

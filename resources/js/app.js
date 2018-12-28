@@ -13,6 +13,9 @@ import 'vue-nav-tabs/themes/vue-tabs.css'
 Vue.use(VueTabs);*/
 
 //Components
+
+Vue.component('modal', require('./vue/components/modal.vue'));
+Vue.component('wg-register', require('./vue/register/wg-register.vue'));
 Vue.component('next-event', require('./vue/news/next-event.vue'));
 Vue.component('app-list', require('./vue/shopping/List.vue'));
 Vue.component('statuses', require('./vue/news/statuses/statuses.vue'));
@@ -26,6 +29,9 @@ Vue.component('create-event', require('./vue/events/create-event'));
 
 const app = new Vue({
     el: '#app',
+    data: {
+        showModal: false
+    }
 });
 
 

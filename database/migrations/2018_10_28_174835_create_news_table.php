@@ -13,9 +13,9 @@ class CreateNewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('statuses', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('flat_id');
+            $table->string('flat_id');
             $table->integer('user_id');
             $table->string('title');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateNewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuses');
+        Schema::dropIfExists('news');
     }
 }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Flat extends Model
 {
+    protected $fillable = ['flat_token', 'name'];
+
     public function user()
     {
         return $this->hasMany(User::class);

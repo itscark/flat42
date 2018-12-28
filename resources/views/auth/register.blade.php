@@ -26,7 +26,7 @@
                 </div>
 
 
-                <div class="form-group">
+               {{-- <div class="form-group">
                     <label for="flat_id">{{ __('Flat ID') }}</label>
 
                     <div>
@@ -40,7 +40,7 @@
                                     </span>
                         @endif
                     </div>
-                </div>
+                </div>--}}
 
                 <div class="form-group">
                     <label for="email">{{ __('E-Mail Address') }}</label>

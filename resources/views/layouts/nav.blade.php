@@ -54,6 +54,10 @@
                             @csrf
                         </form>
 
+                        <button class="ml-3 btn btn-primary" id="show-modal" @click="showModal = true"><i class="fas fa-info-circle"></i> Info</button>
+
+                        <modal v-if="showModal" @close="showModal = false"></modal>
+
                     @endif
                 @endif
 
