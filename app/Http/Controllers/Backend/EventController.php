@@ -35,9 +35,6 @@ class EventController extends Controller
             'body' => \request('body'),
             'date' => \request('date'),
         ]);
-
-        /*return redirect((route('event.index')));*/
-
         return ['message' => 'Event erstellt!'];
     }
 
@@ -91,5 +88,13 @@ class EventController extends Controller
         return Event::getDelFlatEvents();
     }
 
+    public function showEvent($id){
+        $eventInfo = Event::where('flat_id', auth()->user()->flat_id)
+            ->where('id', $id)
+            ->with('user')
+            ->get();
+
+        return $eventInfo;
+    }
 
 }

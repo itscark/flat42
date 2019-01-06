@@ -6,27 +6,25 @@
     </div>
 </template>
 
-
 <script>
-    import groceryList from "./grocery-list.vue";
+import groceryList from "./grocery-list.vue";
 
-    export default {
-        components: {
-            groceryList
-        },
-        data() {
-            return {
-                item: null,
-                grocery_list: null,
-                show: false,
-            }
-        },
+export default {
+    components: {
+        groceryList
+    },
+    data() {
+        return {
+            item: null,
+            grocery_list: null,
+            show: false
+        };
+    },
 
-        mounted() {
-            axios
-                .get('/api/shopping/grocery-history')
-                .then(response => (this.grocery_list = response.data))
-        },
-
-    };
+    mounted() {
+        axios
+            .get("/api/shopping/grocery-history")
+            .then(response => (this.grocery_list = response.data));
+    }
+};
 </script>

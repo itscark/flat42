@@ -4,13 +4,13 @@ class Errors {
     }
 
     get(field) {
-        if (_.has(this.errors, 'errors.' + field)) {
+        if (_.has(this.errors, "errors." + field)) {
             return this.errors.errors[field][0];
         }
     }
 
     clear(field) {
-        if (field && _.has(this.errors, 'errors.' + field)) {
+        if (field && _.has(this.errors, "errors." + field)) {
             delete this.errors.errors[field];
             return;
         }
@@ -18,16 +18,16 @@ class Errors {
     }
 
     has(field) {
-        return _.has(this.errors, 'errors.' + field);
+        return _.has(this.errors, "errors." + field);
     }
 
     any() {
-        if (_.has(this.errors, 'errors')) {
+        if (_.has(this.errors, "errors")) {
             return Object.keys(this.errors.errors).length > 0;
         }
     }
 
-/*    any(field) {
+    /*    any(field) {
         if (_.has(this.errors, 'errors.' + field)) {
             console.log(this.errors.errors[field].length > 0);
             return this.errors.errors[field].length > 0;

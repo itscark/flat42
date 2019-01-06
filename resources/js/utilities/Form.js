@@ -1,4 +1,4 @@
-import Errors from './Errors.js'
+import Errors from "./Errors.js";
 
 class Form {
     constructor(data) {
@@ -21,25 +21,25 @@ class Form {
 
     reset() {
         for (let field in this.originalData) {
-            this[field] = '';
+            this[field] = "";
         }
         this.errors.clear();
     }
 
     post(url, nextLocation) {
-        return this.submit('post', url, nextLocation);
+        return this.submit("post", url, nextLocation);
     }
 
     patch(url, nextLocation) {
-        return this.submit('patch', url, nextLocation);
+        return this.submit("patch", url, nextLocation);
     }
 
     delete(url, nextLocation) {
-        return this.submit('delete', url, nextLocation);
+        return this.submit("delete", url, nextLocation);
     }
 
     get(url, nextLocation) {
-        return this.submit('get', url, nextLocation);
+        return this.submit("get", url, nextLocation);
     }
 
     submit(requestType, url, nextLocation) {
@@ -49,17 +49,15 @@ class Form {
                     this.onSuccess(response.data);
                     resolve(response.data);
                     if (nextLocation != null) {
-                        window.location = nextLocation
+                        window.location = nextLocation;
                     }
                 })
                 .catch(error => {
                     this.onFail(error.response.data);
                     reject(error.response.data);
-                })
-
+                });
         });
     }
-
 
     onSuccess() {
         this.reset();

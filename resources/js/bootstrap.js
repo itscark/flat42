@@ -16,6 +16,7 @@ if (token) {
 }
 
 import Form from './utilities/Form';
+
 window.Form = Form;
 
 

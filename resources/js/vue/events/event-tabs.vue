@@ -1,78 +1,86 @@
 <template>
     <vue-tabs>
-
         <v-tab title="Vergangene Events">
             <div class="list-group mt-3">
-                <div class="border-bottom row row-color pt-3 pb-3"
-                     v-for="item in this.prevEvents">
-                    <div class="col align-self-center">{{ newDate(item.date) }}</div>
-                    <div class="col align-self-center">{{item.title}}</div>
+                <div
+                    class="border-bottom row row-color pt-3 pb-3"
+                    v-for="item in this.prevEvents"
+                >
                     <div class="col align-self-center">
-                        <button  class="btn btn-outline-info mr-3"><i class="fas fa-info"></i> Info</button>
+                        {{ date(item.date) }}
                     </div>
+                    <div class="col align-self-center">{{ item.title }}</div>
+                    <div class="col align-self-center">{{ item.body }}</div>
                 </div>
             </div>
         </v-tab>
 
         <v-tab title="Abgesagte Events">
             <div class="list-group mt-3">
-                <div class="border-bottom row row-color pt-3 pb-3 "
-                     v-for="item in this.delEvents">
-                    <div class="col align-self-center">{{ newDate(item.date) }}</div>
-                    <div class="col align-self-center">{{item.title}}</div>
+                <div
+                    class="border-bottom row row-color pt-3 pb-3 "
+                    v-for="item in this.delEvents"
+                >
                     <div class="col align-self-center">
-                        <button  class="btn btn-outline-info mr-3"><i class="fas fa-info"></i> Info</button>
+                        {{ date(item.date) }}
                     </div>
+                    <div class="col align-self-center">{{ item.title }}</div>
+                    <div class="col align-self-center">{{ item.body }}</div>
                 </div>
             </div>
         </v-tab>
     </vue-tabs>
 </template>
 <style scoped>
-    .row-color:nth-child(odd){
-        background-color: #f8f8f8;
-    }
+.row-color:nth-child(odd) {
+    background-color: #f8f8f8;
+}
 </style>
 <script>
+import moment from "moment";
+import { VueTabs, VTab } from "vue-nav-tabs/dist/vue-tabs.js";
+import "vue-nav-tabs/themes/vue-tabs.css";
 
-    import moment from 'moment';
+export default {
+    components: {
+        VueTabs,
+        VTab
+    },
 
-    //local registration
-    import {VueTabs, VTab} from 'vue-nav-tabs/dist/vue-tabs.js';
-    //you can also import this in your style tag
-    import 'vue-nav-tabs/themes/vue-tabs.css';
+    data() {
+        return {
+            prevEvents: [],
+            delEvents: []
+        };
+    },
 
-    export default {
-        components: {
-            VueTabs,
-            VTab
+    mounted() {
+        axios
+            .get("api/events/prev-events")
+            .then(response => (this.prevEvents = response.data));
+
+        axios
+            .get("api/events/del-events")
+            .then(response => (this.delEvents = response.data));
+    },
+    methods: {
+        date(date) {
+            return moment
+                .utc(date)
+                .locale("de")
+                .format("Do MMMM YYYY");
         },
 
-        data() {
-            return {
-                prevEvents: [],
-                delEvents: [],
-            }
+        getEventInfo(id) {
+            axios
+                .get("api/events/show/" + id)
+                .then(this.showEventInfo())
+                .catch();
         },
 
-        mounted() {
-            axios.get('api/events/prev-events')
-                .then(response => this.prevEvents = response.data);
-
-            axios.get('api/events/del-events')
-                .then(response => this.delEvents = response.data);
-        },
-        methods: {
-            newDate(date){
-                return moment.utc(date).calendar(null, {
-                    sameDay: '[Heute]',
-                    nextDay: '[Morgen]',
-                    nextWeek: '[Nächste Woche]',
-                    lastDay: '[Gestern]',
-                    lastWeek: 'Letzte Woche',
-                    sameElse: 'DD.MM.YYYY'
-                });
-            }
+        showEventInfo() {
+            console.log("show = true");
         }
     }
+};
 </script>

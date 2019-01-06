@@ -54,10 +54,9 @@
                             @csrf
                         </form>
 
-                        <button class="ml-3 btn btn-primary" id="show-modal" @click="showModal = true"><i class="fas fa-info-circle"></i> Info</button>
 
-                        <modal v-if="showModal" @close="showModal = false"></modal>
-
+                        <button class="btn btn-primary ml-2" id="show-modal" @click="showModal = true"><i class="fas fa-info"></i> WG Info</button>
+                        <!-- use the modal component, pass in the prop -->
                     @endif
                 @endif
 

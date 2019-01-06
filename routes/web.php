@@ -12,7 +12,7 @@
 */
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('/blog', ['uses' => 'PostController@index', 'as' => 'posts.index']);
 
 Route::middleware('guest')->group(function () {
@@ -23,7 +23,7 @@ Route::get('logout', function (){
     abort(404);
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('verified')->group(function () {
 
     Route::get('register/wg', ['uses' => 'RegisterWgController@wg', 'as' => 'register.wg' ]);
 
