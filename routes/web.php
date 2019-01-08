@@ -19,46 +19,44 @@ Route::middleware('guest')->group(function () {
     Route::get('/', 'WelcomeController@index')->name('welcome');
 });
 
-Route::get('logout', function (){
+Route::get('logout', function () {
     abort(404);
 });
 
 Route::get('register/wg', ['uses' => 'RegisterWgController@wg', 'as' => 'register.wg']);
 
-Route::middleware('verified' , 'hasFlat')->group(function () {
+Route::middleware('verified', 'hasFlat')->group(function () {
 
-        //Home
-        Route::get('/home', 'NewsController@index')->name('home');
+    //Home
+    Route::get('/home', 'NewsController@index')->name('home');
 
-        //Shopping
-        Route::get('/shopping', function () {
-            return view('backend.shopping.index');
-        });
+    //Shopping
+    Route::get('/shopping', function () {
+        return view('backend.shopping.index');
+    });
 
-        //Shopping
-        Route::post('/shopping', 'ItemController@store');
-        Route::delete('/shopping/{id}', 'ItemController@destroy');
-        Route::put('/shopping/{id}', 'ItemController@update');
+    //Shopping
+    Route::post('/shopping', 'ItemController@store');
+    Route::delete('/shopping/{id}', 'ItemController@destroy');
+    Route::put('/shopping/{id}', 'ItemController@update');
 
-        //Cart
-        Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart.index']);
-        Route::post('cart', ['uses' => 'CartController@create', 'as' => 'cart.create']);
-        Route::post('cart/item/{id}', ['uses' => 'CartController@update', 'as' => 'cart.update']);
-        Route::post('cart/{id}', ['uses' => 'CartController@store', 'as' => 'cart.store']);
+    //Cart
+    Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart.index']);
+    Route::post('cart', ['uses' => 'CartController@create', 'as' => 'cart.create']);
+    Route::post('cart/item/{id}', ['uses' => 'CartController@update', 'as' => 'cart.update']);
+    Route::post('cart/{id}', ['uses' => 'CartController@store', 'as' => 'cart.store']);
 
-        //Events
-        Route::get('/events', ['uses' => 'EventController@index', 'as' => 'event.index']);
-        Route::get('/events/create', ['uses' => 'EventController@create', 'as' => 'event.create']);
-        Route::get('/events/{event}/edit', ['uses' => 'EventController@edit', 'as' => 'event.edit']);
+    //Events
+    Route::get('/events', ['uses' => 'EventController@index', 'as' => 'event.index']);
+    Route::get('/events/create', ['uses' => 'EventController@create', 'as' => 'event.create']);
+    Route::get('/events/{event}/edit', ['uses' => 'EventController@edit', 'as' => 'event.edit']);
+    Route::get('/events/{event}', ['uses' => 'EventController@show', 'as' => 'event.show']);
 
-
-        Route::get('/events/{event}', ['uses' => 'EventController@show', 'as' => 'event.show']);
-
-        //Cleaning
-        Route::get('/cleaning', ['uses' => 'CleaningController@index', 'as' => 'cleaning.index']);
-
-        Route::get('/cleaning/pdf', ['uses' => 'CleaningController@pdf', 'as' => 'cleaning.pdf']);
+    //Cleaning
+    Route::get('/cleaning', ['uses' => 'CleaningController@index', 'as' => 'cleaning.index']);
+    Route::get('/cleaning/pdf', ['uses' => 'CleaningController@pdf', 'as' => 'cleaning.pdf']);
 
 });
 
-
+Route::post('invite', 'InviteController@process')->name('process');
+Route::get('register/{token?}', 'InviteController@accept')->name('accept');

@@ -38,7 +38,7 @@
                                 >Einen Freund einladen:</label
                                 >
                                 <input
-                                        type="password"
+                                        type="email"
                                         class="form-control"
                                         id="newMember"
                                         placeholder="E-Mail Adresse ... "
@@ -94,7 +94,7 @@
 
         methods: {
             onSubmit() {
-                this.form.post("api/wg-info/add-member")
+                this.form.post("invite")
                     .then(() => {
                         console.log('done')
                     });
