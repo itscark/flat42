@@ -23,7 +23,7 @@ Route::get('logout', function () {
     abort(404);
 });
 
-Route::get('register/wg', ['uses' => 'RegisterWgController@wg', 'as' => 'register.wg']);
+Route::get('register/wg', ['uses' => 'RegisterWgController@wg', 'as' => 'register.wg'])->middleware('hasNoFlat');
 
 Route::middleware('verified', 'hasFlat')->group(function () {
 

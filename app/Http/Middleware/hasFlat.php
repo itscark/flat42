@@ -25,7 +25,9 @@ class hasFlat
 
         if ($request->user()->flat_id == null){
             return redirect()->to('/register/wg');
-        }
+        } /*elseif ( $request->user()->flat_id != null ) {
+            return redirect()->to('/home');
+        }*/
         return $next($request);
     }
 }
