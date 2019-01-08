@@ -17,6 +17,12 @@ class FlatController extends Controller
             ->get();
 
         return ['flatInfo' => $flatInfo, 'userInfo' => $userInfo];
+    }
 
+    public function create()
+    {
+        $this->validate(\request(), [
+            'email' => 'required|email'
+        ]);
     }
 }

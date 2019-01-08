@@ -11,8 +11,8 @@
 |
 */
 
-
 Auth::routes(['verify' => true]);
+
 Route::get('/blog', ['uses' => 'PostController@index', 'as' => 'posts.index']);
 
 Route::middleware('guest')->group(function () {
@@ -23,12 +23,9 @@ Route::get('logout', function (){
     abort(404);
 });
 
-Route::middleware('verified')->group(function () {
+Route::get('register/wg', ['uses' => 'RegisterWgController@wg', 'as' => 'register.wg']);
 
-    Route::get('register/wg', ['uses' => 'RegisterWgController@wg', 'as' => 'register.wg' ]);
-
-    Route::group(['middleware' => 'hasFlat'], function () {
-
+Route::middleware('verified' , 'hasFlat')->group(function () {
 
         //Home
         Route::get('/home', 'NewsController@index')->name('home');
@@ -61,9 +58,6 @@ Route::middleware('verified')->group(function () {
         Route::get('/cleaning', ['uses' => 'CleaningController@index', 'as' => 'cleaning.index']);
 
         Route::get('/cleaning/pdf', ['uses' => 'CleaningController@pdf', 'as' => 'cleaning.pdf']);
-
-    });
-
 
 });
 

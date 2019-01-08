@@ -5,7 +5,9 @@
                 <div class="modal-container">
                     <div class="modal-header">
                         <div>
-                            <h4 class="modal-title">{{flatInfo.name}}</h4>
+                            <h4 class="modal-title">
+                                {{ this.flatInfo && this.flatInfo.name }}
+                            </h4>
                             <small class="text-muted">WG - Info</small>
                         </div>
                         <button class="close" @click="$emit('close')">
@@ -14,7 +16,44 @@
                     </div>
 
                     <div class="modal-body">
-                        <p>WG-Token: <strong>{{flatInfo.flat_token}}</strong></p>
+                        <p>
+                            WG-Token:
+                            <strong>{{
+                                this.flatInfo && this.flatInfo.flat_token
+                                }}</strong>
+                        </p>
+
+                        <p>
+                            WG-Mitglieder:
+                            <strong>{{ userInfo && userInfo.length }}</strong>
+                        </p>
+
+                        <form
+                                class="form-inline"
+                                @submit.prevent="onSubmit"
+                                @keydown="form.errors.clear($event.target.name)"
+                        >
+                            <div class="form-group mr-2">
+                                <label for="newMember" class="sr-only"
+                                >Einen Freund einladen:</label
+                                >
+                                <input
+                                        type="password"
+                                        class="form-control"
+                                        id="newMember"
+                                        placeholder="E-Mail Adresse ... "
+                                        v-model="form.email"
+                                />
+                                <div
+                                        class="invalid-feedback"
+                                        v-if="form.errors.has('email')"
+                                        v-text="form.errors.get('email')"
+                                ></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Freund hinzufügen
+                            </button>
+                        </form>
                     </div>
 
                     <div class="modal-footer">
@@ -38,17 +77,29 @@
             return {
                 flatInfo: null,
                 userInfo: null,
-            }
+                form: new Form({
+                    email: ""
+                })
+            };
         },
         mounted() {
-            axios.get('api/wg-info')
+            axios
+                .get("api/wg-info")
                 .then(response => {
-                    this.flatInfo = response.data['flatInfo'];
-                    this.userInfo = response.data['userInfo'];
+                    this.flatInfo = response.data["flatInfo"];
+                    this.userInfo = response.data["userInfo"];
                 })
-                .catch()
-
+                .catch();
         },
+
+        methods: {
+            onSubmit() {
+                this.form.post("api/wg-info/add-member")
+                    .then(() => {
+                        console.log('done')
+                    });
+            }
+        }
     };
 </script>
 
@@ -95,13 +146,13 @@
     }
 
     /*
-           * The following styles are auto-applied to elements with
-           * transition="modal" when their visibility is toggled
-           * by Vue.js.
-           *
-           * You can easily play with the modal transition by editing
-           * these styles.
-           */
+                           * The following styles are auto-applied to elements with
+                           * transition="modal" when their visibility is toggled
+                           * by Vue.js.
+                           *
+                           * You can easily play with the modal transition by editing
+                           * these styles.
+                           */
 
     .modal-enter {
         opacity: 0;

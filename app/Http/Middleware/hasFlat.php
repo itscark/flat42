@@ -17,14 +17,15 @@ class hasFlat
 
     public function handle($request, Closure $next)
     {
-        if (Auth::User()->flat_id == null) {
+/*        if (Auth::User()->flat_id == null) {
+            return redirect()->to('/register/wg');
+        } elseif (Auth::User()->flat_id != null){
+            return redirect()->to('/home');
+        }*/
+
+        if ($request->user()->flat_id == null){
             return redirect()->to('/register/wg');
         }
         return $next($request);
     }
-
-    /*    public function handle($request, Closure $next)
-        {
-            return $next($request);
-        }*/
 }

@@ -15,7 +15,7 @@ Vue.use(VueTabs);*/
 //Components
 
 
-Vue.component('modal', require('./vue/components/modal.vue'));
+Vue.component('wg-info', require('./vue/wg-info.vue'));
 Vue.component('home-vue', require('./vue/homepage/home-vue.vue'));
 Vue.component('wg-register', require('./vue/register/wg-register.vue'));
 Vue.component('next-event', require('./vue/news/next-event.vue'));
@@ -32,6 +32,5 @@ const app = new Vue({
     el: "#app",
     data: {
         showModal: false
-        //showModal: true
     }
 });
