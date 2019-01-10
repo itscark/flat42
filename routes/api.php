@@ -40,6 +40,7 @@ Route::middleware('auth:api')->group(function () {
     //Cleaning
     Route::get('/cleaning/details', ['uses' => 'CleaningController@details', 'as' => 'cleaning.details']);
     Route::post('/cleaning', ['uses' => 'CleaningController@store', 'as' => 'cleaning.store']);
+    Route::delete('/cleaning/{id}', ['uses' => 'CleaningController@destroy', 'as' => 'cleaning.destroy']);
 
     //Events
     Route::delete('events/{id}', ['uses' => 'EventController@destroy', 'as' => 'event.destroy']);
@@ -53,6 +54,8 @@ Route::middleware('auth:api')->group(function () {
     //WG-Info
     Route::get('/wg-info', ['uses' => 'FlatController@index', 'as' => 'flat.index']);
     Route::post('/wg-info/add-member', ['uses' => 'FlatController@create', 'as' => 'flat.create']);
+
+
 
 
 

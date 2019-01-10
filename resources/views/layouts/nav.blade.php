@@ -54,7 +54,11 @@
                             @csrf
                         </form>
 
-                        <button class="btn btn-primary ml-2" id="show-modal" @click="showModal = true"><i class="fas fa-info"></i> WG Info</button>
+                        @if(auth()->user()->flat_id != null)
+                            <button class="btn btn-primary ml-2" id="show-modal" @click="showModal = true"><i
+                                        class="fas fa-info"></i> WG Info
+                            </button>
+                        @endif
                     @endif
                 @endif
 

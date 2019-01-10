@@ -11,7 +11,12 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::getFlatEvents();
+        $events = Event::where('flat_id', auth()->user()->flat_id)
+            ->whereDate('date', '>=', Carbon::now('Europe/Stockholm'))
+            ->where('deleted', '=', 0)
+            ->oldest('date')
+            ->with('user')
+            ->get();
         return view('backend.events.index', compact('events'));
     }
 
@@ -72,7 +77,7 @@ class EventController extends Controller
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
-        $event->deleted = true;
+       $event->deleted = true;
         $event->deleted_by = auth()->id();
         $event->save();
         return response()->json($event);

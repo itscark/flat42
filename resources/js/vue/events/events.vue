@@ -5,7 +5,11 @@
             <event :item="item" @deleteEvent="deleteItem"></event>
         </div>
 
-        <eventTabs class="mt-5"></eventTabs>
+        <eventTabs
+            :prevEvents="this.prevEvents"
+            :delEvents="this.delEvents"
+            class="mt-5"
+        ></eventTabs>
     </div>
 </template>
 
@@ -21,7 +25,9 @@ export default {
 
     data() {
         return {
-            vueEvents: this.events
+            vueEvents: this.events,
+            prevEvents: [],
+            delEvents: []
         };
     },
 
@@ -31,14 +37,28 @@ export default {
         eventTabs
     },
 
-    mounted() {},
+    mounted() {
+        axios
+            .get("api/events/prev-events")
+            .then(response => (this.prevEvents = response.data));
+
+        axios
+            .get("api/events/del-events")
+            .then(response => (this.delEvents = response.data));
+    },
 
     methods: {
         deleteItem(id) {
-            axios.delete("api/events/" + id).then(response => {});
-            this.vueEvents = this.vueEvents.filter(event => {
-                return event.id !== id;
+            axios.delete("api/events/" + id).then(response => {
+                this.deletedEvent = response.data;
+                console.log(this.deletedEvent);
+                this.delEvents.push(this.deletedEvent);
+                this.vueEvents = this.vueEvents.filter(event => {
+                    return event.id !== id;
+                });
             });
+
+
         }
     }
 };

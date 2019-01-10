@@ -41,22 +41,16 @@ class CartController extends Controller
         $check_grocery_list = GroceryList::where('uniq_id', '=', $auth_user_cart_id)->first();
         $uniq_id = uniqid();
 
-        // check ob es liste gibt
-        if ($check_grocery_list != null) {
-            if ($check_grocery_list->done == 1) {
-
-                $this->newOrder($uniq_id);
-            } else {
-                return response()->json(array('message' => 'Es ist noch eine Bestellung offen!', 'btn' => 'Zur Bestellung', 'url' => '/cart'));
-            }
-
-        } else {
-            // neue bestellung machen
+        if ($check_grocery_list == null || $check_grocery_list->done == 1) {
             $this->newOrder($uniq_id);
+            return response()->json(array('redirect' => route('cart.index')));
+        } else {
+            return response()->json(array('message' => 'Es ist noch eine Bestellung offen!', 'btn' => 'Zur Bestellung', 'url' => '/cart'));
         }
     }
 
-    private function newOrder($uniq_id)
+    private
+    function newOrder($uniq_id)
     {
         $flat_id = auth()->user()->flat_id;
         $user_id = auth()->id();
@@ -103,6 +97,9 @@ class CartController extends Controller
                 $grocery_list = GroceryList::where('uniq_id', '=', $id)->first();
                 $grocery_list->done = '1';
                 $grocery_list->save();
+
+                return response()->json(array('redirect' => '/shopping'));
+
             }
         }
 
@@ -131,14 +128,8 @@ class CartController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Cart $cart
-     * @return \Illuminate\Http\Response
-     */
-    public function update($id, Request $request)
+    public
+    function update($id, Request $request)
     {
         $request->merge([
             'price' => str_replace(',', '.', $request->price)
@@ -147,11 +138,11 @@ class CartController extends Controller
             'price' => 'required|regex:/^\d*(\.\d{1,2})?$/',
         ]);
 
-        $cart = Cart::findOrFail($id);
-        $cart->price = $request->price;
-        $cart->save();
+        $cart_item = Cart::findOrFail($id);
+        $cart_item->price = $request->price;
+        $cart_item->save();
 
-        return $cart;
+        return response($cart_item);
     }
 
     /**

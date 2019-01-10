@@ -37,9 +37,14 @@ export default {
         },
 
         onSubmit(id) {
-            axios
-                .post("cart/" + id)
-                .then(response => (this.errors = response.data));
+            axios.post("cart/" + id).then(response => {
+                if (response.data.message) {
+                    this.errors = response.data;
+                } else if (response.data.redirect) {
+                    console.log("redirect");
+                    window.location = response.data.redirect;
+                }
+            });
         }
     },
 

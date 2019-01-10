@@ -8,7 +8,7 @@ use App\Item;
 class ItemController extends Controller
 {
     public $rules = [
-        'name' => 'required|min:3|max:50|string',
+        'name' => 'required|min:2|max:50|string',
         'quantity' => 'required|numeric|min:1',
     ];
 
@@ -66,7 +66,6 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
         $item->delete();
-
         return response()->json($item);
     }
 }

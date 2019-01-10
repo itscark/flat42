@@ -7,10 +7,10 @@
             @keydown="form.errors.clear($event.target.name)"
         >
             <div class="col-6 align-self-center">
-                <p class="">{{ items.name }} von {{ items.user.name }}</p>
+                <p class="">{{ item.name }} von {{ item.user.name }}</p>
             </div>
             <div class="col-3 align-self-center">
-                <p>{{ items.price }} €</p>
+                <p>{{ item.price }} €</p>
             </div>
             <div class="col-3 form-group">
                 <input
@@ -21,7 +21,7 @@
                     id="price"
                     v-model.trim="form.price"
                     placeholder="Preis..."
-                    @blur="onSubmit(items.id)"
+                    @blur="onSubmit(item.id)"
                 />
                 <div
                     class="invalid-feedback"
@@ -36,24 +36,28 @@
 <script>
 export default {
     props: {
-        items: null
+        items:null,
     },
     data() {
         return {
+            item: this.items,
             response_data: [],
             form: new Form({
                 price: ""
-            })
+            }),
+
         };
     },
 
     mounted() {},
-
     methods: {
         onSubmit(id) {
             this.form
                 .post("cart/item/" + id)
-                .then(response => (this.response_data = response));
+                .then(response =>{
+                    this.response_data = response;
+                    this.item.price =  this.response_data.price;
+                });
         }
     }
 };

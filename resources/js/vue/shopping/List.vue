@@ -10,7 +10,7 @@
                 @updateEvent="updateItemHandler"
             >
             </app-item>
-            <app-new-item @createEvent="createEventHandler"> </app-new-item>
+            <app-new-item @createEvent="createEventHandler"></app-new-item>
         </div>
 
         <div class="row mt-4" v-if="!this.errors">
@@ -90,9 +90,13 @@ export default {
             /* let checkConfirmation = confirm('Hast du alles auf die Liste geschrieben?');*/
             let checkConfirmation = true;
             if (checkConfirmation == true) {
-                axios
-                    .post("cart")
-                    .then(response => (this.errors = response.data));
+                axios.post("cart").then(response => {
+                    if (response.data.message) {
+                        this.errors = response.data;
+                    } else if (response.data.redirect) {
+                        window.location = response.data.redirect;
+                    }
+                });
             }
         }
     }

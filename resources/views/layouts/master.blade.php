@@ -6,7 +6,9 @@
 
 <body>
 <div id="app">
-    <wg-info v-if="showModal" @close="showModal = false"></wg-info>
+        @if(auth()->check() && auth()->user()->flat_id != null)
+            <wg-info v-if="showModal" @close="showModal = false"></wg-info>
+        @endif
     @include('layouts.nav')
 
     @yield('hero-section')
@@ -15,8 +17,8 @@
         @yield('content')
     </div>
 </div>
-@include('layouts.footer')
-@include('layouts.scripts')
+
 </body>
+@include('layouts.footer')
 </html>
 

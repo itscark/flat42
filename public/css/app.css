@@ -10720,3 +10720,34 @@ product*/
   background: #F16541;
 }
 
+.cleaning-list-group {
+  border-radius: .25rem;
+}
+
+.cleaning-list-group:first-child {
+  border-left: 5px solid #11a38f !important;
+}
+
+.cleaning-list-group:nth-child(2) {
+  border-left: 5px solid #f5941c !important;
+}
+
+.cleaning-list-group:nth-child(3) {
+  border-left: 5px solid #f16541 !important;
+}
+
+.cleaning-list-group:nth-child(4) {
+  border-left: 5px solid #bf112e !important;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  -webkit-transition: opacity .5s;
+  transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+

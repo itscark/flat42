@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cleaning;
+use Session;
 
 class CleaningController extends Controller
 {
@@ -35,7 +36,6 @@ class CleaningController extends Controller
             'period' => 'required ',
         ]);
 
-
         return Cleaning::create([
             'flat_id' => $this->flat_id,
             'title' => \request('title'),
@@ -47,14 +47,18 @@ class CleaningController extends Controller
     public function details()
     {
         $details = [];
-        $daily = $this->cleaning->getDailyItems($this->flat_id);
-        $weekly = $this->cleaning->getWeeklyItems($this->flat_id);
-        $monthly = $this->cleaning->getMonthlyItems($this->flat_id);
-        $yearly = $this->cleaning->getYearlyItems($this->flat_id);
-        // array_push($details , ['daily' => $daily, 'weekly' => $weekly, 'monthly' => $monthly, 'yearly' => $yearly]);
-        array_push($details, $daily, $weekly, $monthly, $yearly);
-
+        $details['daily'] = $this->cleaning->getDailyItems($this->flat_id);
+        $details['weekly'] = $this->cleaning->getWeeklyItems($this->flat_id);
+        $details['monthly'] = $this->cleaning->getMonthlyItems($this->flat_id);
+        $details['yearly'] = $this->cleaning->getYearlyItems($this->flat_id);
         return $details;
+    }
+
+    public function destroy($id)
+    {
+        $item = Cleaning::findOrFail($id);
+        $item->delete();
+        return response()->json($item);
     }
 
     /*    public function pdf()

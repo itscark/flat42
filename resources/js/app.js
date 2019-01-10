@@ -1,6 +1,5 @@
 require("./bootstrap");
 
-window.Vue = require("vue");
 
 require("./utilities/scrolloverflow.min");
 
@@ -8,13 +7,8 @@ require("./utilities/scrolloverflow.min");
 import { SimpleSVG } from "vue-simple-svg";
 Vue.component("simple-svg", SimpleSVG);
 
-/*import VueTabs from 'vue-nav-tabs/dist/vue-tabs.js';
-import 'vue-nav-tabs/themes/vue-tabs.css'
-Vue.use(VueTabs);*/
-
 //Components
-
-
+Vue.component('errors', require('./vue/components/errors.vue'));
 Vue.component('wg-info', require('./vue/wg-info.vue'));
 Vue.component('home-vue', require('./vue/homepage/home-vue.vue'));
 Vue.component('wg-register', require('./vue/register/wg-register.vue'));

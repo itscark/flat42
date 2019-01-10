@@ -1,6 +1,7 @@
 const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
+    .sourceMaps()
     .sass('resources/sass/app.scss', 'public/css').options({
     postCss: [
         require('postcss-sorting')({
@@ -9,6 +10,4 @@ mix.js('resources/js/app.js', 'public/js')
     ]
 })
     .copy('resources/assets/images/', 'public/images/')
-    .copy('resources/assets/svg/', 'public/svg/')
-    .sourceMaps()
-;
+    .copy('resources/assets/svg/', 'public/svg/');

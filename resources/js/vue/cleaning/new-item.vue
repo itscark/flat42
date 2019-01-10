@@ -2,12 +2,15 @@
     <div>
         <form
             @submit.prevent="onSubmit"
-            class="card"
+            class="mt-5"
             @keydown="form.errors.clear($event.target.name)"
         >
-            <div class="card-header"><h2>Tätigkeit hinzufügen</h2></div>
+            <div class="">
+                <h2>Tätigkeit hinzufügen</h2>
+            </div>
             <div class="card-body">
                 <div class="form-group">
+                    <label for="period">Was gibt es zu tun?</label>
                     <input
                         class="form-control input-sm"
                         type="text"
@@ -47,7 +50,7 @@
                         type="submit"
                         :disabled="form.errors.any()"
                     >
-                        <i class="fas fa-plus"></i> Tätigkeit hinzufügen
+                        <i class="fas fa-plus"></i>  Hinzufügen
                     </button>
                 </div>
             </div>

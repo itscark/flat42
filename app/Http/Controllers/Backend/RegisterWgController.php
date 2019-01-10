@@ -54,11 +54,9 @@ class RegisterWgController extends Controller
             $user = User::find(auth()->id());
             $user->flat_id = $request['token'];
             $user->save();
-
             return response()->json(['success' => 'Die WG wurde erstellt!']);
         } else {
             return response()->json(['error' => 'Es wurde keine WG mit diesem Token gefunden!'], 404);
         }
-
     }
 }

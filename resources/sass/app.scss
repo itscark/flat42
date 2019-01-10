@@ -1,16 +1,15 @@
 // Variables
-@import 'variables';
-
+@import "variables";
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
 body {
   padding-top: 3rem;
   padding-bottom: 3rem;
   background: white;
 }
 
-form{
-
+form {
 }
 
 #app {
@@ -20,9 +19,9 @@ form{
 @import "welcome";
 @import "floating-label";
 
-
-.bg-dark, .btn-dark {
-  background-color:$teal !important;
+.bg-dark,
+.btn-dark {
+  background-color: $teal !important;
 }
 
 .invalid-feedback {
@@ -36,3 +35,30 @@ form{
 @import "floating-label";
 @import "grid";
 @import "fullPageJs";
+
+.cleaning-list-group {
+  border-radius: .25rem;
+
+  &:first-child {
+    border-left: 5px solid #11a38f !important;
+  }
+
+  &:nth-child(2) {
+    border-left: 5px solid #f5941c !important;
+  }
+
+  &:nth-child(3) {
+    border-left: 5px solid #f16541 !important;
+  }
+
+  &:nth-child(4) {
+    border-left: 5px solid #bf112e !important;
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
