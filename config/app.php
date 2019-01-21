@@ -173,10 +173,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        // SVG Blade
+       // SVG Blade
         BladeSvg\BladeSvgServiceProvider::class,
 
-        // DomPDF
         Barryvdh\DomPDF\ServiceProvider::class,
 
         //Passport
@@ -230,7 +229,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'View' => Illuminate\Support\Facades\View::class,
 
     ],
 

@@ -13,19 +13,23 @@
 
 Auth::routes(['verify' => true]);
 
-Route::get('/blog', ['uses' => 'PostController@index', 'as' => 'posts.index']);
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/', 'WelcomeController@index')->name('welcome');
+    Route::get('/blog', ['uses' => 'PostController@index', 'as' => 'posts.index']);
 });
 
 Route::get('logout', function () {
     abort(404);
 });
 
+//Register WG
 Route::get('register/wg', ['uses' => 'RegisterWgController@wg', 'as' => 'register.wg'])->middleware('hasNoFlat');
+Route::post('invite', 'InviteController@process')->name('process');
+Route::get('register/{token?}', 'InviteController@accept')->name('accept');
 
-Route::middleware('verified', 'hasFlat')->group(function () {
+Route::middleware('verified', 'hasFlat', 'user')->group(function () {
 
     //Home
     Route::get('/home', 'NewsController@index')->name('home');
@@ -34,8 +38,6 @@ Route::middleware('verified', 'hasFlat')->group(function () {
     Route::get('/shopping', function () {
         return view('backend.shopping.index');
     });
-
-    //Shopping
     Route::post('/shopping', 'ItemController@store');
     Route::delete('/shopping/{id}', 'ItemController@destroy');
     Route::put('/shopping/{id}', 'ItemController@update');
@@ -58,5 +60,7 @@ Route::middleware('verified', 'hasFlat')->group(function () {
 
 });
 
-Route::post('invite', 'InviteController@process')->name('process');
-Route::get('register/{token?}', 'InviteController@accept')->name('accept');
+Route::middleware('admin')->group(function (){
+    Route::get('/admin', ['uses' => 'AdminController@index', 'as' => 'admin.index']);
+});
+

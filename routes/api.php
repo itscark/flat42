@@ -55,6 +55,10 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/wg-info', ['uses' => 'FlatController@index', 'as' => 'flat.index']);
     Route::post('/wg-info/add-member', ['uses' => 'FlatController@create', 'as' => 'flat.create']);
 
+    //Admin
+    Route::delete('admin/users/{id}', ['uses' => 'AdminController@destroyUser', 'as' => 'user.destroy']);
+    Route::delete('admin/flat/{id}', ['uses' => 'AdminController@destroyFlat', 'as' => 'flat.destroy']);
+
 
 
 

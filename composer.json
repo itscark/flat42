@@ -6,11 +6,13 @@
     "type": "project",
     "require": {
         "php": "^7.2",
+        "barryvdh/laravel-dompdf": "^0.8.3",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
         "laravel/tinker": "^1.0",
-        "nexilo/xdevapi-php": "~1.1"
+        "nexilo/xdevapi-php": "~1.1",
+        "nothingworks/blade-svg": "^0.3.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
