@@ -13,8 +13,6 @@
 
 Auth::routes(['verify' => true]);
 
-
-
 Route::middleware('guest')->group(function () {
     Route::get('/', 'WelcomeController@index')->name('welcome');
     Route::get('/blog', ['uses' => 'PostController@index', 'as' => 'posts.index']);

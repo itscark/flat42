@@ -13,7 +13,7 @@
                             <a class="nav-link" href="{{ route('posts.index') }}">Blog</a>
                         </li>
                     </ul>
-                @elseif(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'User')
+                @elseif(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'user')
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('home') }}">News</a>
@@ -48,7 +48,7 @@
                         @csrf
                     </form>
 
-                    @if(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'User')
+                    @if(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'user')
                         <button class="btn btn-primary ml-2" id="show-modal" @click="showModal = true"><i
                                     class="fas fa-info"></i> WG Info
                         </button>
