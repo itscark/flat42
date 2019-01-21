@@ -6,15 +6,31 @@ use App\Flat;
 use App\User;
 use Illuminate\Http\Request;
 
-class FlatController extends Controller
+class FlatController extends BackendController
 {
+
+    protected $flat_id;
+    protected $user_id;
+    protected $flat;
+    protected $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->flat_id = auth()->user()->flat_id;
+            $this->user_id = auth()->id();
+            return $next($request);
+        });
+
+        $this->flat = new Flat();
+        $this->user = new User();
+
+    }
+
     public function index()
     {
-        $flatInfo = Flat::where('flat_token', auth()->user()->flat_id)
-            ->firstOrFail();
-
-        $userInfo = User::where('flat_id', auth()->user()->flat_id)
-            ->get();
+        $flatInfo = $this->flat->getFlatInfo($this->flat_id);
+        $userInfo = $this->user->getUserInfo($this->flat_id);
 
         return ['flatInfo' => $flatInfo, 'userInfo' => $userInfo];
     }

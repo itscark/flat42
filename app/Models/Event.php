@@ -66,4 +66,20 @@ class Event extends Model
             ->limit(2)
             ->get();
     }
+
+    public function getEvents($flat_id){
+        return Event::where('flat_id', $flat_id)
+            ->whereDate('date', '>=', Carbon::now('Europe/Stockholm'))
+            ->where('deleted', '=', 0)
+            ->oldest('date')
+            ->with('user')
+            ->get();
+    }
+
+    public function getEventInfo($flat_id, $id){
+        return Event::where('flat_id', $flat_id)
+            ->where('id', $id)
+            ->with('user')
+            ->get();
+    }
 }

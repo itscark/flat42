@@ -6,12 +6,12 @@ use App\Event;
 use App\News;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class NewsController extends BackendController
 {
-    protected $flat_id;
-    protected $user_id;
     protected $event;
     protected $news;
+    protected  $flat_id;
+    protected $user_id;
 
     public function __construct()
     {
@@ -35,21 +35,6 @@ class NewsController extends Controller
         return view('backend.index', compact('news', 'event'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -59,56 +44,11 @@ class NewsController extends Controller
 
         $newStatus = News::create([
             'flat_id' => $this->flat_id,
-            'user_id' => auth()->id(),
+            'user_id' => $this->user_id,
             'title' => request('title'),
         ]);
         $newStatus["user_name"] = auth()->user()->name;
 
         return response()->json($newStatus);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\News $news
-     * @return \Illuminate\Http\Response
-     */
-    public function show(News $news)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\News $news
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(News $news)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\News $news
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, News $news)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\News $news
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(News $news)
-    {
-        //
     }
 }

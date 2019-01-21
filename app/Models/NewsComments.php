@@ -23,4 +23,13 @@ class NewsComments extends Model
     public function flat(){
         return $this->belongsTo(Flat::class);
     }
+
+    public function getComments($flat_id, $id){
+
+        return NewsComments::where('flat_id', '=', $flat_id)
+            ->where('news_id', '=', $id)
+            ->with('user')
+            ->latest()
+            ->get();
+    }
 }

@@ -51,12 +51,15 @@ export default {
         onSubmit() {
             this.form
                 .post("/api/register/join")
-                .then(() => {
-                    window.location = "/";
+                .then(response => {
+                    if (response.success) {
+                        window.location = response.redirect;
+                    } else if (response.error) {
+                        this.flash(response.error, "error", {
+                            timeout: 5000
+                        });
+                    }
                 })
-                .catch(response => {
-                    console.log(response.error);
-                });
         }
     }
 };

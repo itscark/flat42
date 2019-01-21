@@ -5,25 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Item;
 
-class ItemController extends Controller
+class ItemController extends BackendController
 {
     public $rules = [
         'name' => 'required|min:2|max:50|string',
         'quantity' => 'required|numeric|min:1',
     ];
 
-    public function index()
-    {
-        $flat_id = auth()->user()->flat_id;
+    protected $flat_id;
+    protected $user_id;
+    protected $item;
 
-        $items = Item::where('flat_id', '=', $flat_id)
-            ->get();
-        return $items;
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->flat_id = auth()->user()->flat_id;
+            $this->user_id = auth()->id();
+            return $next($request);
+        });
+
+        $this->item = new Item();
     }
 
-    public function create()
+    public function index()
     {
-        //
+        return $this->item->getFlatItems($this->flat_id);
     }
 
     public function store(Request $request)
@@ -31,22 +37,12 @@ class ItemController extends Controller
         $this->validate($request, $this->rules);
 
         $item = Item::create([
-            'flat_id' => auth()->user()->flat_id,
-            'user_id' => auth()->id(),
+            'flat_id' => $this->flat_id,
+            'user_id' => $this->user_id,
             'name' => $request->name,
             'quantity' => $request->quantity,
         ]);
         return response()->json($item);
-    }
-
-    public function show(Item $item)
-    {
-        //
-    }
-
-    public function edit(Item $item)
-    {
-        //
     }
 
     public function update(Request $request, $id)

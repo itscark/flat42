@@ -32,4 +32,8 @@ class Flat extends Model
     {
         return $this->hasMany(NewsComments::class);
     }
+    public function getFlatInfo($flat_id){
+        return Flat::where('flat_token', auth()->user()->flat_id)
+            ->firstOrFail();
+    }
 }

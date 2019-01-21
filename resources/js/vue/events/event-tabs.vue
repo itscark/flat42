@@ -1,6 +1,6 @@
 <template>
-    <vue-tabs>
-        <v-tab title="Vergangene Events">
+ <b-tabs>
+        <b-tab title="Vergangene Events" active>
             <div class="list-group mt-3">
                 <div
                         class="border-bottom row row-color pt-3 pb-3"
@@ -13,9 +13,8 @@
                     <div class="col align-self-center">{{ item.body }}</div>
                 </div>
             </div>
-        </v-tab>
-
-        <v-tab title="Abgesagte Events">
+        </b-tab>
+        <b-tab title="Abgesagte Events" >
             <div class="list-group mt-3">
                 <div
                         class="border-bottom row row-color pt-3 pb-3 "
@@ -28,8 +27,9 @@
                     <div class="col align-self-center">{{ item.body }}</div>
                 </div>
             </div>
-        </v-tab>
-    </vue-tabs>
+        </b-tab>
+    </b-tabs>
+
 </template>
 <style scoped>
     .row-color:nth-child(odd) {
@@ -38,13 +38,13 @@
 </style>
 <script>
     import moment from "moment";
-    import {VueTabs, VTab} from "vue-nav-tabs/dist/vue-tabs.js";
-    import "vue-nav-tabs/themes/vue-tabs.css";
+/*    import {VueTabs, VTab} from "vue-nav-tabs/dist/vue-tabs.js";
+    import "vue-nav-tabs/themes/vue-tabs.css";*/
 
     export default {
         components: {
-            VueTabs,
-            VTab
+    /*        VueTabs,
+            VTab*/
         },
 
         props:['prevEvents', 'delEvents'],

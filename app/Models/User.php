@@ -51,4 +51,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function newsComments(){
         return $this->hasMany(NewsComments::class);
     }
+
+    public function getUserInfo($flat_id){
+        return  User::where('flat_id', $flat_id)
+            ->get();
+    }
 }

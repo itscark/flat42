@@ -20,4 +20,9 @@ class Item extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getFlatItems($flat_id){
+        return Item::where('flat_id', '=', $flat_id)
+            ->get();
+    }
 }

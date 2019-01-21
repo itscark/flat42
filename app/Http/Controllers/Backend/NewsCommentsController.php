@@ -5,13 +5,26 @@ namespace App\Http\Controllers;
 use App\NewsComments;
 use Illuminate\Http\Request;
 
-class NewsCommentsController extends Controller
+class NewsCommentsController extends BackendController
 {
+
+    protected $flat_id;
+    protected $user_id;
+    protected $comments;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->flat_id = auth()->user()->flat_id;
+            $this->user_id = auth()->id();
+            return $next($request);
+        });
+        $this->comments = new NewsComments();
+    }
+
     public function show($id)
     {
-        $flat_id = auth()->user()->flat_id;
-        $comments = NewsComments::where('flat_id', '=', $flat_id)->where('news_id', '=', $id)->with('user')->latest()->get();
-        return $comments;
+        return $this->comments->getComments($this->flat_id, $id);
     }
 
     public function store($id)

@@ -5,7 +5,6 @@
                 class="form-control"
                 v-model="newItem.name"
                 type="text"
-                id="name"
                 placeholder="Name..."
             />
         </div>
@@ -16,7 +15,6 @@
                 v-model="newItem.quantity"
                 type="number"
                 min="0"
-                id="quantity"
                 placeholder="Quantity"
             />
         </div>

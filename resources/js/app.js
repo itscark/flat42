@@ -1,12 +1,5 @@
 require("./bootstrap");
 
-
-require("./utilities/scrolloverflow.min");
-
-//Simple SVG
-import { SimpleSVG } from "vue-simple-svg";
-Vue.component("simple-svg", SimpleSVG);
-
 //Components
 Vue.component('errors', require('./vue/components/errors.vue'));
 Vue.component('wg-info', require('./vue/wg-info.vue'));

@@ -10751,3 +10751,9 @@ product*/
   opacity: 0;
 }
 
+.flash-message {
+  position: fixed;
+  right: 30px;
+  z-index: 9999999;
+}
+

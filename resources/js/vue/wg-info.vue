@@ -20,7 +20,7 @@
                             WG-Token:
                             <strong>{{
                                 this.flatInfo && this.flatInfo.flat_token
-                                }}</strong>
+                            }}</strong>
                         </p>
 
                         <p>
@@ -29,37 +29,37 @@
                         </p>
 
                         <form
-                                class="form-inline"
-                                @submit.prevent="onSubmit"
-                                @keydown="form.errors.clear($event.target.name)"
+                            class="form-inline"
+                            @submit.prevent="onSubmit"
+                            @keydown="form.errors.clear($event.target.name)"
                         >
                             <div class="form-group mr-2">
                                 <label for="newMember" class="sr-only"
-                                >Einen Freund einladen:</label
+                                    >Einen Freund einladen:</label
                                 >
                                 <input
-                                        type="email"
-                                        class="form-control"
-                                        id="newMember"
-                                        placeholder="E-Mail Adresse ... "
-                                        v-model="form.email"
+                                    type="email"
+                                    class="form-control"
+                                    id="newMember"
+                                    placeholder="E-Mail Adresse ... "
+                                    v-model="form.email"
                                 />
                                 <div
-                                        class="invalid-feedback"
-                                        v-if="form.errors.has('email')"
-                                        v-text="form.errors.get('email')"
+                                    class="invalid-feedback"
+                                    v-if="form.errors.has('email')"
+                                    v-text="form.errors.get('email')"
                                 ></div>
                             </div>
                             <button type="submit" class="btn btn-primary">
-                                Freund hinzufügen
+                                <i class="fas fa-plus"></i> Freund hinzufügen
                             </button>
                         </form>
                     </div>
 
                     <div class="modal-footer">
                         <button
-                                class="btn btn-outline-success"
-                                @click="$emit('close')"
+                            class="btn btn-outline-success"
+                            @click="$emit('close')"
                         >
                             <i class="fas fa-check"></i> Done
                         </button>
@@ -71,81 +71,80 @@
 </template>
 
 <script>
-    export default {
-        name: "WG-Info",
-        data() {
-            return {
-                flatInfo: null,
-                userInfo: null,
-                form: new Form({
-                    email: ""
-                })
-            };
-        },
-        mounted() {
-            axios
-                .get("api/wg-info")
-                .then(response => {
-                    this.flatInfo = response.data["flatInfo"];
-                    this.userInfo = response.data["userInfo"];
-                })
-                .catch();
-        },
+export default {
+    name: "WG-Info",
+    data() {
+        return {
+            flatInfo: null,
+            userInfo: null,
+            form: new Form({
+                email: ""
+            })
+        };
+    },
+    mounted() {
+        axios
+            .get("api/wg-info")
+            .then(response => {
+                this.flatInfo = response.data["flatInfo"];
+                this.userInfo = response.data["userInfo"];
+            })
+            .catch();
+    },
 
-        methods: {
-            onSubmit() {
-                this.form.post("invite")
-                    .then(() => {
-                        console.log('done')
-                    });
-            }
+    methods: {
+        onSubmit() {
+            this.form.post("invite").then(() => {
+                console.log("done");
+            });
         }
-    };
+    }
+};
 </script>
 
 <style>
-    .modal-mask {
-        position: fixed;
-        z-index: 9998;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: table;
-        transition: opacity 0.3s ease;
-    }
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
+}
 
-    .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-    }
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
 
-    .modal-container {
-        width: 500px;
-        margin: 0px auto;
-        padding: 20px 30px;
-        background-color: #fff;
-        border-radius: 2px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-        transition: all 0.3s ease;
-        font-family: Helvetica, Arial, sans-serif;
-    }
+.modal-container {
+    width: 500px;
+    margin: 0px auto;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+}
 
-    .modal-header h3 {
-        margin-top: 0;
-        color: #42b983;
-    }
+.modal-header h3 {
+    margin-top: 0;
+    color: #42b983;
+}
 
-    .modal-body {
-        margin: 20px 0;
-    }
+.modal-body {
+    margin: 20px 0;
+}
 
-    .modal-default-button {
-        float: right;
-    }
+.modal-default-button {
+    float: right;
+}
 
-    /*
+/*
                            * The following styles are auto-applied to elements with
                            * transition="modal" when their visibility is toggled
                            * by Vue.js.
@@ -154,17 +153,17 @@
                            * these styles.
                            */
 
-    .modal-enter {
-        opacity: 0;
-    }
+.modal-enter {
+    opacity: 0;
+}
 
-    .modal-leave-active {
-        opacity: 0;
-    }
+.modal-leave-active {
+    opacity: 0;
+}
 
-    .modal-enter .modal-container,
-    .modal-leave-active .modal-container {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-    }
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
 </style>

@@ -6,7 +6,7 @@ use App\Flat;
 use App\User;
 use Illuminate\Http\Request;
 
-class RegisterWgController extends Controller
+class RegisterWgController extends BackendController
 {
     protected $user_id;
 
@@ -54,9 +54,9 @@ class RegisterWgController extends Controller
             $user = User::find(auth()->id());
             $user->flat_id = $request['token'];
             $user->save();
-            return response()->json(['success' => 'Die WG wurde erstellt!']);
+            return response()->json(['success' => 'Die WG wurde erstellt!', 'redirect' => '/']);
         } else {
-            return response()->json(['error' => 'Es wurde keine WG mit diesem Token gefunden!'], 404);
+            return response()->json(['error' => 'Es wurde keine WG mit diesem Token gefunden!']);
         }
     }
 }

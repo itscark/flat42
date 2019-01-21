@@ -8,7 +8,7 @@ use App\Mail\InviteCreated;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
-class InviteController extends Controller
+class InviteController extends BackendController
 {
 
     public function invite()

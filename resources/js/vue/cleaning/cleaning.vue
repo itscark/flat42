@@ -56,6 +56,9 @@
 
         methods: {
             addToDo(toDo) {
+                this.flash('Tätigkeit hinzugefügt!', 'success', {
+                    timeout: 3000,
+                });
                 if (toDo.period_id === 1) {
                     this.toDos["daily"].push(toDo);
                 } else if (toDo.period_id === 2) {
@@ -68,6 +71,9 @@
             },
             deleteItem(id) {
                 axios.delete(`api/cleaning/${id}`).then(response => {
+                    this.flash('Tätigkeit gelöscht!', 'info', {
+                        timeout: 3000,
+                    });
                     this.removedToDo = response.data;
                     if (this.removedToDo.period_id == 1) {
                         this.toDos["daily"] = this.toDos["daily"].filter(item => {

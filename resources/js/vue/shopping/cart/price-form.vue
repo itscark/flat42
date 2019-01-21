@@ -2,7 +2,6 @@
     <div>
         <form
             class="row"
-            action=""
             method="post"
             @keydown="form.errors.clear($event.target.name)"
         >

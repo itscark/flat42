@@ -7,16 +7,26 @@ use App\GroceryList;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class EventController extends Controller
+class EventController extends BackendController
 {
+    protected $flat_id;
+    protected $user_id;
+    protected $event;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->flat_id = auth()->user()->flat_id;
+            $this->user_id = auth()->id();
+            return $next($request);
+        });
+        $this->event = new Event();
+
+    }
+
     public function index()
     {
-        $events = Event::where('flat_id', auth()->user()->flat_id)
-            ->whereDate('date', '>=', Carbon::now('Europe/Stockholm'))
-            ->where('deleted', '=', 0)
-            ->oldest('date')
-            ->with('user')
-            ->get();
+        $events = $this->event->getEvents($this->flat_id);
         return view('backend.events.index', compact('events'));
     }
 
@@ -32,10 +42,9 @@ class EventController extends Controller
             'body' => 'required',
             'date' => 'required|date'
         ]);
-
         Event::create([
-            'flat_id' => auth()->user()->flat_id,
-            'user_id' => auth()->id(),
+            'flat_id' => $this->flat_id,
+            'user_id' => $this->user_id,
             'title' => \request('title'),
             'body' => \request('body'),
             'date' => \request('date'),
@@ -50,7 +59,7 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
-        if ($event->user_id == auth()->user()->id) {
+        if ($event->user_id == $this->user_id) {
             return view('backend.events.edit', compact('event'));
         } else {
             return redirect(route('event.index'));
@@ -77,7 +86,7 @@ class EventController extends Controller
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
-       $event->deleted = true;
+        $event->deleted = true;
         $event->deleted_by = auth()->id();
         $event->save();
         return response()->json($event);
@@ -93,13 +102,9 @@ class EventController extends Controller
         return Event::getDelFlatEvents();
     }
 
-    public function showEvent($id){
-        $eventInfo = Event::where('flat_id', auth()->user()->flat_id)
-            ->where('id', $id)
-            ->with('user')
-            ->get();
-
-        return $eventInfo;
+    public function showEvent($id)
+    {
+        return $this->event->getEventInfo($this->flat_id, $id);
     }
 
 }

@@ -9,24 +9,30 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class CartController extends Controller
+class CartController extends BackendController
 {
+    protected $flat_id;
+    protected $user_id;
+    protected $cart;
+    protected $cart_id;
+    protected $groceryList;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $this->flat_id = auth()->user()->flat_id;
+            $this->user_id = auth()->id();
+            $this->cart_id = auth()->user()->cart_id;
+            return $next($request);
+        });
+        $this->cart = new Cart();
+        $this->groceryList = new GroceryList();
+    }
 
     public function index()
     {
-        $flat_id = auth()->user()->flat_id;
-        $logged_in_user_id = auth()->id();
-        $user_cart_id = auth()->user()->cart_id;
-
-        $cart_items = Cart::where('flat_id', '=', $flat_id)
-            ->where('buyer_id', '=', $logged_in_user_id)
-            ->where('uniq_id', '=', $user_cart_id)
-            ->with(['user'])
-            ->get();
-
-        $grocery_list = GroceryList::where('flat_id', '=', $flat_id)
-            ->where('uniq_id', '=', $user_cart_id)
-            ->first();
+        $cart_items = $this->cart->getCartItems($this->flat_id, $this->user_id, $this->cart_id);
+        $grocery_list = $this->groceryList->getGroceryList($this->flat_id, $this->cart_id);
 
         if (count($cart_items) != 0 && $grocery_list->done == '0') {
             return view('backend.shopping.cart.index', ['cart_items' => $cart_items->toJSON()]);
@@ -37,8 +43,7 @@ class CartController extends Controller
 
     public function create()
     {
-        $auth_user_cart_id = auth()->user()->cart_id;
-        $check_grocery_list = GroceryList::where('uniq_id', '=', $auth_user_cart_id)->first();
+        $check_grocery_list = $this->groceryList->checkGroceryList($this->cart_id);
         $uniq_id = uniqid();
 
         if ($check_grocery_list == null || $check_grocery_list->done == 1) {
@@ -84,48 +89,17 @@ class CartController extends Controller
     public
     function store($id, Request $request)
     {
-
-        $flat_id = auth()->user()->flat_id;
-        $cart_items = Cart::where('flat_id', '=', $flat_id)
-            ->where('uniq_id', '=', $id)
-            ->get();
+        $cart_items = $this->cart->getItems($this->flat_id, $id);
 
         foreach ($cart_items as $item) {
             if ($item->price == null || $item->price == '') {
                 return response()->json(['message' => 'Bitte trage alle Preise ein!']);
             } else {
-                $grocery_list = GroceryList::where('uniq_id', '=', $id)->first();
-                $grocery_list->done = '1';
-                $grocery_list->save();
-
+                $this->groceryList->setGroceryListDone($id);
                 return response()->json(array('redirect' => '/shopping'));
-
             }
         }
 
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Cart $cart
-     * @return \Illuminate\Http\Response
-     */
-    public
-    function show(Cart $cart)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Cart $cart
-     * @return \Illuminate\Http\Response
-     */
-    public
-    function edit(Cart $cart)
-    {
-        //
     }
 
     public
@@ -141,19 +115,6 @@ class CartController extends Controller
         $cart_item = Cart::findOrFail($id);
         $cart_item->price = $request->price;
         $cart_item->save();
-
         return response($cart_item);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Cart $cart
-     * @return \Illuminate\Http\Response
-     */
-    public
-    function destroy(Cart $cart)
-    {
-        //
     }
 }
