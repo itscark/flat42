@@ -18,9 +18,6 @@
                 v-model="item.quantity"
             />
         </div>
-        <!--
-                Only show if user-id is the same as the Loggedin User
-                -->
         <div class="form-group col-md" role="group" aria-label="Buttons">
             <button
                 @click="updateItem()"

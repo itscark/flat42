@@ -8,7 +8,7 @@
         ></editEvent>
         <div class="grid-wrapper align-items-center mb-4" v-else>
             <div class="item-left">
-                <p>hosted by {{ item.user.name }}</p>
+                <p>hosted by {{ item.user ? item.user.name : item.user_name}}</p>
                 <p class="date">{{ formatDate(item.date) }}</p>
             </div>
             <div class="item-middle pl-4">

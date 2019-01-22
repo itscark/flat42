@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('cart_id')->nullable();
             $table->string('role')->default('user');
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

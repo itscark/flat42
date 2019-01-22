@@ -1,15 +1,22 @@
 <template>
     <div>
-        <eventHeader></eventHeader>
-        <div v-for="item in vueEvents">
-            <event :item="item" @deleteEvent="deleteItem"></event>
+        <eventHeader
+            @toggleVisible="hideToggle"
+            :toddleHide="this.toggleHide"
+        ></eventHeader>
+        <div v-if="toggleHide">
+            <div v-for="item in vueEvents">
+                <event :item="item" @deleteEvent="deleteItem"></event>
+            </div>
+
+            <eventTabs
+                :prevEvents="this.prevEvents"
+                :delEvents="this.delEvents"
+                class="mt-5"
+            ></eventTabs>
         </div>
 
-        <eventTabs
-            :prevEvents="this.prevEvents"
-            :delEvents="this.delEvents"
-            class="mt-5"
-        ></eventTabs>
+        <create-event v-else @eventCreated="addEventToList"></create-event>
     </div>
 </template>
 
@@ -27,7 +34,8 @@ export default {
         return {
             vueEvents: this.events,
             prevEvents: [],
-            delEvents: []
+            delEvents: [],
+            toggleHide: true
         };
     },
 
@@ -50,15 +58,31 @@ export default {
     methods: {
         deleteItem(id) {
             axios.delete("api/events/" + id).then(response => {
+                this.flash('Event gelöscht!', 'error', {
+                    timeout: 3000,
+                });
                 this.deletedEvent = response.data;
-                console.log(this.deletedEvent);
                 this.delEvents.push(this.deletedEvent);
                 this.vueEvents = this.vueEvents.filter(event => {
                     return event.id !== id;
                 });
             });
+        },
 
+        hideToggle() {
+            this.toggleHide = !this.toggleHide;
+        },
 
+        addEventToList(item) {
+            this.flash('Event erstellt!', 'success', {
+                timeout: 3000,
+            });
+            this.vueEvents.unshift(item);
+            this.hideToggle();
+        },
+
+        addStatus(status) {
+            this.status.unshift(status);
         }
     }
 };

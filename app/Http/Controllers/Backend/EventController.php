@@ -42,14 +42,17 @@ class EventController extends BackendController
             'body' => 'required',
             'date' => 'required|date'
         ]);
-        Event::create([
+        $newEvent = Event::create([
             'flat_id' => $this->flat_id,
             'user_id' => $this->user_id,
             'title' => \request('title'),
             'body' => \request('body'),
             'date' => \request('date'),
         ]);
-        return ['message' => 'Event erstellt!'];
+
+        $newEvent['user_name'] = auth()->user()->name;
+
+        return response()->json($newEvent);
     }
 
     public function show(Event $event)

@@ -52,7 +52,7 @@ export default {
     methods: {
         onSubmit(id) {
             this.form
-                .post("cart/item/" + id)
+                .post("api/cart/item/" + id)
                 .then(response =>{
                     this.response_data = response;
                     this.item.price =  this.response_data.price;

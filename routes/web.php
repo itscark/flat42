@@ -36,15 +36,6 @@ Route::middleware('verified', 'hasFlat', 'user')->group(function () {
     Route::get('/shopping', function () {
         return view('backend.shopping.index');
     });
-    Route::post('/shopping', 'ItemController@store');
-    Route::delete('/shopping/{id}', 'ItemController@destroy');
-    Route::put('/shopping/{id}', 'ItemController@update');
-
-    //Cart
-    Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart.index']);
-    Route::post('cart', ['uses' => 'CartController@create', 'as' => 'cart.create']);
-    Route::post('cart/item/{id}', ['uses' => 'CartController@update', 'as' => 'cart.update']);
-    Route::post('cart/{id}', ['uses' => 'CartController@store', 'as' => 'cart.store']);
 
     //Events
     Route::get('/events', ['uses' => 'EventController@index', 'as' => 'event.index']);

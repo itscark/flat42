@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="mt-3 mb-3">
-            <h1>Event erstellen</h1>
+            <h1>Erstellen</h1>
         </div>
         <form
             action=""
@@ -86,8 +86,10 @@ export default {
     methods: {
         onSubmit() {
             this.form
-                .post("../api/events/create", "../events")
-                .then(console.log("this"));
+                .post("../api/events/create")
+                .then(item=>{
+                    this.$emit('eventCreated', item)
+                });
         }
     }
 };

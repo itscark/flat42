@@ -8,6 +8,7 @@ use App\Item;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use function MongoDB\BSON\toJSON;
 
 class CartController extends BackendController
 {
@@ -16,6 +17,7 @@ class CartController extends BackendController
     protected $cart;
     protected $cart_id;
     protected $groceryList;
+    protected $items;
 
     public function __construct()
     {
@@ -27,6 +29,8 @@ class CartController extends BackendController
         });
         $this->cart = new Cart();
         $this->groceryList = new GroceryList();
+        $this->items = new Item();
+
     }
 
     public function index()
@@ -35,7 +39,7 @@ class CartController extends BackendController
         $grocery_list = $this->groceryList->getGroceryList($this->flat_id, $this->cart_id);
 
         if (count($cart_items) != 0 && $grocery_list->done == '0') {
-            return view('backend.shopping.cart.index', ['cart_items' => $cart_items->toJSON()]);
+            return $cart_items;
         } else {
             return redirect('shopping');
         }
@@ -44,13 +48,19 @@ class CartController extends BackendController
     public function create()
     {
         $check_grocery_list = $this->groceryList->checkGroceryList($this->cart_id);
-        $uniq_id = uniqid();
+        $items = $this->items->checkIfItemsIsEmpty($this->flat_id);
+
 
         if ($check_grocery_list == null || $check_grocery_list->done == 1) {
-            $this->newOrder($uniq_id);
-            return response()->json(array('redirect' => route('cart.index')));
+            if ($items->count()) {
+                $uniq_id = uniqid();
+                $this->newOrder($uniq_id);
+                return response()->json(array('redirect' => route('cart.index')));
+            } else {
+                return response()->json('Bitte füge Items zum Warenkorb hinzu! ', 401);
+            }
         } else {
-            return response()->json(array('message' => 'Es ist noch eine Bestellung offen!', 'btn' => 'Zur Bestellung', 'url' => '/cart'));
+            return response()->json(array('message' => 'Es ist noch eine Bestellung offen!', 'btn' => 'Zur Bestellung'));
         }
     }
 
@@ -90,16 +100,20 @@ class CartController extends BackendController
     function store($id, Request $request)
     {
         $cart_items = $this->cart->getItems($this->flat_id, $id);
+        $arrayCheck = [];
 
         foreach ($cart_items as $item) {
-            if ($item->price == null || $item->price == '') {
-                return response()->json(['message' => 'Bitte trage alle Preise ein!']);
-            } else {
-                $this->groceryList->setGroceryListDone($id);
-                return response()->json(array('redirect' => '/shopping'));
+            if ($item->price == '' || $item->price == null) {
+               $arrayCheck[$item->id] = array($item);
             }
         }
-
+        if (count($arrayCheck))
+        {
+            return response()->json(['message' => 'Bitte trage alle Preise ein!']);
+        } else {
+            $this->groceryList->setGroceryListDone($id);
+            return response()->json(array('redirect' => '/shopping'));
+        }
     }
 
     public
@@ -109,7 +123,7 @@ class CartController extends BackendController
             'price' => str_replace(',', '.', $request->price)
         ]);
         $this->validate($request, [
-            'price' => 'required|regex:/^\d*(\.\d{1,2})?$/',
+            'price' => 'not_in:0|required|regex:/^\d*(\.\d{1,2})?$/',
         ]);
 
         $cart_item = Cart::findOrFail($id);

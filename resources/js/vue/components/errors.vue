@@ -8,7 +8,7 @@
         <div class="text-center">
             <p>{{ errors.message }}</p>
             <button
-                    @click="onSubmit(errors.url)"
+                    @click="onSubmit()"
                     class="btn btn-outline-warning"
                     v-if="errors.btn"
             >
@@ -23,8 +23,8 @@ export default {
     props: ["errors"],
 
     methods: {
-       onSubmit(url) {
-            window.location = url;
+       onSubmit() {
+           this.$emit('showCart', this.errors.showCart)
         }
     }
 };

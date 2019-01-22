@@ -51,6 +51,20 @@ Route::middleware('auth:api')->group(function () {
     Route::get('events/prev-events', ['uses' => 'EventController@prevEvent', 'as' => 'event.prev']);
     Route::get('events/del-events', ['uses' => 'EventController@delEvent', 'as' => 'event.del']);
 
+    //Shopping
+    Route::post('/shopping', 'ItemController@store');
+    Route::delete('/shopping/{id}', 'ItemController@destroy');
+    Route::put('/shopping/{id}', 'ItemController@update');
+
+    //Shopping-Cart
+    Route::post('cart', ['uses' => 'CartController@create', 'as' => 'cart.create']);
+    Route::get('cart', ['uses' => 'CartController@index', 'as' => 'cart.index']);
+    Route::post('cart/{id}', ['uses' => 'CartController@store', 'as' => 'cart.store']);
+    Route::post('cart/item/{id}', ['uses' => 'CartController@update', 'as' => 'cart.update']);
+
+
+
+
     //WG-Info
     Route::get('/wg-info', ['uses' => 'FlatController@index', 'as' => 'flat.index']);
     Route::post('/wg-info/add-member', ['uses' => 'FlatController@create', 'as' => 'flat.create']);

@@ -5,7 +5,7 @@
             <priceForm :items="items"></priceForm>
         </div>
 
-        <errors v-if="errors" :errors="this.errors"></errors>
+        <errors v-if="errors" :errors="this.errors" @showCart="toggleCart"></errors>
 
         <form @submit.prevent="submit" :disabled="isDisabled">
             <button class="btn btn-outline-success">Fertig</button>
@@ -23,12 +23,19 @@ export default {
         errors
     },
     props: {
-        cart_items: null
+
     },
     data() {
         return {
-            errors: null
+            errors: null,
+            cart_items: null
         };
+    },
+
+    mounted(){
+        axios.get('/api/cart').then(response => {
+            this.cart_items = response.data
+        });
     },
 
     methods: {
@@ -37,12 +44,11 @@ export default {
         },
 
         onSubmit(id) {
-            axios.post("cart/" + id).then(response => {
+            axios.post("api/cart/" + id).then(response => {
                 if (response.data.message) {
                     this.errors = response.data;
                 } else if (response.data.redirect) {
-                    console.log("redirect");
-                    window.location = response.data.redirect;
+                    this.$emit('postCartCompleted', id)
                 }
             });
         }

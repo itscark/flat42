@@ -25,4 +25,8 @@ class Item extends Model
         return Item::where('flat_id', '=', $flat_id)
             ->get();
     }
+
+    public function checkIfItemsIsEmpty($flat_id){
+        return Item::where('flat_id', $flat_id)->get();
+    }
 }
