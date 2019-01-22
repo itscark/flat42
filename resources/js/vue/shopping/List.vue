@@ -88,8 +88,7 @@
             },
 
             onSubmit() {
-                let checkConfirmation = confirm('Hast du alles auf die Liste geschrieben?');
-                if (checkConfirmation == true) {
+                if (confirm('Hast du alles auf die Liste geschrieben?')) {
                     axios.post("cart").then(response => {
                         if (response.data.message) {
                             this.errors = response.data;

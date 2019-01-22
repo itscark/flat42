@@ -2,9 +2,12 @@
     <b-card no-body>
         <b-tabs pills card>
             <b-tab title="Users" active>
-                <searchTab :items="this.user"
-                           :placeholder="'User suchen ...'"
-                           :axiosUrl="'api/admin/users/'">
+                <searchTab
+                    :items="this.user"
+                    :placeholder="'User suchen ...'"
+                    :axiosUrl="'api/admin/users/'"
+                    :name="'User'"
+                >
                     <template slot="header">
                         <h2>User</h2>
                     </template>
@@ -12,9 +15,11 @@
             </b-tab>
             <b-tab title="WGs">
                 <searchTab
-                        :items="this.flat"
-                        :placeholder="'Wohngemeinschaft suchen ...'"
-                        :axiosUrl="'api/admin/flat/'">
+                    :items="this.flat"
+                    :placeholder="'Wohngemeinschaft suchen ...'"
+                    :axiosUrl="'api/admin/flat/'"
+                    :name="'Flat'"
+                >
                     >
                     <template slot="header">
                         <h2>Wohngemeinschaften</h2>
@@ -26,22 +31,22 @@
 </template>
 
 <script>
-    import searchTab from "../components/search-tab.vue";
+import searchTab from "./content/search-tab.vue";
 
-    export default {
-        name: "Admin-Page",
+export default {
+    name: "Admin-Page",
 
-        props: ["users", "flats"],
+    props: ["users", "flats"],
 
-        components: {
-            searchTab
-        },
+    components: {
+        searchTab
+    },
 
-        data() {
-            return {
-                user: this.users,
-                flat: this.flats
-            };
-        }
-    };
+    data() {
+        return {
+            user: this.users,
+            flat: this.flats
+        };
+    }
+};
 </script>

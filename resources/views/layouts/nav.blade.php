@@ -3,9 +3,11 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="/">Flat42</a>
-            <button class="navbar-toggler" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            @if(auth()->user()->role == 'user')
+                <button class="navbar-toggler" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            @endif
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 @if(!auth()->check())
                     <ul class="navbar-nav mr-auto">

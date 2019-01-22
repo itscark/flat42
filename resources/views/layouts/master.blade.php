@@ -6,7 +6,7 @@
 </head>
 <body>
 <div id="app">
-   {{-- <flash-message class="flash-message"></flash-message>--}}
+    <flash-message class="flash-message"></flash-message>
     @if(auth()->check() && auth()->user()->flat_id != null)
         <wg-info v-if="showModal" @close="showModal = false"></wg-info>
     @endif
