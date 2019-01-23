@@ -27,11 +27,6 @@ class NewsController extends BackendController
     }
 
 
-    public function index()
-    {
-        return view('backend.index');
-    }
-
     public function apiIndex()
     {
         return $this->news->getLatestNews($this->flat_id);

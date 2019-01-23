@@ -12,15 +12,15 @@
     "devDependencies": {
         "axios": "^0.18",
         "bootstrap": "^4.0.0",
-        "browser-sync": "^2.26.3",
-        "browser-sync-webpack-plugin": "^2.2.2",
         "cross-env": "^5.1",
         "jquery": "^3.2",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.5",
         "popper.js": "^1.14.6",
+        "postcss-sorting": "^4.0.1",
         "prettier": "^1.15.3",
-        "vue": "^2.5.17"
+        "vue": "^2.5.17",
+        "vue-router": "^3.0.2"
     },
     "dependencies": {
         "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -29,7 +29,6 @@
         "fullpage.js": "^3.0.4",
         "gsap": "^2.0.2",
         "moment": "^2.22.2",
-        "postcss-sorting": "^4.0.1",
         "vue-flash-message": "^0.7.2",
         "vue-fullpage.js": "^0.1.1",
         "vue-nav-tabs": "^0.5.7",

@@ -1,11 +1,11 @@
 @if (Route::has('login'))
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container mx-auto">
-            <a class="navbar-brand" href="{{ route('home') }}">
+            <a class="navbar-brand" href="/">
                Flat42
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -17,18 +17,18 @@
                     </ul>
                 @elseif(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'user')
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item {{ active_menu(Route::currentRouteName(), 'home', 0, 4) }}">
-                            <a class="nav-link" href="{{ route('home') }}">News</a>
-                        </li>
-                        <li class="nav-item {{ active_menu(Route::currentRouteName(), 'shopping', 0, 8) }}">
-                            <a class="nav-link" href="{{ route('shopping') }}">Einkaufsliste</a>
-                        </li>
-                        <li class="nav-item {{ active_menu(Route::currentRouteName(), 'event', 0, 5) }}">
-                            <a class="nav-link " href="{{ route('event.index') }}">Events</a>
-                        </li>
-                        <li class="nav-item {{ active_menu(Route::currentRouteName(), 'cleaning', 0, 8) }}">
-                            <a class="nav-link" href="{{ route('cleaning.index') }}">Putzplan</a>
-                        </li>
+                        <router-link to="/" tag="li" exact class="nav-item">
+                            <a class="nav-link">News</a>
+                        </router-link>
+                        <router-link to="/shopping" tag="li" class="nav-item">
+                            <a class="nav-link">Shopping</a>
+                        </router-link>
+                        <router-link to="/events" tag="li" class="nav-item">
+                            <a class="nav-link">Events</a>
+                        </router-link>
+                        <router-link to="/cleaning" tag="li" class="nav-item">
+                            <a class="nav-link">Cleaning</a>
+                        </router-link>
                     </ul>
                 @endif
 

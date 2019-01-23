@@ -1,0 +1,47 @@
+<template>
+
+        <div>
+            <next-event></next-event>
+            <h3 class="mt-4 mb-4">Was gibt es neues?</h3>
+            <div>
+                <addStatus @completed="addStatus"></addStatus>
+                <div v-for="item in status"><status :item="item"></status></div>
+            </div>
+        </div>
+
+</template>
+
+<script>
+import status from "../components/news/statuses/status.vue";
+import addStatus from "../components/news/statuses/add-status.vue";
+import nextEvent from "../components/news/next-event.vue";
+
+export default {
+    props: ["news", "events"],
+
+    components: {
+        status,
+        addStatus,
+        nextEvent
+    },
+
+    data() {
+        return {
+            show: false,
+            status: null
+        };
+    },
+
+    mounted() {
+        axios.get("api/home").then(response => {
+            this.status = response.data;
+        });
+    },
+
+    methods: {
+        addStatus(status) {
+            this.status.unshift(status);
+        }
+    }
+};
+</script>
