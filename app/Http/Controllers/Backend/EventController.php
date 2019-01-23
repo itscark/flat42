@@ -26,8 +26,11 @@ class EventController extends BackendController
 
     public function index()
     {
-        $events = $this->event->getEvents($this->flat_id);
-        return view('backend.events.index', compact('events'));
+        return view('backend.events.index');
+    }
+
+    public function indexApi(){
+        return $this->event->getEvents($this->flat_id);
     }
 
     public function create()

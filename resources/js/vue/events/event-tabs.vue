@@ -38,13 +38,9 @@
 </style>
 <script>
     import moment from "moment";
-/*    import {VueTabs, VTab} from "vue-nav-tabs/dist/vue-tabs.js";
-    import "vue-nav-tabs/themes/vue-tabs.css";*/
 
     export default {
         components: {
-    /*        VueTabs,
-            VTab*/
         },
 
         props:['prevEvents', 'delEvents'],
@@ -56,15 +52,6 @@
             };
         },
 
-        mounted() {
-            /*        axios
-                        .get("api/events/prev-events")
-                        .then(response => (this.prevEvents = response.data));
-
-                    axios
-                        .get("api/events/del-events")
-                        .then(response => (this.delEvents = response.data));*/
-        },
         methods: {
             date(date) {
                 return moment

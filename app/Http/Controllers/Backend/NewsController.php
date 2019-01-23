@@ -10,7 +10,7 @@ class NewsController extends BackendController
 {
     protected $event;
     protected $news;
-    protected  $flat_id;
+    protected $flat_id;
     protected $user_id;
 
     public function __construct()
@@ -29,17 +29,24 @@ class NewsController extends BackendController
 
     public function index()
     {
-        $event = $this->event->getNextEvent($this->flat_id);
-        $news = $this->news->getLatestNews($this->flat_id);
+        return view('backend.index');
+    }
 
-        return view('backend.index', compact('news', 'event'));
+    public function apiIndex()
+    {
+        return $this->news->getLatestNews($this->flat_id);
+    }
+
+    public function show()
+    {
+        return $this->event->getNextEvent($this->flat_id);
     }
 
     public function store(Request $request)
     {
 
         $this->validate(request(), [
-           'title' => 'required | string',
+            'title' => 'required | string',
         ]);
 
         $newStatus = News::create([

@@ -1,5 +1,7 @@
 <template>
     <div>
+        <next-event></next-event>
+
         <h3 class="mt-4 mb-4">Was gibt es neues?</h3>
         <div>
             <addStatus @completed="addStatus"></addStatus>
@@ -11,20 +13,29 @@
 <script>
 import status from "./status.vue";
 import addStatus from "./add-status.vue";
+import nextEvent from '../next-event.vue';
 
 export default {
-    props: ["news"],
+    props: ["news", 'events'],
 
     components: {
         status,
-        addStatus
+        addStatus,
+        nextEvent
     },
 
     data() {
         return {
             show: false,
-            status: this.news
+            status: null,
         };
+    },
+
+    mounted(){
+      axios.get('api/home')
+          .then(response => {
+              this.status = response.data
+          });
     },
 
     methods: {

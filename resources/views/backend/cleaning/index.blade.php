@@ -3,5 +3,5 @@
 @section('pageTitle', 'Cleaning')
 
 @section('content')
-    <cleaning :period="{{$period}}"></cleaning>
+    <cleaning></cleaning>
 @endsection

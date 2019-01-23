@@ -27,7 +27,7 @@
             <i class="fas fa-plus"></i> Tätigkeit hinzufügen
         </button>
 
-        <newItem :period="period" v-if="show" @completed="addToDo"></newItem>
+        <newItem v-if="show" @completed="addToDo"></newItem>
     </div>
 </template>
 <script>
@@ -39,7 +39,7 @@
             newItem,
             period
         },
-        props: ["period"],
+
         data() {
             return {
                 toDos: [],

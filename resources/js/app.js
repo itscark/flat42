@@ -10,11 +10,12 @@ Vue.component('app-list', require('./vue/shopping/List.vue'));
 Vue.component('statuses', require('./vue/news/statuses/statuses.vue'));
 Vue.component('cart', require('./vue/shopping/cart/cart.vue'));
 Vue.component('grocery-history', require('./vue/grocery-list/grocery-history.vue'));
-Vue.component('cleaning', require('./vue/cleaning/cleaning.vue'));
-Vue.component('events', require('./vue/events/events.vue'));
-Vue.component('create-event', require('./vue/events/create-event.vue'));
+
+/*Vue.component('create-event', require('./vue/events/create-event.vue'));*/
 Vue.component('admin-page', require('./vue/admin/admin.vue'));
 Vue.component('shopping', require('./vue/shopping/shopping.vue'));
+Vue.component('cleaning', require('./vue/cleaning/cleaning.vue'));
+Vue.component('events', require('./vue/events/events.vue'));
 
 const app = new Vue({
     el: "#app",

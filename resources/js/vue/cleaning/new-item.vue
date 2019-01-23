@@ -59,7 +59,6 @@
 </template>
 <script>
 export default {
-    props: ["period"],
 
     data() {
         return {
@@ -67,8 +66,16 @@ export default {
                 title: "",
                 period: []
             }),
-            toDo: []
+            toDo: [],
+            period: null
         };
+    },
+
+    mounted() {
+        axios.get('api/cleaning')
+            .then(response => {
+                this.period = response.data
+            });
     },
 
     methods: {

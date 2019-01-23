@@ -5,9 +5,9 @@
             <priceForm :items="items"></priceForm>
         </div>
 
-        <errors v-if="errors" :errors="this.errors" @showCart="toggleCart"></errors>
+        <errors v-if="errors" :errors="this.errors" ></errors>
 
-        <form @submit.prevent="submit" :disabled="isDisabled">
+        <form @submit.prevent="submit" :disabled="isDisabled()">
             <button class="btn btn-outline-success">Fertig</button>
         </form>
     </div>
@@ -58,8 +58,9 @@ export default {
         isDisabled() {
             if (this.errors) {
                 return true;
+            } else {
+                return false;
             }
-            return false;
         }
     }
 };

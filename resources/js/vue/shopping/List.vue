@@ -56,7 +56,6 @@ export default {
     },
 
     mounted() {
-        axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
         axios.get("api/items").then(response => {
             this.items = response.data;
             this.disableButton(this.items);
@@ -80,7 +79,7 @@ export default {
         },
         updateItemHandler(item) {
             axios.put(`api/shopping/${item.id}`, item).then(response => {
-                this.flash("Item zur Liste hinzugefügt!", "info", {
+                this.flash("Item aktualisiert!", "success", {
                     timeout: 3000
                 });
             });
@@ -103,7 +102,6 @@ export default {
                 this.$set(this, "submitted", false);
             }
         },
-
         onSubmit() {
             if (confirm("Hast du alles auf die Liste geschrieben?")) {
                 axios

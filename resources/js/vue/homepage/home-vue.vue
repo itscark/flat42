@@ -213,7 +213,6 @@
 
 <script>
 import VueFullPage from "vue-fullpage.js";
-import imgSvg from "../components/svg-img.vue";
 import contentSection from "./contentSection.vue";
 import { TweenMax, svgMorph, TimelineLite } from "gsap";
 
@@ -221,7 +220,6 @@ Vue.use(VueFullPage);
 
 export default {
     components: {
-        imgSvg,
         contentSection
     },
     data() {

@@ -35,7 +35,7 @@ Route::middleware('verified', 'hasFlat', 'user')->group(function () {
     //Shopping
     Route::get('/shopping', function () {
         return view('backend.shopping.index');
-    });
+    })->name('shopping');
 
     //Events
     Route::get('/events', ['uses' => 'EventController@index', 'as' => 'event.index']);

@@ -24,8 +24,11 @@ class CleaningController extends BackendController
 
     public function index()
     {
-        $period = $this->cleaning->getPeriod();
-        return view('backend.cleaning.index', compact('period'));
+        return view('backend.cleaning.index');
+    }
+
+    public function indexApi(){
+        return $this->cleaning->getPeriod();
     }
 
     public function store()

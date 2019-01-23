@@ -1,61 +1,52 @@
 <template>
     <div>
         <div
-            class="list-group-item list-group-item-action d-flex justify-content-between"
+                class="list-group-item d-flex justify-content-between"
         >
             <p class=" mb-0">
-                <span class="badge badge-primary badge-pill">{{
-                    listItems.length
-                }}</span>
-                | {{ item.user.name }} {{ postedOn(item) }}
+                {{ item.user.name }} {{ postedOn(item.date) }}
             </p>
 
             <button
-                type="button"
-                class="btn btn-outline-primary btn-sm"
-                @click="show = !show"
+                    type="button"
+                    class="btn btn-outline-primary btn-sm"
+                    @click="show = !show"
             >
                 <i class="fas fa-info-circle"></i> Info anzeigen
             </button>
         </div>
-        <groceryDetails
-            :item="item"
-            :listItems="listItems"
-            v-if="show"
-        ></groceryDetails>
+        <div class="list-group">
+            <groceryDetails
+                    :item="item"
+                    :listItemId="item.uniq_id"
+                    v-if="show"
+            ></groceryDetails>
+        </div>
     </div>
 </template>
 
 <script>
-import moment from "moment";
-import groceryDetails from "./grocery-details.vue";
+    import moment from "moment";
+    import groceryDetails from "./grocery-details.vue";
 
-export default {
-    components: {
-        groceryDetails
-    },
+    export default {
+        components: {
+            groceryDetails
+        },
 
-    props: ["item"],
+        props: ["item"],
 
-    data() {
-        return {
-            show: false,
-            listItems: []
-        };
-    },
+        data() {
+            return {
+                show: false,
+                listItems: []
+            };
+        },
 
-    created() {
-        axios
-            .get("api/shopping/grocery-history/" + this.item.uniq_id)
-            .then(response => (this.listItems = response.data));
-    },
-
-    methods: {
-        postedOn(status) {
-            return moment(status.date)
-                .locale("de")
-                .fromNow();
+        methods: {
+            postedOn(status) {
+                return moment.utc(status).locale("de").fromNow();
+            }
         }
-    }
-};
+    };
 </script>

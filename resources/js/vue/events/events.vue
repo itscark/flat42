@@ -1,7 +1,7 @@
 <template>
     <div>
         <eventHeader
-            @toggleVisible="hideToggle"
+            @toggleVisible="hideToggle()"
             :toddleHide="this.toggleHide"
         ></eventHeader>
         <div v-if="toggleHide">
@@ -16,7 +16,7 @@
             ></eventTabs>
         </div>
 
-        <create-event v-else @eventCreated="addEventToList"></create-event>
+        <createEvent v-else @eventCreated="addEventToList"></createEvent>
     </div>
 </template>
 
@@ -24,15 +24,14 @@
 import event from "./event";
 import eventHeader from "./event-header.vue";
 import eventTabs from "./event-tabs";
+import createEvent from './create-event.vue';
 
 export default {
     name: "Events",
 
-    props: ["events"],
-
     data() {
         return {
-            vueEvents: this.events,
+            vueEvents: null,
             prevEvents: [],
             delEvents: [],
             toggleHide: true
@@ -42,10 +41,16 @@ export default {
     components: {
         event,
         eventHeader,
-        eventTabs
+        eventTabs,
+        createEvent
     },
 
     mounted() {
+        axios.get('api/events')
+            .then(response => {
+                this.vueEvents = response.data
+            })
+
         axios
             .get("api/events/prev-events")
             .then(response => (this.prevEvents = response.data));
