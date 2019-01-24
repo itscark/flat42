@@ -8,7 +8,9 @@
                 Vergangene Bestellungen anzeigen
             </button>
         </div>
+        <transition  mode="out-in" enter-active-class="animated fadeInUp fast" leave-active-class="animated fadeOutDown faster">
         <grocery v-if="visibleGrocery"></grocery>
+        </transition>
     </div>
 </template>
 

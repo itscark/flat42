@@ -26,26 +26,43 @@
                     </template>
                 </searchTab>
             </b-tab>
+            <b-tab title="Blog">
+                <newBlogPost></newBlogPost>
+                <searchTab
+                        :items="this.blog"
+                        :placeholder="'Blog Beiträge durchsuchen ...'"
+                        :axiosUrl="'api/admin/flat/'"
+                        :name="'Blog'"
+                >
+                    >
+                    <template slot="header">
+                        <h2>Blog Beiträge</h2>
+                    </template>
+                </searchTab>
+            </b-tab>
         </b-tabs>
     </b-card>
 </template>
 
 <script>
 import searchTab from "./content/search-tab.vue";
+import newBlogPost from './content/new-blog-post.vue';
 
 export default {
     name: "Admin-Page",
 
-    props: ["users", "flats"],
+    props: ["users", "flats", 'blogs'],
 
     components: {
-        searchTab
+        searchTab,
+        newBlogPost
     },
 
     data() {
         return {
             user: this.users,
-            flat: this.flats
+            flat: this.flats,
+            blog: this.blogs,
         };
     }
 };

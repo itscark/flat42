@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-show="showEdit" class="row">
-            <p class="col">{{ item.name }}</p>
+            <p class="col">{{ item.name || item.title }}</p>
             <div class="col mr-auto">
                 <button
                         type="button"
@@ -59,9 +59,6 @@
             return {
                 showEdit: true
             }
-        },
-        mounted(){
-            console.log('result: ' + this.axiosUrlResult)
         },
         methods: {
             emitDeleteItem(id) {

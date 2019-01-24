@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Blog;
 use App\Flat;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,8 +14,9 @@ class AdminController extends Controller
     {
         $users = User::all();
         $flat = Flat::all();
+        $blog = Blog::all();
 
-        return view('admin.index', compact('users', 'flat'));
+        return view('admin.index', compact('users', 'flat', 'blog'));
     }
 
     public function destroyUser($id){
@@ -80,7 +82,6 @@ class AdminController extends Controller
             'name' => $request->name,
         ]);
         return response()->json($flat);
-
     }
 
 

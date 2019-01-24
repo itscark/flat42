@@ -53,9 +53,12 @@ class Form {
                     }
                 })
                 .catch(error => {
+                    this.onFail(error.response.data.errors);
+                    reject(error.response.data.errors);
+                });/*.catch(error => {
                     this.onFail(error.response.data);
                     reject(error.response.data);
-                });
+                });*/
         });
     }
 

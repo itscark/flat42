@@ -29,7 +29,7 @@
             ></errors>
         </div>
 
-        <grocery-history></grocery-history>
+        <history></history>
     </div>
 </template>
 
@@ -37,7 +37,8 @@
 import grocery from "../grocery-list/grocery";
 import appItem from "./Item";
 import appNewItem from "./NewItem";
-import errors from "../errors";
+import errors from "../errors/errors";
+import history from '../grocery-list/grocery-history.vue';
 
 export default {
     name: "Shopping-list",
@@ -52,7 +53,8 @@ export default {
         appItem,
         appNewItem,
         grocery,
-        errors
+        errors,
+        history
     },
 
     mounted() {

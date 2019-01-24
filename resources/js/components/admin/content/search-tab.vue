@@ -31,10 +31,6 @@ export default {
         result
     },
 
-    mounted(){
-      console.log('search-tab: ' + this.axiosUrl)
-    },
-
     props: ["items", "placeholder", "axiosUrl", "name"],
     data() {
         return {
@@ -69,7 +65,11 @@ export default {
     computed: {
         filtered: function() {
             return this.item.filter(item => {
-                return item.name.match(new RegExp(this.search, "i"));
+                if (item.name){
+                    return item.name.match(new RegExp(this.search, "i"));
+                } else if (item.title){
+                    return item.title.match(new RegExp(this.search, "i"));
+                }
             });
         }
     }

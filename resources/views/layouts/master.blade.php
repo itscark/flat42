@@ -9,11 +9,9 @@
     @endif
     @include('layouts.nav')
 
-    @yield('hero-section')
-
     <div class="container mt-5">
         @if(auth()->check() && auth()->user()->flat_id != null)
-            <transition name="fade" class="" mode="out-in" enter-active-class="animated fadeIn faster" leave-active-class="animated fadeOut faster">
+            <transition name="fade" mode="out-in" enter-active-class="animated fadeIn faster" leave-active-class="animated fadeOut faster">
                 <router-view></router-view>
             </transition>
         @endif

@@ -70,5 +70,10 @@ Route::middleware('auth:api')->group(function () {
     Route::patch('admin/flat/{flat}', ['uses' => 'AdminController@updateFlat', 'as' => 'flat.update']);
 
 
+    Route::post('admin/blog' , 'BlogController@store');
+
+
+
+
 });
 

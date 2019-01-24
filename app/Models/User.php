@@ -23,6 +23,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    public function blog()
+    {
+        return $this->hasMany(Blog::class);
+    }
+
     public function flat()
     {
         return $this->belongsTo(Flat::class);
@@ -43,12 +48,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Event::class);
     }
 
-    public function newsComments(){
+    public function newsComments()
+    {
         return $this->hasMany(NewsComments::class);
     }
 
-    public function getUserInfo($flat_id){
-        return  User::where('flat_id', $flat_id)
+    public function getUserInfo($flat_id)
+    {
+        return User::where('flat_id', $flat_id)
             ->get();
     }
 }

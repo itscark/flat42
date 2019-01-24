@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Blog;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('frontend.posts.index');
+        $posts = Blog::where('published', true )
+            ->latest()
+            ->get();
+
+        return view('frontend.posts.index', compact('posts'));
     }
 
     /**

@@ -1,23 +1,25 @@
 @if (Route::has('login'))
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container mx-auto">
-            <a class="navbar-brand" href="/">
-               Flat42
-            </a>
+            @if(auth()->check())
+                <router-link to="/home" exact class="navbar-brand">Flat42</router-link>
+            @else
+                <a class="navbar-brand" href="{{route('home')}}">Navbar</a>
+            @endif
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 @if(!auth()->check())
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.index') }}">Blog</a>
+                        <li class="nav-item {{ active_menu(Route::currentRouteName(), 'blog', 0, 4) }}">
+                            <a class="nav-link" href="{{ route('blog') }}">Blog</a>
                         </li>
                     </ul>
                 @elseif(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'user')
-                    <ul class="navbar-nav mr-auto">
-                        <router-link to="/" tag="li" exact class="nav-item">
+                    <div class="navbar-nav mr-auto">
+                        <router-link to="/home" tag="li" exact class="nav-item">
                             <a class="nav-link">News</a>
                         </router-link>
                         <router-link to="/shopping" tag="li" class="nav-item">
@@ -29,7 +31,7 @@
                         <router-link to="/cleaning" tag="li" class="nav-item">
                             <a class="nav-link">Cleaning</a>
                         </router-link>
-                    </ul>
+                    </div>
                 @endif
 
                 @if(!auth()->check())

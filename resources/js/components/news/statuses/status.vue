@@ -27,7 +27,14 @@
                 </div>
             </div>
         </div>
-        <comment-status v-if="show" :status="status"></comment-status>
+        <transition
+            name="fade"
+            mode="out-in"
+            enter-active-class="animated fadeInDown faster"
+            leave-active-class="animated fadeOutUp faster"
+        >
+            <comment-status v-if="show" :status="status"></comment-status>
+        </transition>
     </div>
 </template>
 
@@ -50,7 +57,10 @@ export default {
 
     methods: {
         postedOn(time) {
-            return moment.utc(time.created_at).locale("de").fromNow();
+            return moment
+                .utc(time.created_at)
+                .locale("de")
+                .fromNow();
         }
     }
 };

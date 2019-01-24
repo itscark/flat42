@@ -1,14 +1,14 @@
 <template>
-
+    <div>
+        <next-event></next-event>
+        <h3 class="mt-4 mb-4">Was gibt es neues?</h3>
         <div>
-            <next-event></next-event>
-            <h3 class="mt-4 mb-4">Was gibt es neues?</h3>
-            <div>
-                <addStatus @completed="addStatus"></addStatus>
-                <div v-for="item in status"><status :item="item"></status></div>
-            </div>
+            <addStatus @completed="addStatus"></addStatus>
+                <div v-for="item in status">
+                    <status :item="item"></status>
+                </div>
         </div>
-
+    </div>
 </template>
 
 <script>

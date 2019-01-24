@@ -15,7 +15,7 @@
 
 <script>
 import priceForm from "./price-form";
-import errors from "../../errors.vue";
+import errors from "../../errors/errors.vue";
 
 export default {
     components: {
