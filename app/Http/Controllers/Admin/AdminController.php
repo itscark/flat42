@@ -13,24 +13,29 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index' );
+        return view('admin.index');
     }
 
-    public function contentIndex(){
+    public function contentIndex()
+    {
         $content = Welcome::all();
         return response()->json($content);
     }
 
-    public function usersIndex(){
+    public function usersIndex()
+    {
         $user = User::all();
         return response()->json($user);
     }
-    public function flatsIndex(){
+
+    public function flatsIndex()
+    {
         $flat = Flat::all();
         return response()->json($flat);
     }
 
-    public function contentStore(Welcome $welcome, Request $request){
+    public function contentStore(Welcome $welcome, Request $request)
+    {
 
         $this->validate(\request(), [
             'title' => 'required',
@@ -41,13 +46,11 @@ class AdminController extends Controller
             'title' => $request->title,
             'body' => $request->body,
         ]);
-
         return response()->json($welcome);
-
     }
 
-    public function destroyUser($id){
-
+    public function destroyUser($id)
+    {
         $user = User::findOrFail($id);
 
         if ($user->id == auth()->id()) {
@@ -58,7 +61,8 @@ class AdminController extends Controller
         }
     }
 
-    public function updateUser(Request $request, User $user){
+    public function updateUser(Request $request, User $user)
+    {
         $this->validate(\request(), [
             'name' => 'required',
             'role' => 'required',
@@ -87,10 +91,11 @@ class AdminController extends Controller
         return response()->json($user);
     }
 
-    public function destroyFlat($id) {
+    public function destroyFlat($id)
+    {
         $flat = Flat::findOrFail($id);
         $users = User::where('flat_id', $flat->flat_token)->get();
-        foreach($users as $user){
+        foreach ($users as $user) {
             $user->update([
                 'flat_id' => null,
                 'cart_id' => null,
@@ -100,7 +105,8 @@ class AdminController extends Controller
         return response()->json($flat);
     }
 
-    public function updateFlat(Request $request, Flat $flat){
+    public function updateFlat(Request $request, Flat $flat)
+    {
         $this->validate(\request(), [
             'name' => 'required',
         ]);

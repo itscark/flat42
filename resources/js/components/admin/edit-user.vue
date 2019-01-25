@@ -112,13 +112,16 @@ export default {
         };
     },
     mounted() {
-        this.form.name = this.item.name;
-        this.form.role = this.item.role;
-        this.form.email = this.item.email;
-        this.form.flat_id = this.item.flat_id;
-        this.form.cart_id = this.item.cart_id;
+this.setVariables
     },
     methods: {
+        setVariables(){
+            this.form.name = this.item.name;
+            this.form.role = this.item.role;
+            this.form.email = this.item.email;
+            this.form.flat_id = this.item.flat_id;
+            this.form.cart_id = this.item.cart_id;
+        },
         onSubmit() {
             this.form.patch("admin/user/" + this.item.id).then(response => {
                 this.$emit("completedUpdate", response);

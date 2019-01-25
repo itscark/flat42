@@ -7,18 +7,11 @@ use Session;
 
 class CleaningController extends BackendController
 {
-    protected $flat_id;
-    protected $user_id;
-    protected $cleaning;
+
 
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            $this->flat_id = auth()->user()->flat_id;
-            $this->user_id = auth()->id();
-            return $next($request);
-        });
-        $this->cleaning = new Cleaning();
+parent::__construct();
     }
 
 

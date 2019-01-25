@@ -20,16 +20,12 @@ form {
 @import "floating-label";
 
 .bg-dark,
-.btn-dark {
-  background-color: $teal !important;
-}
+ .btn-dark {
+   background-color: $teal !important;
+ }
 
 .invalid-feedback {
   display: block !important;
-}
-
-.no_soup {
-  max-width: 300px;
 }
 
 @import "floating-label";
@@ -69,3 +65,5 @@ form {
   right: 30px ;
   z-index: 9999999;
 }
+
+@import "login";

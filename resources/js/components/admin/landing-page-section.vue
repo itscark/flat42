@@ -10,36 +10,42 @@
             <div class="form-group col-md-6">
                 <label for="title">Title</label>
                 <input
-                        class="form-control"
-                        type="text"
-                        name="title"
-                        id="title"
-                        v-model="form.title"
+                    class="form-control"
+                    type="text"
+                    name="title"
+                    id="title"
+                    v-model="form.title"
                 />
                 <div
-                        class="invalid-feedback"
-                        v-if="form.errors.has('title')"
-                        v-text="form.errors.get('title')"
+                    class="invalid-feedback"
+                    v-if="form.errors.has('title')"
+                    v-text="form.errors.get('title')"
                 ></div>
             </div>
 
             <div class="form-group col-md-12">
                 <label for="body">Body</label>
                 <input
-                        class="form-control"
-                        type="text"
-                        name="body"
-                        id="body"
-                        v-model="form.body"
+                    class="form-control"
+                    type="text"
+                    name="body"
+                    id="body"
+                    v-model="form.body"
                 />
                 <div
-                        class="invalid-feedback"
-                        v-if="form.errors.has('body')"
-                        v-text="form.errors.get('body')"
+                    class="invalid-feedback"
+                    v-if="form.errors.has('body')"
+                    v-text="form.errors.get('body')"
                 ></div>
             </div>
         </div>
-        <a v-if="this.show" @click.prevent="hideButton()" role="button" href="#" class="btn btn-outline-warning">
+        <a
+            v-if="this.show"
+            @click.prevent="hideButton()"
+            role="button"
+            href="#"
+            class="btn btn-outline-warning"
+        >
             <i class="fas fa-pen"></i> Update
         </a>
         <button v-else class="btn btn-outline-danger" type="submit">
@@ -59,33 +65,37 @@ export default {
             show: true,
             form: new Form({
                 title: "",
-                body: "",
+                body: ""
             })
         };
     },
     mounted() {
-        this.form.title = this.items.title;
-        this.form.body = this.items.body;
+        this.setVariables();
     },
     methods: {
+        setVariables() {
+            this.form.title = this.items.title;
+            this.form.body = this.items.body;
+        },
         onSubmit() {
-            this.form.patch("admin/welcome/" + this.items.id)
+            this.form
+                .patch("admin/welcome/" + this.items.id)
                 .then(response => {
-               this.form.title = response.title;
-               this.form.body = response.body;
-               this.show = true;
+                    this.form.title = response.title;
+                    this.form.body = response.body;
+                    this.show = true;
                     this.flash("Eintrag aktualisiert!", "success", {
                         timeout: 3000
                     });
-            })
+                })
                 .catch(error => {
                     this.flash("Eintrag nicht aktualisiert!", "error", {
                         timeout: 3000
                     });
                 });
         },
-        hideButton(){
-            this.show = false
+        hideButton() {
+            this.show = false;
         }
     }
 };

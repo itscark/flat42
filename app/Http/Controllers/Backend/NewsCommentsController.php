@@ -8,18 +8,9 @@ use Illuminate\Http\Request;
 class NewsCommentsController extends BackendController
 {
 
-    protected $flat_id;
-    protected $user_id;
-    protected $comments;
-
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            $this->flat_id = auth()->user()->flat_id;
-            $this->user_id = auth()->id();
-            return $next($request);
-        });
-        $this->comments = new NewsComments();
+        parent::__construct();
     }
 
     public function show($id)

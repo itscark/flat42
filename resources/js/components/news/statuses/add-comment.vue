@@ -47,7 +47,12 @@ export default {
         onSubmit() {
             this.form
                 .post("api/home/" + this.status.id)
-                .then(status => this.$emit("completed", status));
+                .then(status => this.$emit("completed", status))
+                .catch(errors => {
+                    this.flash(errors.body, "error", {
+                        timeout: 3000
+                    });
+                });
         }
     }
 };

@@ -9,19 +9,11 @@ use Carbon\Carbon;
 
 class EventController extends BackendController
 {
-    protected $flat_id;
-    protected $user_id;
-    protected $event;
+
 
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            $this->flat_id = auth()->user()->flat_id;
-            $this->user_id = auth()->id();
-            return $next($request);
-        });
-        $this->event = new Event();
-
+        parent::__construct();
     }
 
     public function index()
@@ -29,21 +21,17 @@ class EventController extends BackendController
         return view('backend.events.index');
     }
 
-    public function indexApi(){
-        return $this->event->getEvents($this->flat_id);
-    }
-
-    public function create()
+    public function indexApi()
     {
-        return view('backend.events.create');
+        return $this->event->getEvents($this->flat_id);
     }
 
     public function store(Request $request)
     {
         $this->validate(\request(), [
-            'title' => 'required',
-            'body' => 'required',
-            'date' => 'required|date'
+            'title' => 'required|string|min:2',
+            'body' => 'required|string|min:2',
+            'date' => 'required|date|after:today'
         ]);
         $newEvent = Event::create([
             'flat_id' => $this->flat_id,
@@ -63,21 +51,12 @@ class EventController extends BackendController
         return abort(404);
     }
 
-    public function edit(Event $event)
-    {
-        if ($event->user_id == $this->user_id) {
-            return view('backend.events.edit', compact('event'));
-        } else {
-            return redirect(route('event.index'));
-        }
-    }
-
     public function update(Request $request, Event $event)
     {
         $this->validate(\request(), [
-            'title' => 'required',
-            'body' => 'required',
-            'date' => 'required|date'
+            'title' => 'required|string|min:2',
+            'body' => 'required|string|min:2',
+            'date' => 'required|date|after:today'
         ]);
 
         $event->update([
@@ -92,10 +71,16 @@ class EventController extends BackendController
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
-        $event->deleted = true;
-        $event->deleted_by = auth()->id();
-        $event->save();
-        return response()->json($event);
+
+        if ($event->user_id == auth()->id()){
+            $event->deleted = true;
+            $event->deleted_by = auth()->id();
+            $event->save();
+            return response()->json($event);
+        } else {
+            return response('Du hast dieses Event nicht geplant und kannst es daher nicht löschen!', 401);
+        }
+
     }
 
     public function prevEvent()

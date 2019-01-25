@@ -47,8 +47,6 @@ export default {
 
         };
     },
-
-    mounted() {},
     methods: {
         onSubmit(id) {
             this.form

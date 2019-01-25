@@ -15,7 +15,7 @@
                 v-model="newItem.quantity"
                 type="number"
                 min="0"
-                placeholder="Quantity"
+                placeholder="Menge..."
             />
         </div>
 

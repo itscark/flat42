@@ -30,16 +30,20 @@
             </button>
 
             <button
-                    type="button"
-                    class="btn btn-outline-success btn-size mt-5"
-                    @click="showHideButton"
-                   v-else
+                type="button"
+                class="btn btn-outline-success btn-size mt-5"
+                @click="showHideButton"
+                v-else
             >
                 <i class="fas fa-plus"></i> Tätigkeit hinzufügen
             </button>
         </div>
 
-        <transition  mode="out-in" enter-active-class="animated fadeInUp faster" leave-active-class="animated fadeOutDown faster">
+        <transition
+            mode="out-in"
+            enter-active-class="animated fadeInUp faster"
+            leave-active-class="animated fadeOutDown faster"
+        >
             <newItem v-if="show" @completed="addToDo"></newItem>
         </transition>
     </div>
@@ -63,14 +67,17 @@ export default {
     },
 
     mounted() {
-        axios
-            .get("api/cleaning/details")
-            .then(response => (this.toDos = response.data));
+        this.getData();
     },
 
     methods: {
-        showHideButton(){
-          this.show = !this.show
+        getData() {
+            axios
+                .get("api/cleaning/details")
+                .then(response => (this.toDos = response.data));
+        },
+        showHideButton() {
+            this.show = !this.show;
         },
         addToDo(toDo) {
             this.flash("Tätigkeit hinzugefügt!", "success", {

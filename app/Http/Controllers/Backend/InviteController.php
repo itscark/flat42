@@ -19,10 +19,16 @@ class InviteController extends BackendController
 
     public function process(Request $request)
     {
+        $this->validate($request, [
+           'email' => 'required|email'
+        ]);
+
         do {
             $token = str_random();
         }
         while (Invite::where('token', $token)->first());
+
+
 
         $invite = Invite::create([
             'email' => $request->get('email'),

@@ -12,25 +12,11 @@ use function MongoDB\BSON\toJSON;
 
 class CartController extends BackendController
 {
-    protected $flat_id;
-    protected $user_id;
-    protected $cart;
-    protected $cart_id;
-    protected $groceryList;
-    protected $items;
+
 
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            $this->flat_id = auth()->user()->flat_id;
-            $this->user_id = auth()->id();
-            $this->cart_id = auth()->user()->cart_id;
-            return $next($request);
-        });
-        $this->cart = new Cart();
-        $this->groceryList = new GroceryList();
-        $this->items = new Item();
-
+        parent::__construct();
     }
 
     public function index()

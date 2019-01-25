@@ -25,36 +25,6 @@
               </div>
           </div>
       </div>
-
-  <!--  <div>
-        <div v-for="item in this.itemsContent">
-            <div class="section fp-auto-height-responsive" :id="this.item.section_id">
-                <div class="grid">
-                    <simple-svg
-                            :filepath="this.item.img_url"
-                            :width="'100%'"
-                            :height="'100%'"
-                            :id="this.item.title"
-                            class="grid-content img"
-                    />
-                    <div class="grid-content text">
-                        <div class="root-element">
-                            <h2 class="opacity" :class="this.item.title">
-                                {{ this.item.title }}
-                            </h2>
-                            <span :class="'background-' + this.item.title"></span>
-                        </div>
-                        <div class="root-element">
-                            <p class="opacity" :class="this.item.title">
-                                {{ this.item.content }}
-                            </p>
-                            <span :class="'background-' + this.item.title"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
 </template>
 
 <style>

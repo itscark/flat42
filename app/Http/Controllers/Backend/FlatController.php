@@ -9,22 +9,11 @@ use Illuminate\Http\Request;
 class FlatController extends BackendController
 {
 
-    protected $flat_id;
-    protected $user_id;
-    protected $flat;
-    protected $user;
+
 
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            $this->flat_id = auth()->user()->flat_id;
-            $this->user_id = auth()->id();
-            return $next($request);
-        });
-
-        $this->flat = new Flat();
-        $this->user = new User();
-
+        parent::__construct();
     }
 
     public function index()

@@ -8,14 +8,10 @@ use Illuminate\Http\Request;
 
 class RegisterWgController extends BackendController
 {
-    protected $user_id;
 
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            $this->user_id = auth()->id();
-            return $next($request);
-        });
+        parent::__construct();
     }
 
 
@@ -50,7 +46,7 @@ class RegisterWgController extends BackendController
             'token' => 'required|string|max:70|min:2'
         ]);
 
-        if (Flat::where('flat_token', '=', $request['token'])->exists()){
+        if (Flat::where('flat_token', '=', $request['token'])->exists()) {
             $user = User::find(auth()->id());
             $user->flat_id = $request['token'];
             $user->save();

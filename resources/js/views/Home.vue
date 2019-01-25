@@ -4,9 +4,9 @@
         <h3 class="mt-4 mb-4">Was gibt es neues?</h3>
         <div>
             <addStatus @completed="addStatus"></addStatus>
-                <div v-for="item in status">
-                    <status :item="item"></status>
-                </div>
+            <div v-for="item in status">
+                <status :item="item"></status>
+            </div>
         </div>
     </div>
 </template>
@@ -33,12 +33,15 @@ export default {
     },
 
     mounted() {
-        axios.get("api/home").then(response => {
-            this.status = response.data;
-        });
+        this.getData();
     },
 
     methods: {
+        getData() {
+            axios.get("api/home").then(response => {
+                this.status = response.data;
+            });
+        },
         addStatus(status) {
             this.status.unshift(status);
         }

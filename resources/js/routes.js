@@ -54,7 +54,6 @@ let routes = [
         path: '/register/*',
         meta: {title: 'Flat42 - Registrieren'}
     },
-
     {
         path: '*',
         component: require('./components/errors/404.vue').default,

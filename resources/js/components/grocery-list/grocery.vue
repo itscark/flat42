@@ -22,9 +22,15 @@ export default {
     },
 
     mounted() {
-        axios
-            .get("/api/shopping/grocery-history")
-            .then(response => (this.grocery_list = response.data));
+        this.getData();
+    },
+
+    methods: {
+        getData() {
+            axios
+                .get("/api/shopping/grocery-history")
+                .then(response => (this.grocery_list = response.data));
+        }
     }
 };
 </script>

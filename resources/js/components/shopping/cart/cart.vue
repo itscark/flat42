@@ -33,12 +33,15 @@ export default {
     },
 
     mounted(){
-        axios.get('/api/cart').then(response => {
-            this.cart_items = response.data
-        });
+       this.getData();
     },
 
     methods: {
+        getData(){
+            axios.get('/api/cart').then(response => {
+                this.cart_items = response.data
+            });
+        },
         submit() {
             return this.onSubmit(this.cart_items[0].uniq_id);
         },

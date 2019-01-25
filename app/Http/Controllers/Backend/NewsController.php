@@ -8,22 +8,11 @@ use Illuminate\Http\Request;
 
 class NewsController extends BackendController
 {
-    protected $event;
-    protected $news;
-    protected $flat_id;
-    protected $user_id;
+
 
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            $this->flat_id = auth()->user()->flat_id;
-            $this->user_id = auth()->id();
-            return $next($request);
-        });
-
-        $this->event = new Event();
-        $this->news = new News();
-
+        parent::__construct();
     }
 
 

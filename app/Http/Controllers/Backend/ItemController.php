@@ -12,19 +12,9 @@ class ItemController extends BackendController
         'quantity' => 'required|numeric|min:1',
     ];
 
-    protected $flat_id;
-    protected $user_id;
-    protected $item;
-
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            $this->flat_id = auth()->user()->flat_id;
-            $this->user_id = auth()->id();
-            return $next($request);
-        });
-
-        $this->item = new Item();
+        parent::__construct();
     }
 
     public function index()

@@ -72,13 +72,16 @@ export default {
     },
 
     mounted() {
-        axios.get('api/cleaning')
-            .then(response => {
-                this.period = response.data
-            });
+this.getData()
     },
 
     methods: {
+        getData(){
+            axios.get('api/cleaning')
+                .then(response => {
+                    this.period = response.data
+                });
+        },
         onSubmit() {
             this.form
                 .post("api/cleaning/")

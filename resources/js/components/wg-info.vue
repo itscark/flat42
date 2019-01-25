@@ -29,17 +29,17 @@
                         </p>
 
                         <form
-                            class="form-inline"
+                            class="form-inline form-row"
                             @submit.prevent="onSubmit"
                             @keydown="form.errors.clear($event.target.name)"
                         >
-                            <div class="form-group mr-3">
-                                <label for="newMember" class="sr-only"
+                            <div class="form-group mb-3 col-12">
+                                <label for="newMember" class="sr-only "
                                     >Einen Freund einladen:</label
                                 >
                                 <input
                                     type="email"
-                                    class="form-control"
+                                    class="form-control w-100"
                                     id="newMember"
                                     placeholder="E-Mail Adresse ... "
                                     v-model="form.email"
@@ -50,12 +50,12 @@
                                     v-text="form.errors.get('email')"
                                 ></div>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-plus"></i> Freund hinzufügen
+                            <div class="form-group  col-12">
+                                <button type="submit" class="btn w-100 btn-primary">
+                                    <i class="fas fa-plus"></i> Freund
+                                    hinzufügen
                                 </button>
                             </div>
-
                         </form>
                     </div>
 
@@ -86,19 +86,29 @@ export default {
         };
     },
     mounted() {
-        axios
-            .get("api/wg-info")
-            .then(response => {
-                this.flatInfo = response.data["flatInfo"];
-                this.userInfo = response.data["userInfo"];
-            })
-            .catch();
+        this.getData();
     },
 
     methods: {
+        getData() {
+            axios
+                .get("api/wg-info")
+                .then(response => {
+                    this.flatInfo = response.data["flatInfo"];
+                    this.userInfo = response.data["userInfo"];
+                })
+                .catch();
+        },
         onSubmit() {
-            this.form.post("invite").then(() => {
-            });
+            this.form.post("invite")
+                .then(response =>{
+
+                })
+                .catch(errors => {
+                    this.flash(errors.email, "error", {
+                        timeout: 3000
+                    });
+                });
         }
     }
 };

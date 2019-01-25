@@ -87,11 +87,16 @@ export default {
         };
     },
     mounted() {
-        this.form.title = this.item.title;
-        this.form.body = this.item.body;
-        this.form.date = this.item.date;
+        this.setVariables()
     },
     methods: {
+
+        setVariables(){
+            this.form.title = this.item.title;
+            this.form.body = this.item.body;
+            this.form.date = this.item.date;
+        },
+
         hideEditing() {
             this.$emit("editing", false);
         },
