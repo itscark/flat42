@@ -3,6 +3,7 @@
         <form
             class="row"
             method="post"
+            @submit.prevent="onSubmit(item.id)"
             @keydown="form.errors.clear($event.target.name)"
         >
             <div class="col-6 align-self-center">

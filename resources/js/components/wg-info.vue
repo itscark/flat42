@@ -102,7 +102,9 @@ export default {
         onSubmit() {
             this.form.post("invite")
                 .then(response =>{
-
+                    this.flash('Die Einladung wurde versendet ', "success", {
+                        timeout: 3000
+                    });
                 })
                 .catch(errors => {
                     this.flash(errors.email, "error", {

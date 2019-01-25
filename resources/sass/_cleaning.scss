@@ -1,0 +1,19 @@
+.cleaning-list-group {
+  border-radius: .25rem;
+
+  &:first-child {
+    border-left: 5px solid #11a38f !important;
+  }
+
+  &:nth-child(2) {
+    border-left: 5px solid #f5941c !important;
+  }
+
+  &:nth-child(3) {
+    border-left: 5px solid #f16541 !important;
+  }
+
+  &:nth-child(4) {
+    border-left: 5px solid #bf112e !important;
+  }
+}

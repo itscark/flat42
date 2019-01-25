@@ -10501,6 +10501,15 @@ body {
   min-height: 80vh;
 }
 
+.bg-dark,
+.btn-dark {
+  background-color: #13A399 !important;
+}
+
+.invalid-feedback {
+  display: block !important;
+}
+
 .hero-svg {
   height: 250px;
   position: absolute;
@@ -10656,15 +10665,6 @@ product*/
   }
 }
 
-.bg-dark,
-.btn-dark {
-  background-color: #13A399 !important;
-}
-
-.invalid-feedback {
-  display: block !important;
-}
-
 .grid-wrapper {
   display: grid;
   grid-template-areas: "start" "middle" "end";
@@ -10750,16 +10750,6 @@ product*/
 
 .cleaning-list-group:nth-child(4) {
   border-left: 5px solid #bf112e !important;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 
 .flash-message {

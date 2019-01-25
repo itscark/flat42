@@ -112,8 +112,8 @@ export default {
     methods: {
         setVariables() {
             /*============================== comment ==============================
-            Hero section Variablen
-            ======================================================================*/
+                Hero section Variablen
+                ======================================================================*/
             this.word = document.querySelectorAll(".text__word");
             this.logoBg = document.querySelectorAll(".logo-bg");
             this.headlineBG = document.querySelectorAll(".headline-bg");
@@ -122,8 +122,8 @@ export default {
             this.button = document.querySelectorAll(".button");
 
             /*============================== comment ==============================
-                    Shopping Section Variablen
-                    ======================================================================*/
+                        Shopping Section Variablen
+                        ======================================================================*/
             this.text = $(".Shopping");
             this.shoppingItems = $(".hopping-item");
         },
@@ -133,8 +133,8 @@ export default {
         },
 
         /*============================== comment ==============================
-                after loading the sections
-                ============================= end comment ============================*/
+                    after loading the sections
+                    ============================= end comment ============================*/
         afterLoad(anchorLink, index) {
             /*============================== Slide #1 is loaded ==============================*/
             if (index.index === 0) {
@@ -158,8 +158,8 @@ export default {
 
         onLeave(index, nextIndex, direction) {
             /*============================== comment ==============================
-                    leaving the sections
-                    ======================================================================*/
+                        leaving the sections
+                        ======================================================================*/
             // Slide #1 is leaved
             if (index.index === 0) {
                 this.hideHomeContent();
@@ -183,8 +183,8 @@ export default {
         },
 
         /*============================== comment ==============================
-                home content
-                ======================================================================*/
+                    home content
+                    ======================================================================*/
         showHomeContent() {
             let tl = new TimelineLite({});
             tl.to(this.logoBg, 0.3, { scaleY: 1 })
@@ -212,8 +212,8 @@ export default {
         },
 
         /*============================== comment ==============================
-                shopping content
-                ======================================================================*/
+                    shopping content
+                    ======================================================================*/
         showShoppingContent() {
             /*============================== select Shopping items ==============================*/
             let shoppingItem1 = document.getElementById("shopping-item-1");
@@ -248,13 +248,13 @@ export default {
             /*============================== timeline ==============================*/
             let tl = new TimelineLite({})
                 /*============================== background ==============================*/
-                .fromTo(background, 2, { opacity: 0 }, { opacity: 0.1 }, 0)
+                .fromTo(background, 1, { opacity: 0 }, { opacity: 0.1 }, 0)
 
                 /*============================== browser ==============================*/
-                .fromTo(browser, 2, { opacity: 0 }, { opacity: 1 }, 0)
+                .fromTo(browser, 1, { opacity: 0 }, { opacity: 1 }, 0)
 
                 .to(backgroundElement, 0.2, { scaleY: 1 })
-                .to(this.text, 0.2, { opacity: 1 }, "-=0.1")
+                .to(this.text, 0.2, { opacity: 1 })
                 .to(backgroundElement, 0.2, { scaleY: 0 })
 
                 /*============================== text ==============================*/
@@ -266,20 +266,20 @@ export default {
                 .fromTo(flowers_ground, 1, { opacity: 0 }, { opacity: 1 }, 1)
 
                 /*============================== shopping items ==============================*/
-                .fromTo(shoppingItem1, 2, { opacity: 0 }, { opacity: 1 }, 1)
-                .fromTo(shoppingItem2, 2, { opacity: 0 }, { opacity: 0.2 }, 1.1)
-                .fromTo(shoppingItem3, 2, { opacity: 0 }, { opacity: 0.2 }, 1.1)
-                .fromTo(shoppingItem4, 2, { opacity: 0 }, { opacity: 0.2 }, 1.3)
-                .fromTo(shoppingItem5, 2, { opacity: 0 }, { opacity: 0.2 }, 1.4)
-                .fromTo(shoppingItem6, 2, { opacity: 0 }, { opacity: 0.2 }, 1.2)
-                .fromTo(shoppingItem7, 2, { opacity: 0 }, { opacity: 0.2 }, 1.2)
-                .fromTo(shoppingItem8, 2, { opacity: 0 }, { opacity: 0.2 }, 1)
-                .fromTo(shoppingItem9, 2, { opacity: 0 }, { opacity: 0.2 }, 1.4)
+                .fromTo(shoppingItem1, 1, { opacity: 0 }, { opacity: 1 }, 0.5)
+                .fromTo(shoppingItem2, 1, { opacity: 0 }, { opacity: 0.2 }, 0.6)
+                .fromTo(shoppingItem3, 1, { opacity: 0 }, { opacity: 0.2 }, 0.6)
+                .fromTo(shoppingItem4, 1, { opacity: 0 }, { opacity: 0.2 }, 0.7)
+                .fromTo(shoppingItem5, 1, { opacity: 0 }, { opacity: 0.2 }, 0.7)
+                .fromTo(shoppingItem6, 1, { opacity: 0 }, { opacity: 0.2 }, 0.6)
+                .fromTo(shoppingItem7, 1, { opacity: 0 }, { opacity: 0.2 }, 0.8)
+                .fromTo(shoppingItem8, 1, { opacity: 0 }, { opacity: 0.2 }, 0.4)
+                .fromTo(shoppingItem9, 1, { opacity: 0 }, { opacity: 0.2 }, 0.7)
 
                 /*============================== women ==============================*/
-                .fromTo(woman, 2, { opacity: 0 }, { opacity: 1 }, 1.8)
-                .fromTo(shadow, 2, { opacity: 0 }, { opacity: 1 }, 1.7)
-                .fromTo(cart, 2, { opacity: 0 }, { opacity: 1 }, 1.7);
+                .fromTo(woman, 2, { opacity: 0 }, { opacity: 1 }, 0.9)
+                .fromTo(shadow, 2, { opacity: 0 }, { opacity: 1 }, 0.8)
+                .fromTo(cart, 2, { opacity: 0 }, { opacity: 1 }, 1);
         },
 
         hideShoppingContent() {
@@ -314,41 +314,95 @@ export default {
             );
 
             let tl = new TimelineLite({})
-                .fromTo(background, 2, { opacity: 0.1 }, { opacity: 0 }, 0)
+                .fromTo(background, 1, { opacity: 0.1 }, { opacity: 0 }, 0)
 
                 /*============================== browser ==============================*/
-                .fromTo(browser, 2, { opacity: 1 }, { opacity: 0 }, 0)
+                .fromTo(browser, 1, { opacity: 1 }, { opacity: 0 }, 0)
 
                 /*============================== text ==============================*/
                 .to(backgroundElement, 0.2, { scaleY: 1 })
-                .to(this.text, 0.5, { opacity: 0 }, "-=0.1")
+                .to(this.text, 0.5, { opacity: 0 })
                 .to(backgroundElement, 0.2, { scaleY: 0 })
 
                 /*============================== plants ==============================*/
-                .fromTo(leaves, 1, { opacity: 1 }, { opacity: 0 }, 0.5)
-                .fromTo(flowers, 1, { opacity: 1 }, { opacity: 0 }, 0.5)
-                .fromTo(flowers_ground, 1, { opacity: 1 }, { opacity: 0 }, 0.5)
+                .fromTo(leaves, 0.5, { opacity: 1 }, { opacity: 0 }, 0.5)
+                .fromTo(flowers, 0.5, { opacity: 1 }, { opacity: 0 }, 0.5)
+                .fromTo(
+                    flowers_ground,
+                    0.5,
+                    { opacity: 1 },
+                    { opacity: 0 },
+                    0.5
+                )
 
                 /*============================== shopping items ==============================*/
-                .fromTo(shoppingItem1, 2, { opacity: 1 }, { opacity: 0 }, 0.5)
-                .fromTo(shoppingItem2, 2, { opacity: 0.2 }, { opacity: 0 }, 0.5)
-                .fromTo(shoppingItem3, 2, { opacity: 0.2 }, { opacity: 0 }, 0.5)
-                .fromTo(shoppingItem4, 2, { opacity: 0.2 }, { opacity: 0 }, 0.5)
-                .fromTo(shoppingItem5, 2, { opacity: 0.2 }, { opacity: 0 }, 0.5)
-                .fromTo(shoppingItem6, 2, { opacity: 0.2 }, { opacity: 0 }, 0.5)
-                .fromTo(shoppingItem7, 2, { opacity: 0.2 }, { opacity: 0 }, 0.5)
-                .fromTo(shoppingItem8, 2, { opacity: 0.2 }, { opacity: 0 }, 0.5)
-                .fromTo(shoppingItem9, 2, { opacity: 0.2 }, { opacity: 0 }, 0.5)
+                .fromTo(shoppingItem1, 0.5, { opacity: 1 }, { opacity: 0 }, 0.5)
+                .fromTo(
+                    shoppingItem2,
+                    0.5,
+                    { opacity: 0.2 },
+                    { opacity: 0 },
+                    0.5
+                )
+                .fromTo(
+                    shoppingItem3,
+                    0.5,
+                    { opacity: 0.2 },
+                    { opacity: 0 },
+                    0.5
+                )
+                .fromTo(
+                    shoppingItem4,
+                    0.5,
+                    { opacity: 0.2 },
+                    { opacity: 0 },
+                    0.5
+                )
+                .fromTo(
+                    shoppingItem5,
+                    0.5,
+                    { opacity: 0.2 },
+                    { opacity: 0 },
+                    0.5
+                )
+                .fromTo(
+                    shoppingItem6,
+                    0.5,
+                    { opacity: 0.2 },
+                    { opacity: 0 },
+                    0.5
+                )
+                .fromTo(
+                    shoppingItem7,
+                    0.5,
+                    { opacity: 0.2 },
+                    { opacity: 0 },
+                    0.5
+                )
+                .fromTo(
+                    shoppingItem8,
+                    0.5,
+                    { opacity: 0.2 },
+                    { opacity: 0 },
+                    0.5
+                )
+                .fromTo(
+                    shoppingItem9,
+                    0.5,
+                    { opacity: 0.2 },
+                    { opacity: 0 },
+                    0.5
+                )
 
                 /*============================== women ==============================*/
-                .fromTo(woman, 2, { opacity: 1 }, { opacity: 0 }, 0.5)
-                .fromTo(shadow, 2, { opacity: 1 }, { opacity: 0 }, 0.5)
-                .fromTo(cart, 2, { opacity: 1 }, { opacity: 0 }, 0.5);
+                .fromTo(woman, 1, { opacity: 1 }, { opacity: 0 }, 0.5)
+                .fromTo(shadow, 1, { opacity: 1 }, { opacity: 0 }, 0.5)
+                .fromTo(cart, 1, { opacity: 1 }, { opacity: 0 }, 0.5);
         },
 
         /*============================== comment ==============================
-                news content
-                ======================================================================*/
+                    news content
+                    ======================================================================*/
         showNewsContent() {
             let newsContent = document.querySelectorAll(".News");
             let newsLeave = document.getElementById("newsLeave");
@@ -364,22 +418,22 @@ export default {
             let tl = new TimelineLite({});
 
             TweenMax.set(newsContent, { opacity: 0 });
-            tl.fromTo(newsLeave, 2, { opacity: 0 }, { opacity: 1 }, 1.2)
-                .fromTo(newsBrowser, 2, { opacity: 0 }, { opacity: 1 }, 1.2)
-                .fromTo(newsPlant, 2, { opacity: 0 }, { opacity: 1 }, 1.3)
+            tl.fromTo(newsLeave, 1, { opacity: 0 }, { opacity: 1 }, 0.4)
+                .fromTo(newsBrowser, 1, { opacity: 0 }, { opacity: 1 }, 0.6)
+                .fromTo(newsPlant, 1, { opacity: 0 }, { opacity: 1 }, 0.5)
 
                 /*============================== text ==============================*/
                 .to(backgroundElement, 0.2, { scaleY: 1 })
                 .to(newsContent, 0.2, { opacity: 1 }, "-=0.1")
                 .to(backgroundElement, 0.2, { scaleY: 0 })
 
-                .fromTo(newsLeftPerson, 2, { opacity: 0 }, { opacity: 1 }, 1.3)
+                .fromTo(newsLeftPerson, 1, { opacity: 0 }, { opacity: 1 }, 0.7)
                 .fromTo(
                     newsRightPerson,
-                    2,
+                    1,
                     { opacity: 0 },
                     { opacity: 1 },
-                    1.4
+                    0.3
                 );
         },
 
@@ -415,8 +469,8 @@ export default {
         },
 
         /*============================== comment ==============================
-                event content
-                ======================================================================*/
+                    event content
+                    ======================================================================*/
         showEventContent() {
             let eventsContent = document.querySelectorAll(".Events");
             let eventsBackground = document.getElementById("eventsBackground");
@@ -432,14 +486,8 @@ export default {
             let tl = new TimelineLite({});
 
             TweenMax.set(eventsContent, { opacity: 0 });
-            tl.fromTo(
-                eventsBackground,
-                1.5,
-                { opacity: 0 },
-                { opacity: 1 },
-                1.2
-            )
-                .fromTo(eventsTree, 1.5, { opacity: 0 }, { opacity: 1 }, 1.2)
+            tl.fromTo(eventsBackground, 1, { opacity: 0 }, { opacity: 1 }, 0.5)
+                .fromTo(eventsTree, 1, { opacity: 0 }, { opacity: 1 }, 0.4)
 
                 /*============================== text ==============================*/
                 .to(backgroundElement, 0.2, { scaleY: 1 })
@@ -448,31 +496,31 @@ export default {
 
                 .fromTo(
                     eventsDudeLeft,
-                    1.5,
+                    1,
                     { opacity: 0 },
                     { opacity: 1 },
-                    1.3
+                    .3
                 )
                 .fromTo(
                     eventsGirlLeft,
-                    1.5,
+                    1,
                     { opacity: 0 },
                     { opacity: 1 },
-                    1.3
+                    .3
                 )
                 .fromTo(
                     eventsDudeRight,
-                    1.5,
+                    1,
                     { opacity: 0 },
                     { opacity: 1 },
-                    1.4
+                    .4
                 )
                 .fromTo(
                     eventsGirlRight,
-                    1.5,
+                    1,
                     { opacity: 0 },
                     { opacity: 1 },
-                    1.4
+                    1
                 );
         },
 
@@ -510,8 +558,8 @@ export default {
         },
 
         /*============================== comment ==============================
-                cleaning content
-                ======================================================================*/
+                    cleaning content
+                    ======================================================================*/
         showCleaningContent() {
             let cleaningContent = document.querySelectorAll(".Cleaning");
             let cleaningBackground = document.getElementById(
@@ -541,22 +589,22 @@ export default {
             TweenMax.set(cleaningContent, { opacity: 0 });
             tl.fromTo(
                 cleaningBackground,
-                1.5,
+                .6,
                 { opacity: 0 },
                 { opacity: 0.2 },
                 1.2
             )
-                .fromTo(cleaningPlant, 1.5, { opacity: 0 }, { opacity: 1 }, 1.2)
+                .fromTo(cleaningPlant, .6, { opacity: 0 }, { opacity: 1 }, 1.2)
                 .fromTo(
                     cleaningBrowser,
-                    1.5,
+                    .6,
                     { opacity: 0 },
                     { opacity: 1 },
                     1.3
                 )
                 .fromTo(
                     cleaningGrayPostit,
-                    1.5,
+                    .6,
                     { opacity: 0 },
                     { opacity: 0.2 },
                     1.3
@@ -569,22 +617,22 @@ export default {
 
                 .fromTo(
                     cleaningYellowPostit,
-                    1.5,
+                    .6,
                     { opacity: 0 },
                     { opacity: 1 },
                     1.4
                 )
                 .fromTo(
                     cleaningRedPostit,
-                    1.5,
+                    .6,
                     { opacity: 0 },
                     { opacity: 1 },
                     1.4
                 )
-                .fromTo(cleaningWoman, 1.5, { opacity: 0 }, { opacity: 1 }, 1.4)
+                .fromTo(cleaningWoman, .6, { opacity: 0 }, { opacity: 1 }, 1.4)
                 .fromTo(
                     cleaningBluePostit,
-                    1.5,
+                    .6,
                     { opacity: 0 },
                     { opacity: 1 },
                     1.4
@@ -666,8 +714,8 @@ export default {
 };
 
 /*============================== comment ==============================
-        arrowBounce
-        ============================= end comment ============================*/
+            arrowBounce
+            ============================= end comment ============================*/
 let arrowBounce = function() {
     let arrow = $(".arrow");
     if (arrow.hasClass("lift")) {
@@ -683,8 +731,8 @@ setInterval(arrowBounce, 800);
 
 <style>
 /*============================== comment ==============================
-
-        =====================================================================*/
+    
+            =====================================================================*/
 .text__word,
 .subheadline,
 .opacity {
@@ -772,8 +820,8 @@ setInterval(arrowBounce, 800);
 }
 
 /*============================== comment ==============================
-        bounce arrow
-        ============================= end comment ============================*/
+            bounce arrow
+            ============================= end comment ============================*/
 .arrow {
     cursor: pointer;
     white-space: nowrap;
@@ -794,7 +842,7 @@ setInterval(arrowBounce, 800);
 }
 
 /*============================== this sets the position of the arrow when it's up, so it will
-         move up or down by 14px when you add or remove this class ==============================*/
+             move up or down by 14px when you add or remove this class ==============================*/
 .lift {
     transform: translateY(14px);
 }

@@ -25,13 +25,14 @@
 
             <div class="form-group col-md-12">
                 <label for="body">Body</label>
-                <input
+                <textarea
                     class="form-control"
                     type="text"
                     name="body"
                     id="body"
                     v-model="form.body"
-                />
+                    rows="4"
+                ></textarea>
                 <div
                     class="invalid-feedback"
                     v-if="form.errors.has('body')"
