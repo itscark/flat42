@@ -4,7 +4,7 @@
             @if(auth()->check())
                 <router-link to="/home" exact class="navbar-brand">Flat42</router-link>
             @else
-                <a class="navbar-brand" href="{{route('home')}}">Navbar</a>
+                <a class="navbar-brand" href="{{route('home')}}">Flat42</a>
             @endif
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
