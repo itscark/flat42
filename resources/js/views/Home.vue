@@ -4,7 +4,7 @@
         <h3 class="mt-4 mb-4">Was gibt es neues?</h3>
         <div>
             <addStatus @completed="addStatus"></addStatus>
-            <div v-for="item in status">
+            <div v-for="item in this.status">
                 <status :item="item"></status>
             </div>
         </div>
@@ -28,7 +28,7 @@ export default {
     data() {
         return {
             show: false,
-            status: null
+            status: null,
         };
     },
 
@@ -43,7 +43,7 @@ export default {
             });
         },
         addStatus(status) {
-            this.status.unshift(status);
+            this.status.unshift(status)
         }
     }
 };

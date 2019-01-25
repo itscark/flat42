@@ -2,24 +2,24 @@
     <div>
         <div class="grid-wrapper align-items-center">
             <div class="item-left">
-                <p class="date">{{ postedOn(item) }}</p>
+                <p class="date">{{ postedOn(this.item) }}</p>
                 <p>
                     {{
-                        item.user ? item.user.name : item.user_name
+                        this.item.user ? this.item.user.name : this.item.user_name
                     }}
                     schreibt...
                 </p>
             </div>
 
             <div class="item-middle pl-4">
-                <p>{{ item.title }}</p>
+                <p>{{ this.item.title }}</p>
 
                 <div class="row">
                     <div class="ml-auto">
                         <button
                             type="button"
                             class="btn btn-outline-primary btn-sm"
-                            @click="show = !show"
+                            @click="showHideComments()"
                         >
                             <i class="fas fa-comments"></i> Kommentare
                         </button>
@@ -33,7 +33,7 @@
             enter-active-class="animated fadeInUp faster"
             leave-active-class="animated fadeOutDown faster"
         >
-            <comment-status v-if="show" :status="status"></comment-status>
+            <comment-status v-if="this.show" :status="this.item"></comment-status>
         </transition>
     </div>
 </template>
@@ -50,8 +50,7 @@ export default {
 
     data() {
         return {
-            show: false,
-            status: this.item
+            show: false
         };
     },
 
@@ -61,6 +60,9 @@ export default {
                 .utc(time.created_at)
                 .locale("de")
                 .fromNow();
+        },
+        showHideComments(){
+            this.show = !this.show
         }
     }
 };

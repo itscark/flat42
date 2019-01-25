@@ -15,7 +15,7 @@
 
         <addStatusComment
             @completed="addComment"
-            v-bind:status="status"
+            :status="status"
         ></addStatusComment>
     </div>
 </template>
@@ -28,9 +28,7 @@ export default {
         addStatusComment
     },
 
-    props: {
-        status
-    },
+    props:['status'],
 
     data() {
         return {
