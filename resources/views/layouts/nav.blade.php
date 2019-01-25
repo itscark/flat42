@@ -11,13 +11,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                @if(!auth()->check())
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item {{ active_menu(Route::currentRouteName(), 'blog', 0, 4) }}">
-                            <a class="nav-link" href="{{ route('blog') }}">Blog</a>
-                        </li>
-                    </ul>
-                @elseif(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'user')
+                @if(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'user')
                     <div class="navbar-nav mr-auto">
                         <router-link to="/home" tag="li" exact class="nav-item">
                             <a class="nav-link">News</a>
@@ -35,7 +29,7 @@
                 @endif
 
                 @if(!auth()->check())
-                    <div class="my-2 my-lg-0">
+                    <div class="my-2 my-lg-0 ml-auto">
                         <a class="btn btn-primary" href="{{ route('login') }}"> <i class="fas fa-sign-in-alt"></i>
                             Login</a>
                         <a class="btn btn-primary" href="{{ route('register') }}"><i class="fas fa-user-plus"></i>

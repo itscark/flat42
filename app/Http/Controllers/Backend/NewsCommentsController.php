@@ -44,4 +44,16 @@ class NewsCommentsController extends BackendController
         return response()->json($newsComment);
 
     }
+
+    public function destroy($id){
+        $comment = NewsComments::findOrFail($id);
+
+        if ($comment->user_id == auth()->id()){
+            $comment->delete();
+            return response()->json($comment);
+        } else {
+            return response('Du kannst die Kommentare anderer nicht löschen!', 401);
+        }
+
+    }
 }

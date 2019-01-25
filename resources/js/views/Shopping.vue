@@ -1,7 +1,23 @@
 <template>
     <div>
-        <list v-if="this.showList" @hideShowCart="showCart"></list>
-        <cart v-else @postCartCompleted="cartCompleted"></cart>
+        <transition
+                name="fade"
+                mode="out-in"
+                enter-active-class="animated fadeIn faster"
+                leave-active-class="animated fadeOut faster"
+                v-if="this.showList"
+        >
+            <list @hideShowCart="showCart"></list>
+        </transition>
+        <transition
+                name="fade"
+                mode="out-in"
+                enter-active-class="animated fadeIn faster"
+                leave-active-class="animated fadeOut faster"
+                v-else
+        >
+            <cart @postCartCompleted="cartCompleted"></cart>
+        </transition>
     </div>
 </template>b
 

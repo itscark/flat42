@@ -9,7 +9,7 @@
             @change="form.errors.clear($event.target.name)"
         >
             <div class="item-left">
-                <p>hosted by {{ item.user.name }}</p>
+                <p>hosted by {{ item.user ? item.user.name : item.user_name }}</p>
                 <p class="date"></p>
             </div>
             <div class="item-middle pl-4">
@@ -97,11 +97,16 @@ export default {
         },
         onSubmit() {
             this.form.patch("api/events/" + this.item.id).then(thatItem => {
+                this.flash("Event aktualisiert!", "success", {
+                    timeout: 3000
+                });
                 this.hideEditing();
-
                 this.$emit("completed", thatItem);
+            }).catch(errors => {
+                this.flash("Event nicht aktualisiert!", "error", {
+                    timeout: 3000
+                });
             });
-            //.then(item => this.$emit('completed', item))
         }
     }
 };

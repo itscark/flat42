@@ -17,6 +17,7 @@ Route::middleware('auth:api')->group(function () {
     //Home Comments
     Route::get('/home/{id}', ['uses' => 'NewsCommentsController@show', 'as' => 'statusComment.show']);
     Route::post('/home/{id}', ['uses' => 'NewsCommentsController@store', 'as' => 'statusComment.store']);
+    Route::delete('home/comment/{newsComment}', ['uses' => 'NewsCommentsController@destroy', 'as' => 'comment.destroy']);
 
     //Home
     Route::get('/home', ['uses' => 'NewsController@apiIndex', 'as' => 'statuses.index']);
@@ -62,15 +63,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/wg-info', ['uses' => 'FlatController@index', 'as' => 'flat.index']);
     Route::post('/wg-info/add-member', ['uses' => 'FlatController@create', 'as' => 'flat.create']);
 
-    //Admin
-    Route::delete('admin/users/{user}', ['uses' => 'AdminController@destroyUser', 'as' => 'user.destroy']);
-    Route::delete('admin/flat/{flat}', ['uses' => 'AdminController@destroyFlat', 'as' => 'flat.destroy']);
-
-    Route::patch('admin/user/{user}', ['uses' => 'AdminController@updateUser', 'as' => 'user.update']);
-    Route::patch('admin/flat/{flat}', ['uses' => 'AdminController@updateFlat', 'as' => 'flat.update']);
-
-
-    Route::post('admin/blog' , 'BlogController@store');
 
 
 

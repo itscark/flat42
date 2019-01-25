@@ -30,8 +30,8 @@
         <transition
             name="fade"
             mode="out-in"
-            enter-active-class="animated fadeInDown faster"
-            leave-active-class="animated fadeOutUp faster"
+            enter-active-class="animated fadeInUp faster"
+            leave-active-class="animated fadeOutDown faster"
         >
             <comment-status v-if="show" :status="status"></comment-status>
         </transition>

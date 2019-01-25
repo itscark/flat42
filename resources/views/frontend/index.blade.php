@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
-    <home></home>
+    <home :content="{{ $welcome }}"></home>
 @endsection

@@ -7,6 +7,7 @@ import BootstrapVue from 'bootstrap-vue'
 import Form from './utilities/Form';
 import VueFlashMessage from 'vue-flash-message';
 
+require('bootstrap');
 
 window.$ = window.jQuery = require('jquery');
 window.Vue = Vue;

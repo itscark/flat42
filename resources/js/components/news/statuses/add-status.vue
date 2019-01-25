@@ -4,7 +4,7 @@
         class="row"
         @keydown="form.errors.clear($event.target.name)"
     >
-        <div class="form-group col-6">
+        <div class="form-group col-8">
             <input
                 class="form-control"
                 type="text"
@@ -19,9 +19,9 @@
                 v-text="form.errors.get('title')"
             ></div>
         </div>
-        <div class="col">
+        <div class="col-4">
             <button
-                class="btn btn-outline-dark"
+                class="btn btn-outline-dark w-100"
                 type="submit"
                 :disabled="form.errors.any()"
             >

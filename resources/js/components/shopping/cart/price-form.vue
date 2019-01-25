@@ -6,7 +6,7 @@
             @keydown="form.errors.clear($event.target.name)"
         >
             <div class="col-6 align-self-center">
-                <p class="">{{ item.name }} von {{ item.user.name }}</p>
+                <p class="">{{ item.quantity}} x {{ item.name }} von {{ item.user.name }}</p>
             </div>
             <div class="col-3 align-self-center">
                 <p>{{ item.price }} €</p>

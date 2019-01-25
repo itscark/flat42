@@ -44,12 +44,15 @@ let routes = [
         meta: {title: 'Flat42 - Register'}
     },
     {
-        path: '/register/*',
-        meta: {title: 'Flat42 - Register'}
+        path: '/wg/register',
+        meta: {title: 'Flat42 - Register - WG'}
+    },{
+        path: '/email/verify',
+        meta: {title: 'Flat42 - Email bestätigen'}
     },
     {
-        path: '/register/wg',
-        meta: {title: 'Flat42 - Register - WG'}
+        path: '/register/*',
+        meta: {title: 'Flat42 - Registrieren'}
     },
 
     {

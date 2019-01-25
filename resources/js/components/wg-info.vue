@@ -98,7 +98,6 @@ export default {
     methods: {
         onSubmit() {
             this.form.post("invite").then(() => {
-                console.log("done");
             });
         }
     }

@@ -19,7 +19,7 @@ class hasFlat
     {
         if (auth()->user()->role == 'user') {
             if ($request->user()->flat_id == null){
-                return redirect()->to('/register/wg');
+                return redirect()->to('/wg/register');
             }
             return $next($request);
         } else {

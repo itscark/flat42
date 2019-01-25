@@ -3,9 +3,8 @@
 * *               Readme               * *
 ******************************************
 ******************************************
+admin: admin@flat42.com
+pw: secret
 
-in der .sql Datei sind meine test Daten dabei.
-user email: max@muster.com
-pw: asdasd
-
-in der to-dos.txt findest du was noch zu erledigen ist.
+user: maxmusterman@muster.com
+pw: secret

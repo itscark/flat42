@@ -6,17 +6,44 @@ use App\Admin;
 use App\Blog;
 use App\Flat;
 use App\User;
+use App\Welcome;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        $flat = Flat::all();
-        $blog = Blog::all();
+        return view('admin.index' );
+    }
 
-        return view('admin.index', compact('users', 'flat', 'blog'));
+    public function contentIndex(){
+        $content = Welcome::all();
+        return response()->json($content);
+    }
+
+    public function usersIndex(){
+        $user = User::all();
+        return response()->json($user);
+    }
+    public function flatsIndex(){
+        $flat = Flat::all();
+        return response()->json($flat);
+    }
+
+    public function contentStore(Welcome $welcome, Request $request){
+
+        $this->validate(\request(), [
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $welcome->update([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+        return response()->json($welcome);
+
     }
 
     public function destroyUser($id){

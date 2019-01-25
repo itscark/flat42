@@ -3,5 +3,5 @@
 @section('pageTitle', 'Admin Page')
 
 @section('content')
-<admin-page :users="{{$users}}" :flats="{{$flat}}" :blogs="{{$blog}}"></admin-page>
+<admin-page></admin-page>
 @endsection

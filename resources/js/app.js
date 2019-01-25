@@ -2,23 +2,20 @@
 import "./bootstrap";
 import router from './routes';
 import errors from './components/errors/errors.vue';
-import homePage from './components/homepage/home-vue.vue';
+import homePage from './views/Landingpage.vue';
 import info from './components/wg-info.vue';
 import wgRegister from './components/register/wg-register.vue';
-import admin from './components/admin/admin.vue';
+import admin from './views/Admin.vue';
 import shopping from './views/Shopping.vue';
 import cleaning from './views/Cleaning.vue';
 import events from './views/Events.vue';
 import home from './views/Home.vue';
 import {SimpleSVG} from 'vue-simple-svg'
-/*import SimpleSVG from "vue-simple-svg";*/
-
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
     next() ;
 });
-
 
 // Components
 Vue.component('simple-svg', SimpleSVG);

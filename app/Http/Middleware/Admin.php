@@ -15,6 +15,8 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
+      /*  if ($request->session()->exists('user')) {*/
+
         if ($request->user()->role == 'admin') {
             return $next($request);
         } else {

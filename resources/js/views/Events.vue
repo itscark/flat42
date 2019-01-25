@@ -76,7 +76,7 @@ export default {
     methods: {
         deleteItem(id) {
             axios.delete("api/events/" + id).then(response => {
-                this.flash("Event gelöscht!", "error", {
+                this.flash("Event abgesagt!", "error", {
                     timeout: 3000
                 });
                 this.deletedEvent = response.data;
