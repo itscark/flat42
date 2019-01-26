@@ -42,9 +42,6 @@ router.afterEach(() => {
     setTimeout(() => NProgress.done(), 500)
 });
 
-
-
-
 new Vue({
     el: "#app",
     router,
