@@ -85,7 +85,9 @@ this.getData()
         onSubmit() {
             this.form
                 .post("api/cleaning/")
-                .then(toDo => this.$emit("completed", toDo));
+                .then(toDo => {
+                    this.$emit("completed", toDo)
+                });
         }
     }
 };
