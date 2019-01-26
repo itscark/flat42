@@ -50,7 +50,7 @@
 </template>
 <script>
 import newItem from "../components/cleaning/new-item.vue";
-import period from "../components/period.vue";
+import period from "../components/cleaning/period.vue";
 
 export default {
     components: {

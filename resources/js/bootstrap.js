@@ -6,7 +6,7 @@ import 'vue-flash-message/dist/vue-flash-message.min.css';
 import BootstrapVue from 'bootstrap-vue'
 import Form from './utilities/Form';
 import VueFlashMessage from 'vue-flash-message';
-
+import VuejsDialog from "vuejs-dialog"
 require('bootstrap');
 
 window.$ = window.jQuery = require('jquery');
@@ -15,10 +15,9 @@ window.axios = axios;
 window.Form = Form;
 
 Vue.use(VueRouter);
-
 Vue.use(BootstrapVue);
 Vue.use(VueFlashMessage);
-
+Vue.use(VuejsDialog);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 let token = document.head.querySelector('meta[name="csrf-token"]');

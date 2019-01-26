@@ -48,24 +48,34 @@ export default {
         addComment(status) {
             this.comments.push(status);
         },
-        deleteComment(id) {
-            if (confirm("Willst du den Kommenatr wirklich löschen?")) {
-                axios
-                    .delete(`api/home/comment/${id}`)
-                    .then(response => {
-                        this.flash('Kommentar gelöscht!', "success", {
-                            timeout: 3000
-                        });
-                        this.comments = this.comments.filter(item => {
-                            return item.id !== id;
-                        });
-                    })
-                    .catch(errors => {
-                        this.flash(errors.response.data, "error", {
-                            timeout: 3000
-                        });
+
+        deleteRequest(id){
+            axios
+                .delete(`api/home/comment/${id}`)
+                .then(response => {
+                    this.flash('Kommentar gelöscht!', "success", {
+                        timeout: 3000
                     });
-            }
+                    this.comments = this.comments.filter(item => {
+                        return item.id !== id;
+                    });
+                })
+                .catch(errors => {
+                    this.flash(errors.response.data, "error", {
+                        timeout: 3000
+                    });
+                });
+        },
+
+        deleteComment(id) {
+
+            this.$dialog
+                .confirm("Willst du den Kommenatr wirklich löschen?")
+                .then(dialog => {
+                    this.deleteRequest(id);
+                    dialog.close();
+                })
+                .catch(() => {});
         }
     }
 };

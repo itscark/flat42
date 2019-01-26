@@ -8,3 +8,10 @@
 @import "flashmessage";
 @import "login";
 @import "nprogress";
+
+//Vue Dialog
+@import 'vue-dialog/shared/animations';
+@import 'vue-dialog/shared/button-loader';
+@import 'vue-dialog/default/layout';
+@import 'vue-dialog/default/highlights';
+@import 'vue-dialog/custom';
