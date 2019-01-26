@@ -15,6 +15,9 @@ use App\User;
 class BackendController extends Controller
 {
 
+    ////////////////////////////
+    //set global variables
+    ////////////////////////////
     protected $flat_id;
     protected $user_id;
     protected $cart;

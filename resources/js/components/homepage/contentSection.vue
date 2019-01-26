@@ -11,21 +11,32 @@
               />
               <div class="grid-content text">
                   <div class="root-element">
-                      <h2 class="opacity" :class="this.title">
+                      <h2 class="opacity" :class="this.animationTitle">
                           {{ this.title }}
                       </h2>
-                      <span :class="'background-' + this.title"></span>
+                      <span :class="'background-' + this.animationTitle"></span>
                   </div>
                   <div class="root-element">
-                      <p class="opacity" :class="this.title">
+                      <p class="opacity" :class="this.animationTitle">
                           {{ this.content }}
                       </p>
-                      <span :class="'background-' + this.title"></span>
+                      <span :class="'background-' + this.animationTitle"></span>
                   </div>
               </div>
           </div>
       </div>
 </template>
+
+
+
+<script>
+    export default {
+        props: ["filepath", "title", "content", "classes", "sectionId", 'itemsContent' ,'animationTitle'],
+        data() {
+            return {};
+        }
+    };
+</script>
 
 <style>
     .root-element {
@@ -81,13 +92,3 @@
         }
     }
 </style>
-
-<script>
-    export default {
-        props: ["filepath", "title", "content", "classes", "sectionId", 'itemsContent'],
-
-        data() {
-            return {};
-        }
-    };
-</script>

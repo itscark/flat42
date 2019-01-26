@@ -42,6 +42,7 @@
             <contentSection
                 :filepath="this.content[0].img_url"
                 :title="this.content[0].title"
+                :animation-title="'Shopping'"
                 :content="this.content[0].body"
                 :classes="'homepage'"
                 :id="this.content[0].section_id"
@@ -50,6 +51,7 @@
             <contentSection
                 :filepath="this.content[1].img_url"
                 :title="this.content[1].title"
+                :animation-title="'News'"
                 :content="this.content[1].body"
                 :classes="'homepage'"
                 :id="this.content[1].section_id"
@@ -58,6 +60,7 @@
             <contentSection
                 :filepath="this.content[2].img_url"
                 :title="this.content[2].title"
+                :animation-title="'Events'"
                 :content="this.content[2].body"
                 :classes="'homepage'"
                 :id="this.content[2].section_id"
@@ -66,6 +69,7 @@
             <contentSection
                 :filepath="this.content[3].img_url"
                 :title="this.content[3].title"
+                :animation-title="'Cleaning'"
                 :content="this.content[3].body"
                 :classes="'homepage'"
                 :id="this.content[3].section_id"

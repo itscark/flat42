@@ -1,37 +1,37 @@
 <template>
     <div>
-        <div class="grid-wrapper align-items-center">
-            <div class="item-left">
+        <div class="row mt-5 align-items-center">
+            <div class="col-md-3 item-left">
                 <p class="date">{{ postedOn(this.item) }}</p>
                 <p>
                     {{
-                        this.item.user ? this.item.user.name : this.item.user_name
+                    this.item.user ? this.item.user.name : this.item.user_name
                     }}
                     schreibt...
                 </p>
             </div>
 
-            <div class="item-middle pl-4">
+            <div class="col-md-6 pl-md-4 item-middle">
                 <p>{{ this.item.title }}</p>
-
-                <div class="row">
-                    <div class="ml-auto">
-                        <button
+            </div>
+            <div class="col-md-3">
+                <div class="ml-auto">
+                    <button
                             type="button"
                             class="btn btn-outline-primary btn-sm"
                             @click="showHideComments()"
-                        >
-                            <i class="fas fa-comments"></i> Kommentare
-                        </button>
-                    </div>
+                    >
+                        <i class="fas fa-comments"></i> Kommentare
+                    </button>
                 </div>
             </div>
+
         </div>
         <transition
-            name="fade"
-            mode="out-in"
-            enter-active-class="animated fadeInUp faster"
-            leave-active-class="animated fadeOutDown faster"
+                name="fade"
+                mode="out-in"
+                enter-active-class="animated fadeInUp faster"
+                leave-active-class="animated fadeOutDown faster"
         >
             <comment-status v-if="this.showHide" :status="this.item"></comment-status>
         </transition>
@@ -39,25 +39,25 @@
 </template>
 
 <script>
-import moment from "moment";
-import commentStatus from "./comments.vue";
+    import moment from "moment";
+    import commentStatus from "./comments.vue";
 
-export default {
-    props: ["item", 'showHide'],
-    components: {
-        commentStatus
-    },
-
-    methods: {
-        postedOn(time) {
-            return moment
-                .utc(time.created_at)
-                .locale("de")
-                .fromNow();
+    export default {
+        props: ["item", 'showHide'],
+        components: {
+            commentStatus
         },
-        showHideComments(){
-            this.showHide = !this.showHide
+
+        methods: {
+            postedOn(time) {
+                return moment
+                    .utc(time.created_at)
+                    .locale("de")
+                    .fromNow();
+            },
+            showHideComments() {
+                this.showHide = !this.showHide
+            }
         }
-    }
-};
+    };
 </script>

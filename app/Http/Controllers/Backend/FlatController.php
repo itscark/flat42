@@ -16,6 +16,9 @@ class FlatController extends BackendController
         parent::__construct();
     }
 
+    ////////////////////////////
+    //get flat info the the info modal
+    ////////////////////////////
     public function index()
     {
         $flatInfo = $this->flat->getFlatInfo($this->flat_id);
@@ -24,6 +27,9 @@ class FlatController extends BackendController
         return ['flatInfo' => $flatInfo, 'userInfo' => $userInfo];
     }
 
+    ////////////////////////////
+    //create a new Flat
+    ////////////////////////////
     public function create()
     {
         $this->validate(\request(), [

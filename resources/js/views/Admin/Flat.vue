@@ -13,7 +13,7 @@
     </searchTab>
 </template>
 <script>
-    import searchTab from "../../components/admin/search-tab.vue";
+    import searchTab from "../../components/admin/search-bar.vue";
     export default {
         name: 'Flats',
         components:{

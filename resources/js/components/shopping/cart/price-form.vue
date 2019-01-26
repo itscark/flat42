@@ -1,18 +1,18 @@
 <template>
     <div>
         <form
-            class="row"
+            class="form-row mt-4"
             method="post"
             @submit.prevent="onSubmit(item.id)"
             @keydown="form.errors.clear($event.target.name)"
         >
-            <div class="col-6 align-self-center">
+            <div class="col-md-6 align-self-center">
                 <p class="">{{ item.quantity}} x {{ item.name }} von {{ item.user.name }}</p>
             </div>
-            <div class="col-3 align-self-center">
+            <div class="col-md-3 align-self-center text-right">
                 <p>{{ item.price }} €</p>
             </div>
-            <div class="col-3 form-group">
+            <div class="col-md-3 form-group">
                 <input
                     class="form-control"
                     type="number"

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mt-4">
         <div v-for="comment in comments">
             <p>
                 {{ comment.body }} von

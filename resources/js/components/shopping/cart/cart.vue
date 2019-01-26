@@ -8,7 +8,7 @@
         <errors v-if="errors" :errors="this.errors" ></errors>
 
         <form @submit.prevent="submit">
-            <button class="btn btn-outline-success">Fertig</button>
+            <button class="btn btn-outline-success w-100 mt-4">Fertig</button>
         </form>
     </div>
 </template>

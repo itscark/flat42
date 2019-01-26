@@ -1,5 +1,5 @@
 @if (Route::has('login'))
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="main-nav-bar">
         <div class="container mx-auto">
             @if(auth()->check())
                 <router-link to="/home" exact class="navbar-brand">Flat42</router-link>

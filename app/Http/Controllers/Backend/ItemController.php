@@ -7,6 +7,9 @@ use App\Item;
 
 class ItemController extends BackendController
 {
+    ////////////////////////////
+    //set validation rules
+    ////////////////////////////
     public $rules = [
         'name' => 'required|min:2|max:50|string',
         'quantity' => 'required|numeric|min:1',
@@ -26,6 +29,9 @@ class ItemController extends BackendController
     {
         $this->validate($request, $this->rules);
 
+        ////////////////////////////
+        //create a new item
+        ////////////////////////////
         $item = Item::create([
             'flat_id' => $this->flat_id,
             'user_id' => $this->user_id,
@@ -35,6 +41,9 @@ class ItemController extends BackendController
         return response()->json($item);
     }
 
+    ////////////////////////////
+    //update the items
+    ////////////////////////////
     public function update(Request $request, $id)
     {
         $this->validate($request, $this->rules);
@@ -48,6 +57,9 @@ class ItemController extends BackendController
         return response()->json($item);
     }
 
+    ////////////////////////////
+    //delete a item
+    ////////////////////////////
     public function destroy($id)
     {
         $item = Item::findOrFail($id);

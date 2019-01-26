@@ -11,7 +11,7 @@ class CleaningController extends BackendController
 
     public function __construct()
     {
-parent::__construct();
+        parent::__construct();
     }
 
 
@@ -20,10 +20,17 @@ parent::__construct();
         return view('backend.cleaning.index');
     }
 
-    public function indexApi(){
+    ////////////////////////////
+    //get items
+    ////////////////////////////
+    public function indexApi()
+    {
         return $this->cleaning->getPeriod();
     }
 
+    ////////////////////////////
+    //store the items
+    ////////////////////////////
     public function store()
     {
         $this->validate(\request(), [
@@ -39,6 +46,9 @@ parent::__construct();
 
     }
 
+    ////////////////////////////
+    //get all Cleaning items
+    ////////////////////////////
     public function details()
     {
         $details = [];
@@ -49,6 +59,9 @@ parent::__construct();
         return $details;
     }
 
+    ////////////////////////////
+    //delete item
+    ////////////////////////////
     public function destroy($id)
     {
         $item = Cleaning::findOrFail($id);

@@ -58,4 +58,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return User::where('flat_id', $flat_id)
             ->get();
     }
+
+    public function getRelatedUsers($flat_token){
+        return User::where('flat_id', $flat_token)->get();
+    }
+
 }

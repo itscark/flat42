@@ -1,10 +1,10 @@
 <template>
     <form
         @submit.prevent="onSubmit"
-        class="row"
+        class="form-row"
         @keydown="form.errors.clear($event.target.name)"
     >
-        <div class="form-group col-4">
+        <div class="form-group col-md-6">
             <input
                 class="form-control input-sm"
                 type="text"
@@ -19,9 +19,9 @@
                 v-text="form.errors.get('body')"
             ></div>
         </div>
-        <div class="col">
+        <div class="form-group col-md-6">
             <button
-                class="btn btn-outline-dark btn-sm"
+                class="btn btn-outline-dark  w-100"
                 type="submit"
                 :disabled="form.errors.any()"
             >

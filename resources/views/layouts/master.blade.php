@@ -9,7 +9,7 @@
     @endif
     @include('layouts.nav')
 
-    <div class="container mt-5">
+    <div class="container mt-5 p-4" id="main-container">
         @if(auth()->check() && auth()->user()->flat_id != null)
             <transition name="fade" mode="out-in" enter-active-class="animated fadeIn faster" leave-active-class="animated fadeOut faster">
                 <router-view></router-view>

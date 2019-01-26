@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h1>News</h1>
         <next-event></next-event>
         <h3 class="mt-4 mb-4">Was gibt es neues?</h3>
         <div>

@@ -21,11 +21,17 @@ class EventController extends BackendController
         return view('backend.events.index');
     }
 
+    ////////////////////////////
+    //get items
+    ////////////////////////////
     public function indexApi()
     {
         return $this->event->getEvents($this->flat_id);
     }
 
+    ////////////////////////////
+    //store the items
+    ////////////////////////////
     public function store(Request $request)
     {
         $this->validate(\request(), [
@@ -41,16 +47,17 @@ class EventController extends BackendController
             'date' => \request('date'),
         ]);
 
+        ////////////////////////////
+        //for axios request set the username so there is no error
+        ////////////////////////////
         $newEvent['user_name'] = auth()->user()->name;
 
         return response()->json($newEvent);
     }
-
-    public function show(Event $event)
-    {
-        return abort(404);
-    }
-
+    
+    ////////////////////////////
+    //update a event
+    ////////////////////////////
     public function update(Request $request, Event $event)
     {
         $this->validate(\request(), [
@@ -68,6 +75,9 @@ class EventController extends BackendController
         return response()->json($event);
     }
 
+    ////////////////////////////
+    //softdelete a event
+    ////////////////////////////
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
@@ -78,21 +88,33 @@ class EventController extends BackendController
             $event->save();
             return response()->json($event);
         } else {
+            ////////////////////////////
+            //if a user trys to delete a event he hasnt created, aboirt
+            ////////////////////////////
             return response('Du hast dieses Event nicht geplant und kannst es daher nicht löschen!', 401);
         }
 
     }
 
+    ////////////////////////////
+    //get previous Events
+    ////////////////////////////
     public function prevEvent()
     {
         return Event::getPrevFlatEvents();
     }
 
+    ////////////////////////////
+    //get deleted events
+    ////////////////////////////
     public function delEvent()
     {
         return Event::getDelFlatEvents();
     }
-
+    
+    ////////////////////////////
+    //get the event info for edit
+    ////////////////////////////
     public function showEvent($id)
     {
         return $this->event->getEventInfo($this->flat_id, $id);

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import searchTab from "../components/admin/search-tab.vue";
+import searchTab from "../components/admin/search-bar.vue";
 import landingPage from "./Admin/Landingpage.vue";
 import flats from './Admin/Flat.vue';
 import users from './Admin/Users.vue';

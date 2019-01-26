@@ -9,31 +9,51 @@ use App\User;
 use App\Welcome;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class AdminController extends BackendController
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function index()
     {
         return view('admin.index');
     }
 
+    //////////////////////////////
+    //Get Items for the Adminpage
+    /////////////////////////////
+
+    //Get Content
     public function contentIndex()
     {
         $content = Welcome::all();
         return response()->json($content);
     }
 
+    //Get Users
     public function usersIndex()
     {
-        $user = User::all();
-        return response()->json($user);
+        ////////////////////////////
+        //Get all users execpt the Loggedin user
+        ////////////////////////////
+        $users = User::all()->except(auth()->id());
+        ////////////////////////////
+        return response()->json($users);
     }
 
+    //Get Flats
     public function flatsIndex()
     {
         $flat = Flat::all();
         return response()->json($flat);
     }
+    ////////////////////////////
 
+    ////////////////////////////
+    //Store new Data for the Landingpage
+    ////////////////////////////
     public function contentStore(Welcome $welcome, Request $request)
     {
 
@@ -48,19 +68,31 @@ class AdminController extends Controller
         ]);
         return response()->json($welcome);
     }
+    ////////////////////////////
 
+    ////////////////////////////
+    //softdelte a User
+    ////////////////////////////
     public function destroyUser($id)
     {
         $user = User::findOrFail($id);
 
+        ////////////////////////////
+        //check if delete request is loggedin user
+        ////////////////////////////
         if ($user->id == auth()->id()) {
             return response()->json('Eingeloggte User können nicht gelöscht werden! ', 401);
         } else {
             $user->delete();
             return response()->json($user);
         }
+        ////////////////////////////
     }
+    ////////////////////////////
 
+    ////////////////////////////
+    //Update the user
+    ////////////////////////////
     public function updateUser(Request $request, User $user)
     {
         $this->validate(\request(), [
@@ -71,6 +103,9 @@ class AdminController extends Controller
             'cart_id' => 'nullable|sometimes',
         ]);
 
+        ////////////////////////////
+        //if the updated user is the loggedin User, set role to admin, to avoid errors, and set flat_id and Cart_id to null
+        ////////////////////////////
         if ($request->user->id == auth()->id()) {
             $user->update([
                 'name' => $request->name,
@@ -80,6 +115,9 @@ class AdminController extends Controller
                 'cart_id' => null,
             ]);
         } else {
+            ////////////////////////////
+            //if it is not the logged in user, update with request
+            ////////////////////////////
             $user->update([
                 'name' => $request->name,
                 'role' => $request->role,
@@ -87,24 +125,38 @@ class AdminController extends Controller
                 'flat_id' => $request->flat_id,
                 'cart_id' => $request->cart_id,
             ]);
+            ////////////////////////////
         }
+        ////////////////////////////
         return response()->json($user);
     }
 
+    ////////////////////////////
+    //delete a flat
+    ////////////////////////////
     public function destroyFlat($id)
     {
         $flat = Flat::findOrFail($id);
-        $users = User::where('flat_id', $flat->flat_token)->get();
+
+        ////////////////////////////
+        //get every user that was in that flat and reset flat_id and cart_id
+        ////////////////////////////
+        $users = $this->user->getRelatedUsers($flat->flat_token);
         foreach ($users as $user) {
             $user->update([
                 'flat_id' => null,
                 'cart_id' => null,
             ]);
         }
-        //$flat->delete();
+        ////////////////////////////
+        $flat->delete();
         return response()->json($flat);
     }
+    ////////////////////////////
 
+    ////////////////////////////
+    //Update the Flat name
+    ////////////////////////////
     public function updateFlat(Request $request, Flat $flat)
     {
         $this->validate(\request(), [
@@ -116,6 +168,7 @@ class AdminController extends Controller
         ]);
         return response()->json($flat);
     }
+    ////////////////////////////
 
 
 }

@@ -3,7 +3,9 @@
         class="alert
          alert-danger
          d-flex
-         justify-content-center"
+         justify-content-center
+mt-4"
+
     >
         <div class="text-center">
             <p>{{ errors.message }}</p>

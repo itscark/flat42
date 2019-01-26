@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-    import landingSection from '../../components/admin/landing-page-section.vue'
+    import landingSection from '../../components/admin/edit-landing-page-section.vue'
 export default {
     name: "landingPage",
 

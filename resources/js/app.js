@@ -12,21 +12,7 @@ import events from './views/Events.vue';
 import home from './views/Home.vue';
 import {SimpleSVG} from 'vue-simple-svg';
 import NProgress from 'nprogress';
-
-router.beforeEach((to, from, next) => {
-    document.title = to.meta.title;
-    next() ;
-});
-router.beforeEach((to, from, next) => {
-    console.log('start nprogress');
-    NProgress.start();
-    NProgress.set(0.1);
-    next()
-});
-router.afterEach(() => {
-    console.log('end nprogress');
-    setTimeout(() => NProgress.done(), 500)
-});
+import './utilities/mobile-nav.js'
 
 // Components
 Vue.component('simple-svg', SimpleSVG);
@@ -40,6 +26,21 @@ Vue.component('cleaning', cleaning);
 Vue.component('events', events);
 Vue.component('statuses', home);
 
+//router definition
+router.beforeEach((to, from, next) => {
+    document.title = to.meta.title;
+    next() ;
+});
+router.beforeEach((to, from, next) => {
+    NProgress.start();
+    NProgress.set(0.1);
+    next()
+});
+router.afterEach(() => {
+    setTimeout(() => NProgress.done(), 500)
+});
+
+
 
 
 new Vue({
@@ -47,5 +48,10 @@ new Vue({
     router,
     data: {
         showModal: false
+    },
+    watch: {
+        '$route' () {
+            $('.navbar-collapse').collapse('hide');
+        }
     }
 });

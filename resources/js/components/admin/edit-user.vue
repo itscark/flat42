@@ -112,10 +112,10 @@ export default {
         };
     },
     mounted() {
-this.setVariables
+        this.setVariables();
     },
     methods: {
-        setVariables(){
+        setVariables() {
             this.form.name = this.item.name;
             this.form.role = this.item.role;
             this.form.email = this.item.email;
@@ -123,16 +123,19 @@ this.setVariables
             this.form.cart_id = this.item.cart_id;
         },
         onSubmit() {
-            this.form.patch("admin/user/" + this.item.id).then(response => {
-                this.$emit("completedUpdate", response);
-                this.flash("Eintrag aktualisiert!", "success", {
-                    timeout: 3000
+            this.form
+                .patch("admin/user/" + this.item.id)
+                .then(response => {
+                    this.$emit("completedUpdate", response);
+                    this.flash("Eintrag aktualisiert!", "success", {
+                        timeout: 3000
+                    });
+                })
+                .catch(errors => {
+                    this.flash("Eintrag nicht aktualisiert!", "error", {
+                        timeout: 3000
+                    });
                 });
-            }).catch(errors => {
-                this.flash("Eintrag nicht aktualisiert!", "error", {
-                    timeout: 3000
-                });
-            });
         }
     }
 };

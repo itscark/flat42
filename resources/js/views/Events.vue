@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <eventHeader
                 @toggleVisible="hideToggle()"
                 :toddleHide="this.toggleHide"
