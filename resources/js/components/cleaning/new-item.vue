@@ -50,7 +50,7 @@
                         type="submit"
                         :disabled="form.errors.any()"
                     >
-                        <i class="fas fa-plus"></i>  Hinzufügen
+                        <i class="fas fa-plus"></i> Hinzufügen
                     </button>
                 </div>
             </div>
@@ -59,7 +59,6 @@
 </template>
 <script>
 export default {
-
     data() {
         return {
             form: new Form({
@@ -72,22 +71,19 @@ export default {
     },
 
     mounted() {
-this.getData()
+        this.getData();
     },
 
     methods: {
-        getData(){
-            axios.get('api/cleaning')
-                .then(response => {
-                    this.period = response.data
-                });
+        getData() {
+            axios.get("api/cleaning").then(response => {
+                this.period = response.data;
+            });
         },
         onSubmit() {
-            this.form
-                .post("api/cleaning/")
-                .then(toDo => {
-                    this.$emit("completed", toDo)
-                });
+            this.form.post("api/cleaning/").then(toDo => {
+                this.$emit("completed", toDo);
+            });
         }
     }
 };
