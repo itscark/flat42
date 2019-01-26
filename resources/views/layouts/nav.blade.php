@@ -34,6 +34,7 @@
                             Login</a>
                         <a class="btn btn-primary" href="{{ route('register') }}"><i class="fas fa-user-plus"></i>
                             Register</a>
+                        <button id="goFS">Go fullscreen</button>
                     </div>
                 @else
                     <a class="btn btn-primary ml-auto" href="{{ route('logout') }}"
