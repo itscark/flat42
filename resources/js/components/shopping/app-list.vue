@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="mt-4">
+        <div>
             <div>
                 <h1>Shopping list</h1>
                 <app-item

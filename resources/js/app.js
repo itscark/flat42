@@ -12,7 +12,7 @@ import events from './views/Events.vue';
 import home from './views/Home.vue';
 import {SimpleSVG} from 'vue-simple-svg';
 import NProgress from 'nprogress';
-import './utilities/mobile-nav.js'
+import './utilities/mobile-nav.js';
 
 // Components
 Vue.component('simple-svg', SimpleSVG);
