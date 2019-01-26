@@ -13,6 +13,7 @@ import home from './views/Home.vue';
 import {SimpleSVG} from 'vue-simple-svg';
 import NProgress from 'nprogress';
 import './utilities/mobile-nav.js';
+import {Circle2} from 'vue-loading-spinner';
 
 // Components
 Vue.component('simple-svg', SimpleSVG);
@@ -25,6 +26,7 @@ Vue.component('shopping', shopping);
 Vue.component('cleaning', cleaning);
 Vue.component('events', events);
 Vue.component('statuses', home);
+Vue.component('cube-spin', Circle2);
 
 //router definition
 router.beforeEach((to, from, next) => {

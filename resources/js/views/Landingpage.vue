@@ -832,16 +832,12 @@ setInterval(arrowBounce, 800);
     font-size: 4rem;
     position: absolute;
     right: 0;
-    bottom: 100px;
+    bottom: 140px;
     left: 0;
     margin: auto;
     width: 40px;
     height: 40px;
     transform: translateY(0);
-    -webkit-transition: all 500ms ease-in-out;
-    -moz-transition: all 750ms ease-in-out;
-    -ms-transition: all 750ms ease-in-out;
-    -o-transition: all 750ms ease-in-out;
     transition: all 750ms ease-in-out;
 }
 

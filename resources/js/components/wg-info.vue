@@ -50,8 +50,16 @@
                                     v-text="form.errors.get('email')"
                                 ></div>
                             </div>
-                            <div class="form-group  col-12">
-                                <button type="submit" class="btn w-100 btn-primary">
+
+                            <div class="form-group  col-12 row">
+                                <cube-spin
+                                    class="ml-3 mr-4 "
+                                    v-show="this.showLoading"
+                                ></cube-spin>
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary"
+                                >
                                     <i class="fas fa-plus"></i> Freund
                                     hinzufügen
                                 </button>
@@ -82,7 +90,8 @@ export default {
             userInfo: null,
             form: new Form({
                 email: ""
-            })
+            }),
+            showLoading: false
         };
     },
     mounted() {
@@ -100,9 +109,11 @@ export default {
                 .catch();
         },
         onSubmit() {
-            this.form.post("invite")
-                .then(response =>{
-                    this.flash('Die Einladung wurde versendet ', "success", {
+            this.showLoading = true;
+            this.form
+                .post("invite")
+                .then(response => {
+                    this.flash("Die Einladung wurde versendet ", "success", {
                         timeout: 3000
                     });
                 })
@@ -110,7 +121,10 @@ export default {
                     this.flash(errors.email, "error", {
                         timeout: 3000
                     });
-                });
+                })
+                .finally(()=>{
+                    this.showLoading = false;
+                })
         }
     }
 };

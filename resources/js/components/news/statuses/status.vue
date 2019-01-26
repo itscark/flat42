@@ -15,10 +15,10 @@
                 <p>{{ this.item.title }}</p>
             </div>
             <div class="col-md-3">
-                <div class="ml-auto">
+                <div class="ml-auto w-100">
                     <button
                             type="button"
-                            class="btn btn-outline-primary btn-sm"
+                            class="btn btn-outline-primary btn-sm w-100"
                             @click="showHideComments()"
                     >
                         <i class="fas fa-comments"></i> Kommentare

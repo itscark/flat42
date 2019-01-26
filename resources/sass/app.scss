@@ -15,3 +15,11 @@
 @import 'vue-dialog/default/layout';
 @import 'vue-dialog/default/highlights';
 @import 'vue-dialog/custom';
+
+.spinner--circle-2{
+  border-color: $red $teal $teal !important;
+}
+
+.center-cube {
+  left: 48%;
+}
