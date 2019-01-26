@@ -33,7 +33,7 @@
             enter-active-class="animated fadeInUp faster"
             leave-active-class="animated fadeOutDown faster"
         >
-            <comment-status v-if="this.show" :status="this.item"></comment-status>
+            <comment-status v-if="this.showHide" :status="this.item"></comment-status>
         </transition>
     </div>
 </template>
@@ -43,15 +43,9 @@ import moment from "moment";
 import commentStatus from "./comments.vue";
 
 export default {
-    props: ["item"],
+    props: ["item", 'showHide'],
     components: {
         commentStatus
-    },
-
-    data() {
-        return {
-            show: false
-        };
     },
 
     methods: {
@@ -62,7 +56,7 @@ export default {
                 .fromNow();
         },
         showHideComments(){
-            this.show = !this.show
+            this.showHide = !this.showHide
         }
     }
 };

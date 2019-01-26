@@ -5,7 +5,7 @@
         <div>
             <addStatus @completed="addStatus"></addStatus>
             <div v-for="item in this.status">
-                <status :item="item"></status>
+                <status :showHide="toggleComments" :item="item"></status>
             </div>
         </div>
     </div>
@@ -27,15 +27,13 @@ export default {
 
     data() {
         return {
-            show: false,
-            status: null,
+            toggleComments: false,
+            status: null
         };
     },
-
     mounted() {
         this.getData();
     },
-
     methods: {
         getData() {
             axios.get("api/home").then(response => {
@@ -43,7 +41,8 @@ export default {
             });
         },
         addStatus(status) {
-            this.status.unshift(status)
+            this.toggleComments = false;
+            this.status.unshift(status);
         }
     }
 };

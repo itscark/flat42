@@ -53,8 +53,16 @@ export default {
             this.form
                 .post("api/cart/item/" + id)
                 .then(response =>{
+                    this.flash('Preis hinzugefügt!', "success", {
+                        timeout: 3000
+                    });
                     this.response_data = response;
                     this.item.price =  this.response_data.price;
+                })
+                .catch(erros => {
+                    this.flash('Preis nicht hinzugefügt!', "error", {
+                        timeout: 3000
+                    });
                 });
         }
     }

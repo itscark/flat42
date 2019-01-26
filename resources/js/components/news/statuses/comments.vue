@@ -53,6 +53,9 @@ export default {
                 axios
                     .delete(`api/home/comment/${id}`)
                     .then(response => {
+                        this.flash('Kommentar gelöscht!', "success", {
+                            timeout: 3000
+                        });
                         this.comments = this.comments.filter(item => {
                             return item.id !== id;
                         });
