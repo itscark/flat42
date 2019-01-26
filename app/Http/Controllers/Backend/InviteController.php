@@ -8,13 +8,9 @@ use App\Mail\InviteCreated;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
-class InviteController extends BackendController
+class InviteController extends Controller
 {
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     ////////////////////////////
     //return the invite view

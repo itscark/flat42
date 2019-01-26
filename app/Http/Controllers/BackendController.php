@@ -35,10 +35,10 @@ class BackendController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->flat_id = auth()->user()->flat_id;
-            $this->user_id = auth()->id();
-            $this->cart_id = auth()->user()->cart_id;
-            return $next($request);
+                $this->flat_id = auth()->user()->flat_id;
+                $this->user_id = auth()->id();
+                $this->cart_id = auth()->user()->cart_id;
+                return $next($request);
         });
 
         $this->cart = new Cart();

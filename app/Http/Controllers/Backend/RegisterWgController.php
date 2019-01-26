@@ -6,13 +6,8 @@ use App\Flat;
 use App\User;
 use Illuminate\Http\Request;
 
-class RegisterWgController extends BackendController
+class RegisterWgController extends Controller
 {
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
 
     public function wg()
@@ -45,7 +40,7 @@ class RegisterWgController extends BackendController
         ////////////////////////////
         //set the flattoken of the registered user
         ////////////////////////////
-        $user = User::findOrFail($this->user_id);
+        $user = User::findOrFail(auth()->id());
         $user->flat_id = $string;
         $user->save();
 
