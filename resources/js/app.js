@@ -10,11 +10,22 @@ import shopping from './views/Shopping.vue';
 import cleaning from './views/Cleaning.vue';
 import events from './views/Events.vue';
 import home from './views/Home.vue';
-import {SimpleSVG} from 'vue-simple-svg'
+import {SimpleSVG} from 'vue-simple-svg';
+import NProgress from 'nprogress';
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
     next() ;
+});
+router.beforeEach((to, from, next) => {
+    console.log('start nprogress');
+    NProgress.start();
+    NProgress.set(0.1);
+    next()
+});
+router.afterEach(() => {
+    console.log('end nprogress');
+    setTimeout(() => NProgress.done(), 500)
 });
 
 // Components
@@ -28,6 +39,8 @@ Vue.component('shopping', shopping);
 Vue.component('cleaning', cleaning);
 Vue.component('events', events);
 Vue.component('statuses', home);
+
+
 
 new Vue({
     el: "#app",
