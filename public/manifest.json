@@ -3,7 +3,7 @@
   "short_name": "Flat42",
   "theme_color": "#11a38f",
   "background_color": "#ffffff",
-  "display": "browser",
+  "display": "fullscreen",
   "orientation": "portrait",
   "Scope": "/",
   "start_url": "/",
