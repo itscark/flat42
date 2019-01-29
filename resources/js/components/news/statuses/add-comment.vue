@@ -3,6 +3,7 @@
         @submit.prevent="onSubmit"
         class="form-row"
         @keydown="form.errors.clear($event.target.name)"
+        @change="form.errors.clear($event.target.name)"
     >
         <div class="form-group col-md-6">
             <input

@@ -4,6 +4,7 @@
             method="post"
             @submit.prevent="onSubmit"
             class="mt-5"
+            @change="form.errors.clear($event.target.name)"
             @keydown="form.errors.clear($event.target.name)"
         >
             <div class="">

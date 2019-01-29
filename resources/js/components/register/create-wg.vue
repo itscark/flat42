@@ -5,6 +5,7 @@
             method="post"
             @submit.prevent="onSubmit"
             @keydown="form.errors.clear($event.target.name)"
+            @change="form.errors.clear($event.target.name)"
         >
             <h2 class="mb-5">WG erstellen!</h2>
             <div class="form-group col-md">

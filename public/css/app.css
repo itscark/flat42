@@ -10509,6 +10509,13 @@ body {
   display: block !important;
 }
 
+@media screen and (max-width: 800px) {
+  .m-margin {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
 .hero-svg {
   height: 250px;
   position: absolute;

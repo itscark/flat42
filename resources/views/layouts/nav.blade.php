@@ -36,7 +36,7 @@
                             Register</a>
                     </div>
                 @else
-                    <a class="btn btn-primary ml-auto" href="{{ route('logout') }}"
+                    <a class="btn btn-primary ml-auto m-margin" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out-alt"></i> Logout
@@ -47,7 +47,7 @@
                     </form>
 
                     @if(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'user')
-                        <button class="btn btn-primary ml-2" id="show-modal" @click="showModal = true"><i
+                        <button class="btn btn-primary ml-2 m-margin" id="show-modal" @click="showModal = true"><i
                                     class="fas fa-info"></i> WG Info
                         </button>
                     @endif

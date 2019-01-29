@@ -39,7 +39,7 @@ export default {
         },
         bottom: {
             type: String,
-            default: "40px"
+            default: "100px"
         },
         scrollFn: {
             type: Function,
