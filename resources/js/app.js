@@ -31,9 +31,6 @@ Vue.component('back-top', backTop);
 //router definition
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
-    next();
-});
-router.beforeEach((to, from, next) => {
     NProgress.start();
     NProgress.set(0.1);
     next()
