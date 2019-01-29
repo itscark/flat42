@@ -51,11 +51,7 @@
                                 ></div>
                             </div>
 
-                            <div class="form-group  col-12 row">
-                                <cube-spin
-                                    class="ml-3 mr-4 "
-                                    v-show="this.showLoading"
-                                ></cube-spin>
+                            <div class="form-group  col-12">
                                 <button
                                     type="submit"
                                     class="btn btn-primary"
@@ -82,6 +78,7 @@
 </template>
 
 <script>
+    import NProgress from 'nprogress';
 export default {
     name: "WG-Info",
     data() {
@@ -91,7 +88,6 @@ export default {
             form: new Form({
                 email: ""
             }),
-            showLoading: false
         };
     },
     mounted() {
@@ -109,7 +105,8 @@ export default {
                 .catch();
         },
         onSubmit() {
-            this.showLoading = true;
+            NProgress.start();
+            NProgress.set(0.1);
             this.form
                 .post("invite")
                 .then(response => {
@@ -123,7 +120,7 @@ export default {
                     });
                 })
                 .finally(()=>{
-                    this.showLoading = false;
+                    NProgress.done()
                 })
         }
     }

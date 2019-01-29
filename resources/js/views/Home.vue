@@ -5,13 +5,7 @@
         <h3 class="mt-4 mb-4">Was gibt es neues?</h3>
         <div>
             <addStatus @completed="addStatus"></addStatus>
-            <div class="center-cube position-relative">
-                <cube-spin
-                    class="position-absolute mt-3"
-                    v-show="this.showLoading"
-                ></cube-spin>
-            </div>
-            <div v-for="item in this.status" v-show="!showLoading">
+            <div v-for="item in this.status">
                 <status :showHide="toggleComments" :item="item"></status>
             </div>
         </div>
@@ -36,7 +30,6 @@ export default {
         return {
             toggleComments: false,
             status: null,
-            showLoading: true
         };
     },
     mounted() {
@@ -47,9 +40,6 @@ export default {
             axios.get("api/home").then(response => {
                 this.status = response.data;
             });
-            setTimeout(() => {
-                this.showLoading = false;
-            }, 1000);
         },
         addStatus(status) {
             this.toggleComments = false;

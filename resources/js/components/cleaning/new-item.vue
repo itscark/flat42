@@ -1,6 +1,7 @@
 <template>
     <div>
         <form
+            method="post"
             @submit.prevent="onSubmit"
             class="mt-5"
             @keydown="form.errors.clear($event.target.name)"

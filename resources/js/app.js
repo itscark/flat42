@@ -13,7 +13,7 @@ import home from './views/Home.vue';
 import {SimpleSVG} from 'vue-simple-svg';
 import NProgress from 'nprogress';
 import './utilities/mobile-nav.js';
-import {Circle2} from 'vue-loading-spinner';
+import backTop from './utilities/backTop.vue';
 
 // Components
 Vue.component('simple-svg', SimpleSVG);
@@ -26,12 +26,12 @@ Vue.component('shopping', shopping);
 Vue.component('cleaning', cleaning);
 Vue.component('events', events);
 Vue.component('statuses', home);
-Vue.component('cube-spin', Circle2);
+Vue.component('back-top', backTop);
 
 //router definition
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
-    next() ;
+    next();
 });
 router.beforeEach((to, from, next) => {
     NProgress.start();
@@ -49,7 +49,7 @@ new Vue({
         showModal: false
     },
     watch: {
-        '$route' () {
+        '$route'() {
             $('.navbar-collapse').collapse('hide');
         }
     }

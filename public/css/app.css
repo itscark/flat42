@@ -11356,11 +11356,40 @@ body.dg-open {
   background-color: #BF112E;
 }
 
-.spinner--circle-2 {
-  border-color: #BF112E #13A399 #13A399 !important;
+.back-to-top-fade-enter-active,
+.back-to-top-fade-leave-active {
+  transition: opacity 0.7s;
 }
 
-.center-cube {
-  left: 48%;
+.back-to-top-fade-enter,
+.back-to-top-fade-leave-to {
+  opacity: 0;
+}
+
+.vue-back-to-top {
+  cursor: pointer;
+  position: fixed;
+  z-index: 1000;
+}
+
+.vue-back-to-top .default {
+  background-color: #13A399;
+  border-radius: 3px;
+  color: #ffffff;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  width: 160px;
+}
+
+.vue-back-to-top .default span {
+  color: #ffffff;
+}
+
+.vue-back-to-top--is-footer {
+  bottom: 50% !important;
+  position: absolute;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
 }
 
