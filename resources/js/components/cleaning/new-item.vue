@@ -82,9 +82,16 @@ export default {
             });
         },
         onSubmit() {
-            this.form.post("api/cleaning/").then(toDo => {
-                this.$emit("completed", toDo);
-            });
+            this.form
+                .post("api/cleaning/")
+                .then(response => {
+                    this.$emit("completed", response);
+                })
+                .catch(erros => {
+                    this.flash("News nicht hinzugefügt!", "error", {
+                        timeout: 3000
+                    });
+                });
         }
     }
 };
