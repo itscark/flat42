@@ -38,11 +38,12 @@ class CleaningController extends BackendController
             'period' => 'required ',
         ]);
 
-        return Cleaning::create([
+        $cleaning=  Cleaning::create([
             'flat_id' => $this->flat_id,
             'title' => \request('title'),
             'period_id' => \request('period'),
         ]);
+        return response()->json($cleaning);
 
     }
 
