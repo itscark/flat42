@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-            /*URL::forceScheme('http');*/
+        URL::forceScheme('httts');
         Schema::defaultStringLength(191);
     }
 
