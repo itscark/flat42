@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://flat42.herokuapp.com/'),
+    'url' => env('APP_URL', 'https://flat42.test/'),
 
     /*
     |--------------------------------------------------------------------------
