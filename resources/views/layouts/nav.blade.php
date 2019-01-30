@@ -2,9 +2,9 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="main-nav-bar">
         <div class="container mx-auto">
             @if(auth()->check())
-                <router-link to="/home" exact class="navbar-brand">Flat42</router-link>
+                <router-link to="{{secure_url('/home')}}" exact class="navbar-brand">Flat42</router-link>
             @else
-                <a class="navbar-brand" href="{{route('home')}}">Flat42</a>
+                <a class="navbar-brand" href="{{secure_url(route('home'))}}">Flat42</a>
             @endif
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,16 +13,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 @if(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'user')
                     <div class="navbar-nav mr-auto">
-                        <router-link to="/home" tag="li" exact class="nav-item">
+                        <router-link to="{{secure_url('/home')}}" tag="li" exact class="nav-item">
                             <a class="nav-link">News</a>
                         </router-link>
-                        <router-link to="/shopping" tag="li" class="nav-item">
+                        <router-link to="{{secure_url('/shopping')}}" tag="li" class="nav-item">
                             <a class="nav-link">Shopping</a>
                         </router-link>
-                        <router-link to="/events" tag="li" class="nav-item">
+                        <router-link to="{{secure_url('/events')}}" tag="li" class="nav-item">
                             <a class="nav-link">Events</a>
                         </router-link>
-                        <router-link to="/cleaning" tag="li" class="nav-item">
+                        <router-link to="{{secure_url('/cleaning')}}" tag="li" class="nav-item">
                             <a class="nav-link">Cleaning</a>
                         </router-link>
                     </div>
@@ -30,19 +30,19 @@
 
                 @if(!auth()->check())
                     <div class="my-2 my-lg-0 ml-auto">
-                        <a class="btn btn-primary" href="{{ route('login') }}"> <i class="fas fa-sign-in-alt"></i>
+                        <a class="btn btn-primary" href="{{ secure_url(route('login')) }}"> <i class="fas fa-sign-in-alt"></i>
                             Login</a>
-                        <a class="btn btn-primary" href="{{ route('register') }}"><i class="fas fa-user-plus"></i>
+                        <a class="btn btn-primary" href="{{secure_url(route('register')) }}"><i class="fas fa-user-plus"></i>
                             Register</a>
                     </div>
                 @else
-                    <a class="btn btn-primary ml-auto m-margin" href="{{ route('logout') }}"
+                    <a class="btn btn-primary ml-auto m-margin" href="{{ secure_url(route('logout')) }}"
                        onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{ secure_url(route('logout')) }}" method="POST" style="display: none;">
                         @csrf
                     </form>
 
