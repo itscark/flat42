@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="main-nav-bar">
         <div class="container mx-auto nav-wrapper">
             @if(auth()->check())
-                <router-link to="/home'" exact class="navbar-brand navbar-brand-mobile">Flat42</router-link>
+                <router-link to="/home" exact class="navbar-brand navbar-brand-mobile">Flat42</router-link>
             @else
                 <a class="navbar-brand navbar-brand-mobile" href="{{secure_url(route('home'))}}">Flat42</a>
             @endif
