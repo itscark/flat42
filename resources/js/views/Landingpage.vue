@@ -809,6 +809,7 @@ setInterval(arrowBounce, 800);
 
 .button-down {
     grid-area: button-down;
+    position: relative;
 }
 
 @media screen and (min-width: 600px) {
@@ -832,7 +833,7 @@ setInterval(arrowBounce, 800);
     font-size: 4rem;
     position: absolute;
     right: 0;
-    bottom: 140px;
+    bottom: 120px;
     left: 0;
     margin: auto;
     width: 40px;

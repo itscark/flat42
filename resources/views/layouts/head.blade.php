@@ -13,17 +13,10 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('favicon.png') }}">
 
-    <!-- Fonts -->
-
-
     <!--Fontawesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
           integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-    <!--Fullpage-->
-    <link rel="stylesheet" href="https://unpkg.com/fullpage.js/dist/fullpage.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/vue-nav-tabs/themes/vue-tabs.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
