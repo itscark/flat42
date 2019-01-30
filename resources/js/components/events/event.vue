@@ -36,7 +36,7 @@
                             class="btn btn-outline-secondary mt-2 w-100"
                             @click="editing = true"
                     >
-                        <i class="far fa-edit"></i> Edit
+                        <i class="far fa-edit"></i> Bearbeiten
                     </button>
 
                     <button class="btn btn-outline-danger mt-2 w-100" @click="deleteItem">

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Cleaning</h1>
+        <h1>Putzplan</h1>
         <div class="card-wrapper mt-3">
             <period :items="toDos['daily']" @deleteEvent="deleteItem">
                 <h2 slot="title">Täglich</h2>

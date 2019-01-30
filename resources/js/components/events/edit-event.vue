@@ -13,7 +13,7 @@
                 <p class="date"></p>
             </div>
             <div class="item-middle pl-4">
-                <h2>Edit Event</h2>
+                <h2>Event bearbeiten</h2>
                 <div class="form-group">
                     <label for="title">Titel</label>
                     <input
@@ -30,7 +30,7 @@
                     ></div>
                 </div>
                 <div class="form-group ">
-                    <label for="body">Body</label>
+                    <label for="body">Beschreibung</label>
                     <input
                         class="form-control"
                         type="text"
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form-group ">
-                    <label for="date">Date</label>
+                    <label for="date">Datum</label>
                     <input
                         class="form-control"
                         type="date"
@@ -63,11 +63,11 @@
             </div>
             <div class="item-right">
                 <a class="btn  btn-outline-danger" href="#" role="button" @click.prevent="hideEditing"
-                    ><i class="fas fa-times"></i> Cancel
+                    ><i class="fas fa-times"></i> Abbrechen
                 </a>
 
                 <button class="btn btn-outline-success mt-2" type="submit">
-                    <i class="fas fa-check"></i> Save
+                    <i class="fas fa-check"></i> Speichern
                 </button>
             </div>
         </form>

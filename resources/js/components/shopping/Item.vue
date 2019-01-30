@@ -24,7 +24,7 @@
                 class="btn btn-outline-warning"
                 type="button"
             >
-                <i aria-hidden="true"></i> <i class="far fa-edit"></i> Update
+                <i aria-hidden="true"></i> <i class="far fa-edit"></i> Aktualisieren
             </button>
             <button
                 @click="deleteItem()"
@@ -32,7 +32,7 @@
                 type="button"
             >
                 <i aria-hidden="true"></i>
-                <i class="far fa-trash-alt"></i> Delete
+                <i class="far fa-trash-alt"></i> Löschen
             </button>
         </div>
     </form>

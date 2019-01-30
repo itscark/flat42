@@ -14,7 +14,7 @@
             <transition name="fade" mode="out-in" enter-active-class="animated fadeIn faster" leave-active-class="animated fadeOut faster">
                 <router-view></router-view>
             </transition>
-            <back-top text='Back to top'></back-top>
+            <back-top text='Nach oben'></back-top>
         @endif
         @yield('content')
     </div>

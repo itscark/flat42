@@ -5,7 +5,7 @@
                 class="form-control"
                 v-model="newItem.name"
                 type="text"
-                placeholder="Name..."
+                placeholder="Produkt..."
             />
         </div>
 
@@ -26,7 +26,7 @@
                 type="button"
                 :disabled="isDisabled"
             >
-                <i class="fas fa-plus"></i> Add new item
+                <i class="fas fa-plus"></i> Hinzufügen
             </button>
         </div>
     </form>
