@@ -15,7 +15,7 @@
                     <div class="headline text-align-center">
                         <div class="headline-wrapper">
                             <h1 id="headline" class="text__word">
-                                This is Flat42!
+                                This is Flat42
                             </h1>
                             <span class="headline-bg"></span>
                         </div>
