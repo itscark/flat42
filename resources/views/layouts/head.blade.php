@@ -5,7 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#13A399">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <link rel="apple-touch-icon" href="{{ asset('images/icons/icon-128x128.png') }}">
+{{--    <link rel="apple-touch-icon" href="{{ asset('images/icons/icon-128x128.png') }}">--}}
     <link rel="manifest" href="{{ asset('manifest.json') }}">
 
     <title>Flat42</title>
