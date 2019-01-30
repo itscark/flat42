@@ -43,7 +43,8 @@ new Vue({
     el: "#app",
     router,
     data: {
-        showModal: false
+        showModal: false,
+        toggle: false,
     },
     watch: {
         '$route'() {
