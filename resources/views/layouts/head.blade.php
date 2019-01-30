@@ -14,7 +14,7 @@
     <link rel="icon" href="{{ asset('favicon.png') }}">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700%7CRaleway:400,900" rel="stylesheet">
+
 
     <!--Fontawesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"

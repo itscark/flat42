@@ -12,6 +12,4 @@
     }
 </script>
 
-
-<script src="https://unpkg.com/vue-fullpage.js/dist/vue-fullpage.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>

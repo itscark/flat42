@@ -1,11 +1,26 @@
+
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,700);
+@import url(https://fonts.googleapis.com/css?family=Raleway:900);
+
+h1 {
+  font-family: 'Raleway', sans-serif;
+  color: $teal !important;
+}
+
+h2, h3,h4,h5,h6 {
+  font-family: 'Raleway', sans-serif;
+  color: $blue !important;
+}
+
 /*Body*/
 body {
   font-family: 'Merriweather', serif !important;
 }
 
+/*
 html {
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Raleway', sans-serif !important;
     color: $teal !important;
   }
-}
+}*/

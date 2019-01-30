@@ -8,6 +8,7 @@ import Form from './utilities/Form';
 import VueFlashMessage from 'vue-flash-message';
 import VuejsDialog from "vuejs-dialog"
 require('bootstrap');
+import './utilities/fullpage.js'
 
 window.$ = window.jQuery = require('jquery');
 window.Vue = Vue;

@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <h3 v-else>Keine geplanten events</h3>
+        <h3 v-else>Keine geplanten Events</h3>
     </div>
 </template>
 
