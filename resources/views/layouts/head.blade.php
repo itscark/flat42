@@ -11,7 +11,7 @@
     <title>Flat42</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('favicon.png') }}">
+    <link rel="icon" href="{{ secure_asset('favicon.png') }}">
 
     <!--Fontawesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
