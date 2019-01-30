@@ -13,16 +13,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 @if(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'user')
                     <div class="navbar-nav mr-auto">
-                        <router-link to="{{secure_url('/home')}}" tag="li" exact class="nav-item">
+                        <router-link to="/home" tag="li" exact class="nav-item">
                             <a class="nav-link">News</a>
                         </router-link>
-                        <router-link to="{{secure_url('/shopping')}}" tag="li" class="nav-item">
+                        <router-link to="/shopping" tag="li" class="nav-item">
                             <a class="nav-link">Shopping</a>
                         </router-link>
-                        <router-link to="{{secure_url('/events')}}" tag="li" class="nav-item">
+                        <router-link to="/events" tag="li" class="nav-item">
                             <a class="nav-link">Events</a>
                         </router-link>
-                        <router-link to="{{secure_url('/cleaning')}}" tag="li" class="nav-item">
+                        <router-link to="/cleaning" tag="li" class="nav-item">
                             <a class="nav-link">Cleaning</a>
                         </router-link>
                     </div>
