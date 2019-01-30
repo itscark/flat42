@@ -26,7 +26,7 @@ mix.webpackConfig({
             stripPrefix: 'public/',
             handleFetch: true,
             dynamicUrlToDependencies: {
-                '/home': ['resources/views/frontend/index.blade.php'],
+                '/': ['resources/views/frontend/index.blade.php'],
             },
             staticFileGlobsIgnorePatterns: [/\.map$/, /mix-manifest\.json$/, /manifest\.json$/, /service-worker\.js$/],
             runtimeCaching: [
