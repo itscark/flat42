@@ -53,7 +53,7 @@
                                        id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
+                                    {{ __('Eingeloggt bleiben') }}
                                 </label>
                             </div>
                         </div>

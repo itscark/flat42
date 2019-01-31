@@ -45,6 +45,14 @@
                             <div class="mobile-menu-slider">
                                 <transition name="slide">
                                     <div v-if="toggle">
+                                        <div class="nav-item-mobile toggle-nav">
+                                            <a class="mobile-button nav-link-mobile"
+                                               href="{{ secure_url(route('logout')) }}"
+                                               onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                                <i class="fas fa-sign-out-alt nav-link-mobile"></i>
+                                            </a>
+                                        </div>
                                         @if(auth()->check() && auth()->user()->flat_id != null && auth()->user()->role == 'user')
                                             <div class="nav-item-mobile toggle-nav">
                                                 <a class="mobile-button nav-link-mobile" id="show-modal"
@@ -52,16 +60,7 @@
                                                     <i class="fas fa-info nav-link-mobile"></i>
                                                 </a>
                                             </div>
-
                                         @endif
-                                        <div class="nav-item-mobile toggle-nav">
-                                            <a class="mobile-button nav-link-mobile"
-                                               href="{{ secure_url(route('logout')) }}"
-                                               onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                                <i class="fas fa-sign-out-alt nav-link-mobile"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                 </transition>
                             </div>

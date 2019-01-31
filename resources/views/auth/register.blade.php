@@ -8,8 +8,16 @@
             <div class="col-md-8">
 
                 <form method="POST" action="{{ route('register') }}">
-                    <h2 class="justify-content-center">{{ __('Register') }}</h2>
+
                     @csrf
+
+                    <div class="w-100 text-center">
+                        <img class="mb-4 mx-auto login-logo" src="{{ asset('images/transparent-logo.png') }}"
+                             alt="flat42 logo">
+                    </div>
+
+                    <h2 class="justify-content-center">{{ __('Register') }}</h2>
+
                     <div class="form-group">
                         <label for="name">{{ __('Name') }}</label>
 
@@ -65,7 +73,7 @@
 
                     <div class="form-group">
                         <label for="password-confirm"
-                        >{{ __('Confirm Password') }}</label>
+                        >{{ __('Password Bestätigen') }}</label>
 
                         <div class="">
                             <input id="password-confirm" type="password" class="form-control"

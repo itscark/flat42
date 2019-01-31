@@ -27,13 +27,13 @@
                 ></div>
             </div>
             <div class="form-group col-md">
-                <label for="body">Schreib etwas nettes</label>
+                <label for="body">Beschreibung</label>
                 <textarea
                     class="form-control"
                     name="body"
                     v-model="form.body"
                     id="body"
-                    placeholder="Poste etwas neues"
+                    placeholder="Beschreibung"
                 ></textarea>
                 <div
                     class="invalid-feedback"
