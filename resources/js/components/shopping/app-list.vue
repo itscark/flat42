@@ -2,7 +2,7 @@
     <div>
         <div>
             <div>
-                <h1>Einkaufslsite</h1>
+                <h1>Einkaufsliste</h1>
                 <app-item
                     v-for="item in items"
                     :item="item"
