@@ -39,6 +39,18 @@ class CreateUsersTable extends Migration
                 'updated_at' => NOW(),
             )
         );
+
+        DB::table('users')->insert(
+
+            array(
+                'name' => 'Marc Peternell',
+                'email' => 'peternellmarc@gmail.com',
+                'email_verified_at' => NOW(),
+                'password' => Hash::make('secret'),
+                'role' => 'user',
+                'created_at' => NOW(),
+                'updated_at' => NOW(),
+            ));
     }
 
     /**

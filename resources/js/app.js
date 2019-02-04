@@ -36,7 +36,7 @@ router.beforeEach((to, from, next) => {
     next()
 });
 router.afterEach(() => {
-    setTimeout(() => NProgress.done(), 500)
+    setTimeout(() => NProgress.done(), 500);
 });
 
 new Vue({

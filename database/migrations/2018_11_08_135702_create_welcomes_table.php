@@ -35,7 +35,7 @@ class CreateWelcomesTable extends Migration
                 [
                     'section_id' => 'sectionNews',
                     'title' => 'News',
-                    'body' => 'Teilt eure Gedanken miteinander! Gebt euren Freunden bescheid, wo es Angebot gibt.',
+                    'body' => 'Teilt eure Gedanken miteinander! Gebt euren Freunden bescheid, wo es Angebote gibt.',
                     'img_url' => 'svg/homepage/undraw_content_vbqo.svg',
                 ],
 
