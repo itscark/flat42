@@ -64,11 +64,26 @@
                                     </div>
                                 </transition>
                             </div>
-
                         @endif
                     </div>
 
                 @endif
+
+                @if(auth()->check() && auth()->user()->role == 'admin')
+                    <div id="admin-nav">
+                        <a class="btn btn-primary ml-auto m-margin "
+                           href="{{ secure_url(route('logout')) }}"
+                           onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                        <form id="logout-form" action="{{ secure_url(route('logout')) }}" method="POST"
+                              style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                @endif
+
                 @if(!auth()->check())
                     <div class="my-2 my-lg-0 ml-auto">
                         <a class="btn btn-primary" href="{{ secure_url(route('login')) }}"> <i
