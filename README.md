@@ -17,7 +17,7 @@ email: admin@flat42.com
 passwort: secret
 
 user: 
-email: peternellmarc@gmail.com
+email: admin@admin.com
 passwort: secret
 
 Github: https://github.com/marcpeternell/flat42
