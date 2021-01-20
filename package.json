@@ -34,7 +34,7 @@
         "bootstrap-vue": "^2.0.0-rc.11",
         "fs": "0.0.1-security",
         "fullpage.js": "^3.0.4",
-        "gsap": "^2.0.2",
+        "gsap": "^3.6.0",
         "moment": "^2.24.0",
         "nprogress": "^0.2.0",
         "vue-flash-message": "^0.7.2",
