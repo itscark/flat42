@@ -33,7 +33,7 @@
         "babel-helper-vue-jsx-merge-props": "^2.0.3",
         "bootstrap-vue": "^2.0.0-rc.11",
         "fs": "0.0.1-security",
-        "fullpage.js": "^3.0.4",
+        "fullpage.js": "^4.0.5",
         "gsap": "^2.0.2",
         "moment": "^2.24.0",
         "nprogress": "^0.2.0",
